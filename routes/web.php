@@ -30,5 +30,6 @@ Route::get('/logout','LoginController@logOut')->name('logout');
 Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
     Route::get('/','ClientController@index')->name('client');
     Route::get('/forms','ClientController@submittedForms')->name('forms');
+    Route::get('/profile','ClientController@profile')->name('profile');
 });
 
