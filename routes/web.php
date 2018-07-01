@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/register',function(){
+    return view('register');
+})->name('register');
+
+Route::post('/registerClient','LoginController@registerClient')->name('registerClient');
+
+Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
+    Route::get('/','ClientController@index')->name('client');
+    Route::get('/forms','ClientController@submittedForms')->name('forms');
 });
 
