@@ -20,6 +20,7 @@ Route::get('/register',function(){
 })->name('register');
 
 Route::post('/registerClient','LoginController@registerClient')->name('registerClient');
+Route::post('/loginClient','LoginController@loginClient')->name('loginClient');
 
 Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
     Route::get('/','ClientController@index')->name('client');

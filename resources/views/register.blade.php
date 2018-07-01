@@ -53,31 +53,32 @@
     <div class="row">
         <div class="well col-md-5 center login-box">
             <div class="alert alert-info">
-                    Register with TaleoIt
+                    <p>Register with TaleoIt</p>
             </div>
-        <form class="form-horizontal" action="{{route('registerClient')}}" method="post">
+        <form class="form-horizontal" action="{{route('registerClient')}}" method="post" id="register">
                 <fieldset>
 
                         <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user green"></i></span>
-                                <input type="text" name="fullname" class="form-control" placeholder="Full Name">
+                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name">
                             </div>
                             <div class="clearfix"></div><br>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-email green">@</i></span>
-                        <input type="text" name="email" class="form-control" placeholder="Email">
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Email">
                     </div>
+                    @csrf
                     <div class="clearfix"></div><br>
 
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock green"></i></span>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password">
                     </div>
 
                     <div class="clearfix"></div>
 
                     <p class="center col-md-5">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit"  class="btn btn-primary">Register</button>
                     <a href="{{route('login')}}" class="btn btn-secondary">Login</a>
                     </p>
                 </fieldset>
@@ -123,6 +124,7 @@
 <script src="{{URL::asset('js/jquery.history.js') }}"></script>
 <!-- application script for Charisma demo -->
 <script src="{{URL::asset('js/charisma.js') }}"></script>
+<script src="{{URL::asset('js/script.js') }}"></script>
 
 </body>
 </html>
