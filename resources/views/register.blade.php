@@ -69,7 +69,6 @@
                     </div>
                     @csrf
                     <div class="clearfix"></div><br>
-
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock green"></i></span>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Password">
@@ -125,6 +124,12 @@
 <!-- application script for Charisma demo -->
 <script src="{{URL::asset('js/charisma.js') }}"></script>
 <script src="{{URL::asset('js/script.js') }}"></script>
+@if(Session('error'))
+<script>
+    
+noty({"text":"{{Session('error')}}","layout":"center","type":"error"});
 
+    </script>
+@endif
 </body>
 </html>

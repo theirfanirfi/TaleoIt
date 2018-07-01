@@ -121,6 +121,12 @@
 <script src="{{URL::asset('js/jquery.history.js') }}"></script>
 <!-- application script for Charisma demo -->
 <script src="{{URL::asset('js/charisma.js') }}"></script>
+@if(Session('error'))
+<script>
+    
+noty({"text":"{{Session('error')}}","layout":"center","type":"error"});
 
+    </script>
+@endif
 </body>
 </html>
