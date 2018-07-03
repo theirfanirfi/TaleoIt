@@ -11,7 +11,8 @@
     <title>TaleoIt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="TaleoIt">
-    <meta name="author" content="Irfan Ullah">
+    <meta name="au
+    thor" content="Irfan Ullah">
 
     <!-- The styles -->
     <link id="bs-css" href="{{URL::asset('css/bootstrap-cerulean.min.css') }}" rel="stylesheet">

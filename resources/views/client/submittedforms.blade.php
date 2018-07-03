@@ -83,7 +83,7 @@
                 </td>
                 <td>
                         <a class="btn-sm btn-danger" href="#">
-                                <i class="glyphicon glyphicon-cancel icon-white"></i>
+                                <i class="glyphicon glyphicon-remove icon-white"></i>
                                 Reject
                             </a>
                 </td>

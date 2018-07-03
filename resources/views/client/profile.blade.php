@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="box-content">
-                        <form role="form" method="POST" action="{{route('updateProfile')}}">
+                        <form role="form" method="POST" action="{{route('changePassword')}}">
     
                                     <div class="form-group">
                                             <label for="currentPassword">Current Password</label>

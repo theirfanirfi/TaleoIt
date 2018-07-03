@@ -17,6 +17,21 @@
                     <a class="ajax-link" href="{{route('forms')}}"><i class="glyphicon glyphicon-user"></i><span> Submitted Forms</span></a>
                     </li>
 
+                    <li>
+                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user green"></i><span> Short listed Forms</span></a>
+                    </li>
+
+                    <li>
+                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user yellow"></i><span> Waiting list</span></a>
+                    </li>
+
+                    <li>
+                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user red"></i><span> Rejected Forms</span></a>
+                    </li>
+
+                    <li>
+                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-bullhorn"></i><span> Notifications</span></a>
+                    </li>
                     
                       
                     </ul>

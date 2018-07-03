@@ -34,5 +34,9 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
     // Client Profile
     Route::get('/profile','ClientController@profile')->name('profile');
     Route::post('/updateProfile','ClientController@updateProfile')->name('updateProfile');
+
+    // Change Password
+
+    Route::post('/changePassword','ClientController@changePassword')->name('changePassword');
 });
 
