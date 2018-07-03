@@ -14,11 +14,11 @@
         
     
     <div>
-    <ul class="breadcrumb">
-    <!-- <li>
+     <!--  <ul class="breadcrumb">
+  <li>
         <a href="#">Submitted Forms</a>
-    </li> -->
-    </ul>
+    </li> 
+    </ul>-->
     </div>
     
     
@@ -36,43 +36,69 @@
                 </div>
             </div>
             <div class="box-content">
-
-            <div class="alert alert-info">For help with such table please check <a href="http://datatables.net/" target="_blank">http://datatables.net/</a></div>
+             @if(session('key'))   
+            <div class="alert alert-{{Session('key')}}">{{Session('msg')}}</div>
+            @endif
             
-            
-            <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+            <table style="overflow-x: scroll;overflow:x;table-layout: fixed;" class="table table-striped table-bordered bootstrap-datatable datatable ">
             <thead>
             <tr>
-                <th>Username</th>
-                <th>Date registered</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>State Region</th>
+                <th>Country</th>
+                <th>Passport</th>
+                <th>ID Card</th>
+                <th>Short list</th>
+                <th>Waiting list</th>
+                <th>Reject</th>
+                <th>Profile</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
 
             <tr>
-                <td>Rizwan Habib</td>
-                <td class="center">2012/01/21</td>
-                <td class="center">Staff</td>
+                <td>Irfan Ullah</td>
+                <td class="center">Male</td>
+                <td class="center">21</td>
                 <td class="center">
-                    <span class="label-success label label-default">Active</span>
+                  kp
                 </td>
                 <td class="center">
-                    <a class="btn btn-success" href="#">
+                  Pakistan
+                </td>
+                <td>example text</td>
+                <td>example text</td>
+                <td>                     <a class="btn-sm btn-info" href="#">
+                        <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                        Push
+                    </a></td>
+                <td>
+                        <a class="btn-sm btn-primary" href="#">
+                                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                Push
+                            </a>
+                </td>
+                <td>
+                        <a class="btn-sm btn-danger" href="#">
+                                <i class="glyphicon glyphicon-cancel icon-white"></i>
+                                Reject
+                            </a>
+                </td>
+                <td>                    <a class="btn-sm btn-success" href="#">
                         <i class="glyphicon glyphicon-zoom-in icon-white"></i>
                         View
-                    </a>
-                    <a class="btn btn-info" href="#">
-                        <i class="glyphicon glyphicon-edit icon-white"></i>
-                        Edit
-                    </a>
-                    <a class="btn btn-danger" href="#">
-                        <i class="glyphicon glyphicon-trash icon-white"></i>
-                        Delete
-                    </a>
-                </td>
+                    </a></td>
+
+                    <td>
+                            <a class="btn-sm btn-danger" href="#">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Delete
+                                </a>
+                    </td>
+
             </tr>
 
             </tbody>

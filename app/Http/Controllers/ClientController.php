@@ -23,4 +23,21 @@ class ClientController extends Controller
         $user = Auth::user();
         return view('client.profile',['user' => $user]);
     }
+
+    public function updateProfile(Request $req)
+    {
+        $user = Auth::user();
+        $name = $req->input('fullname');
+        $email = $req->input('email');
+        $user->name = $name;
+        $user->email = $email;
+        if($user->save())
+        {
+            return redirect()->back()->with('success','Profile Updated.');
+        }
+        else
+        {
+            return redirect()->back()->with('error','Erro occurred in updating the Profile. Try Again.');
+        }
+    }
 }

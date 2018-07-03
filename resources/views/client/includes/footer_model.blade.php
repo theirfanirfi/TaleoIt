@@ -62,6 +62,20 @@ aria-hidden="true">
 <!-- application script for Charisma demo -->
 <script src="{{URL::asset('js/charisma.js') }}"></script>
 
+@if(Session('error'))
+<script>
+    
+noty({"text":"{{Session('error')}}","layout":"center","type":"error"});
 
+    </script>
+@endif
+
+@if(Session('success'))
+<script>
+    
+noty({"text":"{{Session('success')}}","layout":"top","type":"success"});
+
+    </script>
+@endif
 </body>
 </html>

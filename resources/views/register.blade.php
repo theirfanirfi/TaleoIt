@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Free HTML5 Bootstrap Admin Template</title>
+    <title>TaleoIt - Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="TaleoIt">
     <meta name="author" content="Irfan Ullah">
