@@ -15,7 +15,7 @@ class ClientWare
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
+        if(Auth::check() && Auth::user()->role == 2){
         return $next($request);
         }
         else 

@@ -18,15 +18,23 @@
                     </li>
 
                     <li>
-                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user green"></i><span> Short listed Forms</span></a>
+                            <a class="ajax-link" href="{{route('shortlisted')}}"><i class="glyphicon glyphicon-user green"></i><span> Final Interview</span></a>
                     </li>
 
                     <li>
-                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user yellow"></i><span> Waiting list</span></a>
+                            <a class="ajax-link" href="{{route('waitinglist')}}"><i class="glyphicon glyphicon-user yellow"></i><span> Pre Screening </span></a>
                     </li>
 
                     <li>
-                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-user red"></i><span> Rejected Forms</span></a>
+                            <a class="ajax-link" href="{{route('rejected')}}"><i class="glyphicon glyphicon-user red"></i><span> Rejected</span></a>
+                    </li>
+
+                    <li>
+                            <a class="ajax-link" href="{{route('rejected')}}"><i class="glyphicon glyphicon-user red"></i><span> Hired</span></a>
+                    </li>
+
+                    <li>
+                            <a class="ajax-link" href="{{route('rejected')}}"><i class="glyphicon glyphicon-user red"></i><span> Screened </span></a>
                     </li>
 
                     <li>

@@ -31,7 +31,7 @@ class LoginController extends Controller
                 $credentials = $req->only('email','password');
                 if(Auth::attempt($credentials))
                 {
-                 return redirect('/client');
+                 return redirect('/user');
                 }
                 else
                 {
@@ -54,7 +54,23 @@ class LoginController extends Controller
            $credentials = $req->only('email','password');
            if(Auth::attempt($credentials))
            {
-            return redirect('/client');
+               switch($user->first()->role)
+               {
+                   case 1:
+                   return redirect('/admin');
+                   break;
+                   case 2:
+                   return redirect('/client');
+                   break;
+                   case 3:
+                   return redirect('/user');
+                   break;
+                   default:
+                   return redirect('/login');
+
+
+
+               }
            }
            else
            {

@@ -73,6 +73,21 @@
             </div>
             <!-- user dropdown ends -->
 
+
+            
+            <!-- Notification dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-bell blue"></i><span class="hidden-sm hidden-xs"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="glyphicon glyphicon-bullhorn green"></i>  Form Submitted</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->
+
             <!-- theme selector starts -->
             <div class="btn-group pull-right theme-container animated tada">
                <!-- <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">

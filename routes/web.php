@@ -38,5 +38,25 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
     // Change Password
 
     Route::post('/changePassword','ClientController@changePassword')->name('changePassword');
+
+    //Shortlisted
+
+    Route::get('/shortlisted','ClientController@shortListed')->name('shortlisted');
+
+    //waiting list
+    Route::get('/waitinglist','ClientController@waitingList')->name('waitinglist');
+
+    //rejected
+
+    Route::get('/rejected','ClientController@rejectedList')->name('rejected');
+
 });
 
+
+// user 
+
+Route::group(['prefix' => 'user', 'middleware' => 'UserWare'],function(){
+
+    Route::get('/','UserController@index');
+
+});

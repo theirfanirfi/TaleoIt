@@ -72,4 +72,20 @@ class ClientController extends Controller
     }
 
     }
+
+
+    public function waitingList()
+    {
+        return view('client.submittedforms');
+    }
+
+    public function shortListed()
+    {
+        return view('client.submittedforms');
+    }
+
+    public function rejectedList()
+    {
+        return view('client.submittedforms');
+    }
 }
