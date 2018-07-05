@@ -283,7 +283,9 @@ span.round-tab:hover {
 <div class="container">
 
     <div class="row" style="margin-top:12px;">
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            
+        </div>
         <div class="col-md-6">
             <img style="height:80px;" src="{{URL::asset('img/taleo/taleo.png') }}" class="img-responsive" />
         </div>
@@ -314,7 +316,7 @@ span.round-tab:hover {
                     <li role="presentation" class="active">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
+                                <i class="glyphicon glyphicon-list-alt"></i>
                             </span>
                         </a>
                     </li>
@@ -349,42 +351,86 @@ span.round-tab:hover {
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
                             <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">First Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+                            <div class="col-md-4">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
                             </div>
+                            <div class="col-md-4">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="address">Street Address</label>
+                                <input type="text" class="form-control" name="streetAddress" id="address" placeholder="Email">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                           
+                            <div class="col-md-4">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Email">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="state">State/Region</label>
+                                <input type="text" class="form-control" id="state" name="stateRegion" placeholder="Email">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="zip">ZIP</label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            
+                          
+                            <div class="col-md-4">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" name="country" placeholder="Email">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="phone">Contact Phone</label>
+                                <input type="text" class="form-control" id="phone" name="contactPhone" placeholder="Email">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="age">Age</label>
+                                <input type="number" class="form-control" name="age" id="age" placeholder="Age">
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6">
-                                <label for="exampleInputEmail1">Last Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
+                                <label for="gender">Gender</label>
+                                <select name="gender" class="form-control" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                          
+                            <div class="col-md-6">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <label for="height">Height</label>
+                                <input type="number" class="form-control" id="height" name="height" placeholder="Please Enter Height in CM. Example: 167">
                             </div>
+
+                            
                             <div class="col-md-6">
-                                <label for="exampleInputEmail1">Confirm Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <label for="weight">Weight</label>
+                                <input type="number" class="form-control" id="weight" name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Mobile Number</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="col-md-6">
-                            <label for="exampleInputEmail1">Email address</label>
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                    </div>
-                                    <div class="col-md-9 col-xs-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
