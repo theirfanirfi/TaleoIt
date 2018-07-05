@@ -284,7 +284,13 @@ span.round-tab:hover {
 
     <div class="row" style="margin-top:12px;">
         <div class="col-md-4">
-            
+            <p> <strong>Application Status: </strong>
+            @if($form->count() > 0)
+            {{$form->first()->application_status}}
+            @else
+            {{"not submitted"}}
+            @endif
+            </p>
         </div>
         <div class="col-md-6">
             <img style="height:80px;" src="{{URL::asset('img/taleo/taleo.png') }}" class="img-responsive" />
@@ -316,7 +322,7 @@ span.round-tab:hover {
                     <li role="presentation" class="active">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-list-alt"></i>
+                                <i class="glyphicon glyphicon-user"></i>
                             </span>
                         </a>
                     </li>
@@ -324,7 +330,7 @@ span.round-tab:hover {
                     <li role="presentation" class="disabled">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                                <i class="glyphicon glyphicon-list-alt"></i>
                             </span>
                         </a>
                     </li>
@@ -433,19 +439,19 @@ span.round-tab:hover {
 
                         </div>
                         <ul class="list-inline pull-right">
+
+
                             <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step2">
-                            <div class="step_21">
                                 <div class="row">
-                                   
+                                        <div class="col-md-6">
+                                <label for="weight">Weight</label>
+                                <input type="number" class="form-control" id="weight" name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4">
+                            </div>
                                 </div>
-                            </div>
-                            <div class="step-22">
-                            
-                            </div>
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
