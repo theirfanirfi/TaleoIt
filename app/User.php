@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return User::where(['email' => $email])->count();
     }
+
+    public static function recruiters()
+    {
+        return User::where(['role'=>2, 'isRecruiter'=>1])->get();
+    }
 }

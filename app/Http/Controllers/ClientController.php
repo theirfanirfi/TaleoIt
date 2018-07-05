@@ -88,4 +88,120 @@ class ClientController extends Controller
     {
         return view('client.submittedforms');
     }
+
+    public function addRecruiter()
+    {
+        return view('client.addRecuriter');
+    }
+
+    public function recruiter(Request $req)
+    {
+        $name = $req->input('fullname');
+        $email = $req->input('email');
+        $password = $req->input('password');
+        if($name== "" || $email == "" || $password == "")
+        {
+            return redirect()->back()->with('error','All fields are required');
+        }
+        else
+        {
+            $user = User::whereEmail($email);
+            if($user->count() > 0)
+            {
+                return redirect()->back()->with('error','User with Same email Already exists.');
+            }
+            else
+            {
+                $u = new User();
+                $u->name = $name;
+                $u->email = $email;
+                $u->password = Hash::make($password);
+                $u->role = 2;
+                $u->isRecruiter = 1;
+                if($u->save())
+                {
+                    return redirect()->back()->with('success','Recruiter Added.');
+                }
+                else
+                {
+                    return redirect()->back()->with('error','Error Occurred in Adding the user try again.');
+                }
+            }
+        }
+    }
+
+    public function recruiters()
+    {
+        $recruiters = User::recruiters();
+        return view('client.recruiters',['recruiters' => $recruiters]);
+    }
+
+    public function editRecruiter($id)
+    {
+        $user = User::find($id);
+        return view('client.editRecruiter',['user' => $user]);
+    }
+
+    public function updateRecruiter(Request $req)
+    {
+        $name = $req->input('fullname');
+        $email = $req->input('email');
+        $password = $req->input('password');
+        $id = $req->input('id');
+        if($name == "" || $email == "")
+        {
+            return redirect()->back()->with('error','Full Name and Email Fields are required.');
+        }
+        else
+        {
+            $user = User::find($id);
+            $user->name = $name;
+
+            if($user->email != $email && $user->checkEmail($email) > 0)
+            {
+                return redirect()->back()->with('error', 'Email: '.$email. " can not be assigned. Please choose another one.");
+            }
+            else
+            {
+                $user->email = $email;
+            }
+
+   
+            
+            if($password != "")
+            {
+                if(strlen($password) < 6)
+                {
+                    return redirect()->back()->with('error','Password Length must be at least six characters long.');
+                }
+                else
+                {
+                    $user->password = Hash::make($password);
+                }
+            }
+
+
+            if($user->save())
+            {
+                return redirect()->back()->with('success','Account Updated.');
+            }
+            else
+            {
+                return redirect()->back()->with('error','Error Occurred in updating the Account. Try Again.');
+            }
+        }
+    }
+
+    public function deleteRecruiter($id)
+    {
+        $user = User::find($id);
+        if($user->delete())
+        {
+            return redirect()->back()->with('success','Recruiter Deleted.');
+        }
+        else
+        {
+            return redirect()->back()->with('error','Error Occurred in deleting the Recruiter. Please Try Again.');
+        }
+    }
 }

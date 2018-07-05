@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->integer('role'); // 1 for super admin, 2 for client and 3 for user
+            $table->integer('isRecruiter'); // 1: yes, 0: No
             $table->timestamps();
         });
     }

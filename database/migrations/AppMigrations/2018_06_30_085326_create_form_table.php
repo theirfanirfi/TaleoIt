@@ -36,6 +36,7 @@ class CreateFormTable extends Migration
             $table->string('universityName');
             $table->string('cvFileName');
             $table->text('coverLetter');
+            $table->integer('user_id'); 
             $table->timestamps();
         });
     }

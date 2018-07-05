@@ -50,6 +50,22 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
 
     Route::get('/rejected','ClientController@rejectedList')->name('rejected');
 
+    //Recuriters
+
+    Route::get('/addRecruiter','ClientController@addRecruiter')->name('addRecruiter');
+    //add Recruiter
+    Route::post('/recruiter','ClientController@recruiter')->name('recruiter');
+    //view Recruiters
+    Route::get('/recruiters','ClientController@recruiters')->name('recruiters');
+    //edit Recruiter Account
+    Route::get('/editRecruiter/{id}','ClientController@editRecruiter')->name('editRecruiter');
+
+    //delete Recruiter
+    Route::get('/deleteRecruiter/{id}','ClientController@deleteRecruiter')->name('deleteRecruiter');
+
+    //update Recruiter
+    Route::post('/updateRecruiter','ClientController@updateRecruiter')->name('updateRecruiter');
+
 });
 
 

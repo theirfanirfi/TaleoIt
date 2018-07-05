@@ -41,6 +41,13 @@
                             <a class="ajax-link" href=""><i class="glyphicon glyphicon-bullhorn"></i><span> Notifications</span></a>
                     </li>
                     
+                    <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Recruiters </span></a>
+                            <ul class="nav nav-pills nav-stacked">
+                            <li><a href="{{route('addRecruiter')}}">Add Recuriter</a></li>
+                            <li><a href="{{route('recruiters')}}">Recruiters</a></li>
+                            </ul>
+                        </li>
                       
                     </ul>
                     <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox" style="display:none;" checked></label>
