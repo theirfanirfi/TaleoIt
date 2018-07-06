@@ -564,6 +564,8 @@ span.round-tab:hover {
                                     <label>Education History: Please enter university/institute name which grant bachelor's degree</label><br/>
                                     <input type="text" name="uni_name" id="uni_name" placeholder="University/Institute Name" class="form-control" /> <br/>
                                     <br/>
+
+                         
                                 </div>
                             </div>
                         </div>
@@ -574,8 +576,27 @@ span.round-tab:hover {
                     </div>
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <div class="step44">
-                            <h5>Completed</h5>
-                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label>CV: Please upload CV (Resume) here Head-shot Photo must be placed on the top of CV.</label><br/>
+                                    <input type="file" name="cv_file" class="form-control" /><br/>
+                                    <p>You can use this text area to support or complement your application. Maximum capacity of 500pts. </p>
+                                    <textarea class="form-control" name="cv_additional_text" style="height:300px;" maxlength="500"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top:20px;">
+                                <div class="col-md-10">
+                            <label>Online Questions</label>
+                            <br/>
+                            <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
+                        <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
+                        <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
+                        <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
+                              
+                    
+                    </div>
+                            </div>
                           
                         </div>
                     </div>
