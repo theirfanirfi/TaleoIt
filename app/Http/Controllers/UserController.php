@@ -41,7 +41,53 @@ class UserController extends Controller
     {
         $data = $req->input('data');
         $response['error'] = false;
+        $applied_for_ana_year = "";
+        $applied_for_ana = $data['applied_for_ana'];
+
+        $school_name = "";
+        $school_year = "";
+        $employer_name = "";
+        $employer_year = "";
+
+
+        if($applied_for_ana == "D" || $applied_for_ana == "C")
+        {
+            $applied_for_ana_year = $data['applied_for_ana_year'];
+        }
+
+        $airline = $data["airline"];
+        $work_experience = $data['work_experience'];
+        $japanese_culture = $data['japanese_culture'];
+        $internation_experience = $data['internation_experience'];
+        $japanese_lang = $data['japanese_lang'];
+
+        if($japanese_lang == "D")
+        {
+            if(!empty($data['school_name']))
+            {
+                $school_name = $data['school_name'];
+                $school_year = $data['school_year'];
+            }
+            else if(!empty($data['employer_name']))
+            {
+                $employer_name = $data['employer_name'];
+                $employer_year = $data['employer_year'];
+            }
+        }
+
+        Session()->put('applied_for_ana',$applied_for_ana);
+        Session()->put('applied_for_ana_year',$applied_for_ana_year);
+        Session()->put('airline',$airline);
+        Session()->put('work_experience',$work_experience);
+        Session()->put('japanese_culture',$japanese_culture);
+        Session()->put('internation_experience',$internation_experience);
+        Session()->put('japanese_lang',$japanese_lang);
+        Session()->put('school_name',$school_name);
+        Session()->put('school_year',$school_year);
+        Session()->put('employer_name',$employer_name);
+        Session()->put('employer_year',$employer_year);
         
+
         echo json_encode($response);
     }
 }

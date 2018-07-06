@@ -14,6 +14,7 @@
     <meta name="au
     thor" content="Irfan Ullah">
 <script src="{{ URL::asset('bower_components/jquery/jquery.min.js') }}"></script>
+<script src="{{URL::asset('js/jquery-ui.min.js')}}"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
  <!-- The fav icon -->
@@ -270,6 +271,10 @@ span.round-tab:hover {
         line-height: 50px;
     }
 
+    .ui-datepicker-calendar {
+   display: none;
+}
+
     .wizard li.active:after {
         content: " ";
         position: absolute;
@@ -473,21 +478,23 @@ span.round-tab:hover {
                                 <div class="col-md-6">
                                 <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
                                 <br/>
-                                <input type="radio" value="A" class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
-                                <input type="radio" value="B" class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
-                                <input type="radio" value="C" class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
-                                <input type="radio" value="D" class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
+                                <input type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"selected"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
+                                <input type="radio" value="B" @if(Session('applied_for_ana') == "B") {{"selected"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
+                                <input type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"selected"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
+                                <input type="radio" value="D" @if(Session('applied_for_ana') == "D") {{"selected"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
                                 <p style="font-size:11px;color:red;font-style:italic;">If you answered C & D, Please enter the last screening year you have Attendend. Example: 2016</p>
-                                <input type="text" name="applied_for_ana_last_screening_year_txt" class="form-control" style="width:60%;" />
-                            </div>
+                                <input type="text" @if(Session('applied_for_ana_year')) {{Session('applied_for_ana_year')}} @endif id="datepicker" name="applied_for_ana_last_screening_year_txt" class="form-control" style="width:60%;" />
+                                <p class="error" style="display:none;color:red;font-style:italic;">Screening Year is Required.</p>
+                                
+                        </div>
 
                                 <div class="col-md-6">
                                         <label for="work_experience">Work Experience: Describe your previous work Experience </label>
                                         <br/>
-                                        <input type="radio" value="A" class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
-                                        <input type="radio" value="B" class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
-                                        <input type="radio" value="C" class="work_experience" name="work_experience"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
-                                        <input type="radio" value="D" class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
+                                        <input type="radio" value="A" @if(Session('work_experience') == "D") {{"selected"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
+                                        <input type="radio" value="B" @if(Session('work_experience') == "B") {{"selected"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
+                                        <input type="radio" value="C" @if(Session('work_experience') == "C") {{"selected"}} @endif class="work_experience" name="work_experience"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
+                                        <input type="radio" value="D" @if(Session('work_experience') == "D") {{"selected"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
                                 </div>
 
                             </div>
@@ -495,15 +502,15 @@ span.round-tab:hover {
                             <div class="row" style="margin-top:16px;">
                                 <div class="col-md-6">
                                     <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
-                                    <input type="text" name="airline" class="form-control" placeholder="Airline Name and Position" />  
+                                    <input type="text" id="airline" name="airline" @if(Session('airline') == "D") {{Session('airline')}} @endif class="form-control" placeholder="Airline Name and Position" />  
 
                                 </div>
                                 <div class="col-md-6">
                                         <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
-                                        <input type="radio" value="A" class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
-                                        <input type="radio" value="B" class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </br>
-                                        <input type="radio" value="C" class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </br>
-                                        <input type="radio" value="D" class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </br>
+                                        <input type="radio" value="A" @if(Session('japanese_culture') == "A") {{"selected"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
+                                        <input type="radio" value="B" @if(Session('japanese_culture') == "B") {{"selected"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </br>
+                                        <input type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"selected"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </br>
+                                        <input type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"selected"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </br>
                                
     
                                     </div>
@@ -523,18 +530,31 @@ span.round-tab:hover {
                                            <div class="row">
                                                <div class="col-md-6">
                                                 <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" /> 
-                                               </div>
+                                            <p class="error" style="display:none;color:Red;font-size:12px;">School Name is Required.</p>   
+                                            </div>
                                                <div class="col-md-6">
                                             <input type="date" name="school_year" class="form-control" id="school_year" placeholder="School Year"/> 
-                                               </div>
+                                            <p  class="error" style="display:none;color:Red;font-size:12px;">School Year is Required.</p>   
+                                               
+                                        </div>
                                            </div>
-
+                                           <div class="row">
+                                               <div class="col-md-5"></div>
+                                               <div class="col-md-1">OR</div>
+                                               <div class="col-md-4"></div>
+                                           </div>
                                            <div class="row" style="margin-top:4px;">
                                                 <div class="col-md-6">
                                                  <input type="text" name="employer_name" class="form-control" id="employer_name" placeholder="Employer Name" /> 
+                                                 <p  class="error" style="display:none;color:Red;font-size:12px;">Employer Name is Required.</p>   
+                                               
+                                       
                                                 </div>
                                                 <div class="col-md-6">
                                              <input type="date" name="employer_year" class="form-control" id="employer_year"/> 
+                                             <p  class="error" style="display:none;color:Red;font-size:12px;">Employement Year is Required.</p>   
+                                               
+                                       
                                                 </div>
                                             </div>
 
@@ -544,7 +564,7 @@ span.round-tab:hover {
                                             <div class="col-md-6">
                                                     <label>International Experience: Describe your International experience</label> <br/>
                                                     <input type="radio" value="A" class="internation_experience" name="internation_experience"> <strong>A: </strong> No Previous experience<br/>
-                                                    <input type="radio" value="B" class="internation_experience" name="internation_experience"> <strong>B: </strong> I have studied or worked in Internation environment. </br>
+                                                    <input type="radio" value="B" class="internation_experience" name="internation_experience"> <strong>B: </strong> I have studied or worked in International environment. </br>
                                                     <input type="radio" value="C" class="internation_experience" name="internation_experience"> <strong>C: </strong> I have studied abroad. </br>
                                                     <input type="radio" value="D" class="internation_experience" name="internation_experience"> <strong>D: </strong> I have worked abroad. </br>
                                                    
