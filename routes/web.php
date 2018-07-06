@@ -74,5 +74,13 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
 Route::group(['prefix' => 'user', 'middleware' => 'UserWare'],function(){
 
     Route::get('/','UserController@index');
+    //submit form
+
+    Route::post('/submitForm','UserController@submitForm')->name('submitForm');
+
+    //sotring the form various steps in session
+
+    Route::get('/stepone','UserController@stepone')->name('stepone');
+    Route::get('/steptwo','UserController@steptwo')->name('steptwo');
 
 });

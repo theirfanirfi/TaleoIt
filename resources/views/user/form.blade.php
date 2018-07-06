@@ -352,22 +352,25 @@ span.round-tab:hover {
                 </ul>
             </div>
 
-            <form role="form">
+        <form role="form" action="{{route('submitForm')}}" method="POST">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
                             <div class="row">
                             <div class="col-md-4">
                                 <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+                                <input type="text" class="form-control sf" @if(Session('firstname')) value="{{Session('firstname')}}" @endif id="firstname" name="firstname" placeholder="First Name">
+                            <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
                             </div>
                             <div class="col-md-4">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+                                <input type="text" class="form-control sf" id="lastname" @if(Session('lastname')) value="{{Session('lastname')}}" @endif name="lastname" placeholder="Last Name">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>                            
                             </div>
                             <div class="col-md-4">
                                 <label for="address">Street Address</label>
-                                <input type="text" class="form-control" name="streetAddress" id="address" placeholder="Email">
+                                <input type="text" class="form-control sf" name="streetAddress" @if(Session('streetAddress')) value="{{Session('streetAddress')}}" @endif id="address" placeholder="Street Address">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>                            
                             </div>
                         </div>
 
@@ -376,16 +379,22 @@ span.round-tab:hover {
                            
                             <div class="col-md-4">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="Email">
+                                <input type="text" class="form-control sf" @if(Session('city')) value="{{Session('city')}}" @endif id="city" name="city" placeholder="City">
+                            <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+
                             </div>
 
                             <div class="col-md-4">
                                 <label for="state">State/Region</label>
-                                <input type="text" class="form-control" id="state" name="stateRegion" placeholder="Email">
+                                <input type="text" class="form-control sf" id="state" @if(Session('state')) value="{{Session('state')}}" @endif name="stateRegion" placeholder="State/Region">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
                             <div class="col-md-4">
                                 <label for="zip">ZIP</label>
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Email">
+                                <input type="text" class="form-control sf" id="zip" @if(Session('zip')) value="{{Session('zip')}}" @endif name="zip" placeholder="ZIP">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
                         </div>
 
@@ -394,16 +403,22 @@ span.round-tab:hover {
                           
                             <div class="col-md-4">
                                 <label for="country">Country</label>
-                                <input type="text" class="form-control" id="country" name="country" placeholder="Email">
+                                <input type="text" class="form-control sf" id="country" @if(Session('country')) value="{{Session('country')}}" @endif name="country" placeholder="Country">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
 
                             <div class="col-md-4">
                                 <label for="phone">Contact Phone</label>
-                                <input type="text" class="form-control" id="phone" name="contactPhone" placeholder="Email">
+                                <input type="text" class="form-control sf" id="phone" name="contactPhone" @if(Session('phone')) value="{{Session('phone')}}" @endif placeholder="Contact Phone">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
                             <div class="col-md-4">
                                 <label for="age">Age</label>
-                                <input type="number" class="form-control" name="age" id="age" placeholder="Age">
+                                <input type="number" class="form-control sf" name="age" id="age" @if(Session('age')) value="{{Session('age')}}" @endif placeholder="Age">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
 
 
@@ -412,27 +427,35 @@ span.round-tab:hover {
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="gender">Gender</label>
-                                <select name="gender" class="form-control" id="gender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                <select name="gender" class="form-control sf" id="gender">
+                                    <option @if(Session('gender') == "Male") {{"selected"}} @endif value="Male">Male</option>
+                                    <option @if(Session('gender') == "Female") {{"selected"}} @endif value="Female">Female</option>
                                 </select>
+                                <p style="display:none;color:red;" class="error">Gender Must be Selected.</p>
+                            
                             </div>
                           
                             <div class="col-md-6">
                                 <label for="Email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                <input type="email" class="form-control sf" @if(Session('email')) value="{{Session('email')}}" @endif id="email" name="email" placeholder="Email">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="height">Height</label>
-                                <input type="number" class="form-control" id="height" name="height" placeholder="Please Enter Height in CM. Example: 167">
+                                <input type="number" class="form-control sf" @if(Session('height')) value="{{Session('height')}}" @endif id="height" name="height" placeholder="Please Enter Height in CM. Example: 167">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
 
                             
                             <div class="col-md-6">
                                 <label for="weight">Weight</label>
-                                <input type="number" class="form-control" id="weight" name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4">
+                                <input type="number" class="form-control sf" id="weight" @if(Session('weight')) value="{{Session('weight')}}" @endif name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4">
+                                <p style="display:none;color:red;" class="error">Field cannot be empty.</p>
+                            
                             </div>
                         </div>
 
@@ -441,7 +464,7 @@ span.round-tab:hover {
                         <ul class="list-inline pull-right">
 
 
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li><button type="button" id="stepone" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
@@ -450,21 +473,21 @@ span.round-tab:hover {
                                 <div class="col-md-6">
                                 <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
                                 <br/>
-                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
-                                <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
-                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
-                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
+                                <input type="radio" value="A" class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
+                                <input type="radio" value="B" class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
+                                <input type="radio" value="C" class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
+                                <input type="radio" value="D" class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
                                 <p style="font-size:11px;color:red;font-style:italic;">If you answered C & D, Please enter the last screening year you have Attendend. Example: 2016</p>
-                                <input type="text" name="last_screening_year" class="form-control" style="width:60%;" />
+                                <input type="text" name="applied_for_ana_last_screening_year_txt" class="form-control" style="width:60%;" />
                             </div>
 
                                 <div class="col-md-6">
-                                        <label for="applied_for_ana">Work Experience: Describe your previous work Experience </label>
+                                        <label for="work_experience">Work Experience: Describe your previous work Experience </label>
                                         <br/>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
-                                        <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
+                                        <input type="radio" value="A" class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
+                                        <input type="radio" value="B" class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
+                                        <input type="radio" value="C" class="work_experience" name="work_experience"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
+                                        <input type="radio" value="D" class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
                                 </div>
 
                             </div>
@@ -477,10 +500,10 @@ span.round-tab:hover {
                                 </div>
                                 <div class="col-md-6">
                                         <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> None<br/>
-                                        <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Basic: N5 Level </br>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Advance N4, N3 Level </br>
-                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Fluent N2, N1 Level </br>
+                                        <input type="radio" value="A" class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
+                                        <input type="radio" value="B" class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </br>
+                                        <input type="radio" value="C" class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </br>
+                                        <input type="radio" value="D" class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </br>
                                
     
                                     </div>
@@ -492,10 +515,10 @@ span.round-tab:hover {
 
                                         <div class="col-md-6">
                                                 <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
-                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No Previous experience<br/>
-                                                <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </br>
-                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I have studied or studies Japanese culture. </br>
-                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </br>
+                                                <input type="radio" value="A" class="japanese_lang" name="japanese_lang"> <strong>A: </strong> No Previous experience<br/>
+                                                <input type="radio" value="B" class="japanese_lang" name="japanese_lang"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </br>
+                                                <input type="radio" value="C" class="japanese_lang" name="japanese_lang"> <strong>C: </strong> I have studied or studies Japanese culture. </br>
+                                                <input type="radio" value="D" class="japanese_lang" name="japanese_lang"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </br>
                                                 <p style="font-size:11px;color:red;font-style:italic;">If you answered D, please enter most recent school or employer name you have studied or worked for.</p>
                                            <div class="row">
                                                <div class="col-md-6">
@@ -519,11 +542,11 @@ span.round-tab:hover {
 
                                             
                                             <div class="col-md-6">
-                                                    <label>Internation Experience: Describe your Internation experience</label> <br/>
-                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No Previous experience<br/>
-                                                    <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have studied or worked in Internation environment. </br>
-                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I have studied abroad. </br>
-                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I have worked abroad. </br>
+                                                    <label>International Experience: Describe your International experience</label> <br/>
+                                                    <input type="radio" value="A" class="internation_experience" name="internation_experience"> <strong>A: </strong> No Previous experience<br/>
+                                                    <input type="radio" value="B" class="internation_experience" name="internation_experience"> <strong>B: </strong> I have studied or worked in Internation environment. </br>
+                                                    <input type="radio" value="C" class="internation_experience" name="internation_experience"> <strong>C: </strong> I have studied abroad. </br>
+                                                    <input type="radio" value="D" class="internation_experience" name="internation_experience"> <strong>D: </strong> I have worked abroad. </br>
                                                    
                                             </div>
 
@@ -533,7 +556,7 @@ span.round-tab:hover {
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            <li><button type="button" id="steptwo" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
@@ -589,15 +612,19 @@ span.round-tab:hover {
                                 <div class="col-md-10">
                             <label>Online Questions</label>
                             <br/>
-                            <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
-                        <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
-                        <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
-                        <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input type="radio" name="tatoo_yes" value="yes" /> <strong>No</strong> <input type="radio" name="tatoo_yes" value="Not" /> </p>
+                        <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" name="tattoo" value="yes" /> <strong>No</strong> <input type="radio" name="tattoo" value="No" /> </p>
+                        <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input type="radio" name="glasses" value="yes" /> <strong>No</strong> <input type="radio" name="glasses" value="No" /> </p>
+                        <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input type="radio" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input type="radio" name="study_japanese_if_hired" value="No" /> </p>
+                        <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input type="radio" name="confirm_form" value="yes" /> <strong>No</strong> <input type="radio" name="confirm_form" value="No" /> </p>
                               
                     
                     </div>
                             </div>
-                          
+                          @csrf
+                            <ul class="list-inline pull-right">
+                                    <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                    <li><button type="submit" class="btn btn-primary btn-info-full next-step">Save and Submit</button></li>
+                                </ul>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -624,10 +651,22 @@ span.round-tab:hover {
     });
 
     $(".next-step").click(function (e) {
+        var id = $(this).attr('id');
+        if( id == 'stepone')
+        { 
+        
+            checkStepOneFields("{{route('stepone')}}");
+        }
 
-        var $active = $('.wizard .nav-tabs li.active');
-        $active.next().removeClass('disabled');
-        nextTab($active);
+        else if(id == 'steptwo')
+        {
+            checkStepTwoFields("{{route('steptwo')}}");
+        }
+        // else {
+        // var $active = $('.wizard .nav-tabs li.active');
+        // $active.next().removeClass('disabled');
+        // nextTab($active);
+        // }
 
     });
     $(".prev-step").click(function (e) {
@@ -678,5 +717,7 @@ $(document).ready(function()
 	return false;
 });
     </script>
+
+<script src="{{URL::asset('js/form.js')}}"></script>
 </body>
 </html>
