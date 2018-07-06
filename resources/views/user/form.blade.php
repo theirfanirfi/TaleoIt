@@ -446,12 +446,90 @@ span.round-tab:hover {
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step2">
-                                <div class="row">
-                                        <div class="col-md-6">
-                                <label for="weight">Weight</label>
-                                <input type="number" class="form-control" id="weight" name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
+                                <br/>
+                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
+                                <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
+                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
+                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
+                                <p style="font-size:11px;color:red;font-style:italic;">If you answered C & D, Please enter the last screening year you have Attendend. Example: 2016</p>
+                                <input type="text" name="last_screening_year" class="form-control" style="width:60%;" />
                             </div>
+
+                                <div class="col-md-6">
+                                        <label for="applied_for_ana">Work Experience: Describe your previous work Experience </label>
+                                        <br/>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
+                                        <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
                                 </div>
+
+                            </div>
+
+                            <div class="row" style="margin-top:16px;">
+                                <div class="col-md-6">
+                                    <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
+                                    <input type="text" name="airline" class="form-control" placeholder="Airline Name and Position" />  
+
+                                </div>
+                                <div class="col-md-6">
+                                        <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> None<br/>
+                                        <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Basic: N5 Level </br>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Advance N4, N3 Level </br>
+                                        <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Fluent N2, N1 Level </br>
+                               
+    
+                                    </div>
+      
+                            </div>
+
+                            <div class="row" style="margin-top:16px;">
+                                    
+
+                                        <div class="col-md-6">
+                                                <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
+                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No Previous experience<br/>
+                                                <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </br>
+                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I have studied or studies Japanese culture. </br>
+                                                <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </br>
+                                                <p style="font-size:11px;color:red;font-style:italic;">If you answered D, please enter most recent school or employer name you have studied or worked for.</p>
+                                           <div class="row">
+                                               <div class="col-md-6">
+                                                <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" /> 
+                                               </div>
+                                               <div class="col-md-6">
+                                            <input type="date" name="school_year" class="form-control" id="school_year" placeholder="School Year"/> 
+                                               </div>
+                                           </div>
+
+                                           <div class="row" style="margin-top:4px;">
+                                                <div class="col-md-6">
+                                                 <input type="text" name="employer_name" class="form-control" id="employer_name" placeholder="Employer Name" /> 
+                                                </div>
+                                                <div class="col-md-6">
+                                             <input type="date" name="employer_year" class="form-control" id="employer_year"/> 
+                                                </div>
+                                            </div>
+
+                                            </div>
+
+                                            
+                                            <div class="col-md-6">
+                                                    <label>Internation Experience: Describe your Internation experience</label> <br/>
+                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No Previous experience<br/>
+                                                    <input type="radio" value="B" id="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> I have studied or worked in Internation environment. </br>
+                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> I have studied abroad. </br>
+                                                    <input type="radio" value="A" id="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> I have worked abroad. </br>
+                                                   
+                                            </div>
+
+
+                            </div>
+
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
@@ -460,180 +538,37 @@ span.round-tab:hover {
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <div class="step33">
-                        <h5><strong>Basic Details</strong></h5>
-                        <hr>
-                            <div class="row mar_ned">
-                                
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Date of birth</stong></p>
+                            <div class="row mar_ned" style="margin-top:12px;">
+                                <div class="col-md-4">
+                                    <label><strong>Passport: </strong> upload clear copy of your passport.</label> <p style="color:red;">Only Thai passport is acceptable.</p> <br/>
+                                    <input type="file" name="passport_file" class="form-control" /> <br/>
+                                    <label>Passport Number: </label> <br/>
+                                    <input type="text" name="passport_number" class="form-control" placeholder="Passport Number" /> <br/>
+                                    <label>Passport Expiry: </label>
+                                    <input type="date" name="passport_expiry" class="form-control" /> <br/>
                                 </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <div class="row">
-                                        <div class="col-md-4 col-xs-4 wdth">
-                                            <select name="visa_status" id="visa_status" class="dropselectsec1">
-                                                <option value="">Date</option>
-                                                <option value="2">1</option>
-                                                <option value="1">2</option>
-                                                <option value="4">3</option>
-                                                <option value="5">4</option>
-                                                <option value="6">5</option>
-                                                <option value="3">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 wdth">
-                                            <select name="visa_status" id="visa_status" class="dropselectsec1">
-                                                <option value="">Month</option>
-                                                <option value="2">Jan</option>
-                                                <option value="1">Feb</option>
-                                                <option value="4">Mar</option>
-                                                <option value="5">Apr</option>
-                                                <option value="6">May</option>
-                                                <option value="3">June</option>
-                                                <option value="7">July</option>
-                                                <option value="8">Aug</option>
-                                                <option value="9">Sept</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 col-xs-4 wdth">
-                                            <select name="visa_status" id="visa_status" class="dropselectsec1">
-                                                <option value="">Year</option>
-                                                <option value="2">1990</option>
-                                                <option value="1">1991</option>
-                                                <option value="4">1992</option>
-                                                <option value="5">1993</option>
-                                                <option value="6">1994</option>
-                                                <option value="3">1995</option>
-                                                <option value="7">1996</option>
-                                                <option value="8">1997</option>
-                                                <option value="9">1998</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
+                                <div class="col-md-4">
+                                    <label><strong>Thai ID Card: </strong> Please Upload clear copy of your Thai ID Card.</label></br>
+                                    <input type="file" name="thai_id_card" class="form-control" />
+                                </br>
+                                <label>TOEIC Score - Upload: Please upload copy of your recent TOEIC Score Card here</label>
+                                <br/>
+                                <input type="file" name="toeic_score_card" class="form-control" />
+                                <br/>
+                                <label>TOEIC Score</label>
+                                <input type="number" name="toeic_score" class="form-control" placeholder="English TOEIC Score. Example 784" />
                                 </div>
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Marital Status</stong></p>
+
+                                <div class="col-md-4">
+                                    <label>Education History: Please enter university/institute name which grant bachelor's degree</label><br/>
+                                    <input type="text" name="uni_name" id="uni_name" placeholder="University/Institute Name" class="form-control" /> <br/>
+                                    <br/>
                                 </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <label class="radio-inline">
-                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Single
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Married
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Highest Education</stong></p>
-                                </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <select name="highest_qualification" id="highest_qualification" class="dropselectsec">
-                                        <option value=""> Select Highest Education</option>
-                                        <option value="1">Ph.D</option>
-                                        <option value="2">Masters Degree</option>
-                                        <option value="3">PG Diploma</option>
-                                        <option value="4">Bachelors Degree</option>
-                                        <option value="5">Diploma</option>
-                                        <option value="6">Intermediate / (10+2)</option>
-                                        <option value="7">Secondary</option>
-                                        <option value="8">Others</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Specialization</stong></p>
-                                </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <input type="text" name="specialization" id="specialization" placeholder="Specialization" class="dropselectsec" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Year of Passed Out</stong></p>
-                                </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <select name="year_of_passedout" id="year_of_passedout" class="birthdrop">
-                                        <option value="">Year</option>
-                                        <option value="1980">1980</option>
-                                        <option value="1981">1981</option>
-                                        <option value="1982">1982</option>
-                                        <option value="1983">1983</option>
-                                        <option value="1984">1984</option>
-                                        <option value="1985">1985</option>
-                                        <option value="1986">1986</option>
-                                        <option value="1987">1987</option>
-                                        <option value="1988">1988</option>
-                                        <option value="1989">1989</option>
-                                        <option value="1990">1990</option>
-                                        <option value="1991">1991</option>
-                                        <option value="1992">1992</option>
-                                        <option value="1993">1993</option>
-                                        <option value="1994">1994</option>
-                                        <option value="1995">1995</option>
-                                        <option value="1996">1996</option>
-                                        <option value="1997">1997</option>
-                                        <option value="1998">1998</option>
-                                        <option value="1999">1999</option>
-                                        <option value="2000">2000</option>
-                                        <option value="2001">2001</option>
-                                        <option value="2002">2002</option>
-                                        <option value="2003">2003</option>
-                                        <option value="2004">2004</option>
-                                        <option value="2005">2005</option>
-                                        <option value="2006">2006</option>
-                                        <option value="2007">2007</option>
-                                        <option value="2008">2008</option>
-                                        <option value="2009">2009</option>
-                                        <option value="2010">2010</option>
-                                        <option value="2011">2011</option>
-                                        <option value="2012">2012</option>
-                                        <option value="2013">2013</option>
-                                        <option value="2014">2014</option>
-                                        <option value="2015">2015</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mar_ned">
-                                <div class="col-md-4 col-xs-3">
-                                    <p align="right"><stong>Total Experience</stong></p>
-                                </div>
-                                <div class="col-md-8 col-xs-9">
-                                    <div class="row">
-                                        <div class="col-md-6 col-xs-6 wdth">
-                                            <select name="visa_status" id="visa_status" class="dropselectsec1">
-                                                <option value="">Month</option>
-                                                <option value="2">Jan</option>
-                                                <option value="1">Feb</option>
-                                                <option value="4">Mar</option>
-                                                <option value="5">Apr</option>
-                                                <option value="6">May</option>
-                                                <option value="3">June</option>
-                                                <option value="7">July</option>
-                                                <option value="8">Aug</option>
-                                                <option value="9">Sept</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 col-xs-6 wdth">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mar_ned">
-                               
                             </div>
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
                             <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
                         </ul>
                     </div>
