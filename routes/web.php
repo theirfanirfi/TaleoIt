@@ -82,5 +82,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'UserWare'],function(){
 
     Route::get('/stepone','UserController@stepone')->name('stepone');
     Route::get('/steptwo','UserController@steptwo')->name('steptwo');
+    Route::get('/stepthree','UserController@stepthree')->name('stepthree');
 
 });

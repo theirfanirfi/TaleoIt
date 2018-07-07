@@ -54,6 +54,10 @@ class UserController extends Controller
         {
             $applied_for_ana_year = $data['applied_for_ana_year'];
         }
+        else 
+        {
+            Session()->forget('applied_for_ana_year');
+        }
 
         $airline = $data["airline"];
         $work_experience = $data['work_experience'];
@@ -67,11 +71,15 @@ class UserController extends Controller
             {
                 $school_name = $data['school_name'];
                 $school_year = $data['school_year'];
+                Session()->forget('employer_name');
+                Session()->forget('employer_year');
             }
             else if(!empty($data['employer_name']))
             {
                 $employer_name = $data['employer_name'];
                 $employer_year = $data['employer_year'];
+                Session()->forget('school_name');
+                Session()->forget('school_year');
             }
         }
 
@@ -88,6 +96,23 @@ class UserController extends Controller
         Session()->put('employer_year',$employer_year);
         
 
+        echo json_encode($response);
+    }
+
+    public function stepthree(Request $req)
+    {
+        $data = $req->input('data');
+        $passportNumber = $data[0];
+        $passportExpiry = $data[1];
+        $toeic_score = $data[2];
+        $uni_name = $data[3];
+
+        Session()->put('passportNumber',$passportNumber);
+        Session()->put('passportExpiry',$passportExpiry);
+        Session()->put('toeic_score',$toeic_score);
+        Session()->put('uni_name',$uni_name);
+        $response['data'] = $data;
+        $response['error'] =  false;
         echo json_encode($response);
     }
 }

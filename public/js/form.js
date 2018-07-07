@@ -260,7 +260,7 @@ function checkStepTwoFields(url){
 
     if(anaI > 3 || workI > 3 || jI > 3 || jL > 3 || iI > 3 || Ai > 0)
     {
-        return false;
+        alert('Error: Please check, You have left something unattended.');
     }
     else
     {
@@ -281,3 +281,183 @@ function checkStepTwoFields(url){
 }
 
 $( "#datepicker" ).datepicker({dateFormat: 'yy'});
+
+
+//checking file formats only jpg, png, jpeg are allowed
+
+function checkformat(inputFile)
+{
+    var file = $(inputFile).val();
+    var allowed_extensions = new Array("jpg","png","jpeg");
+    var file_extension = file.split('.').pop().toLowerCase();
+
+    if(allowed_extensions.includes(file_extension))
+    {
+       $(inputFile).prev('.error2').hide('slow');
+        return true;
+
+    }
+    else 
+    {
+       $(inputFile).prev('.error2').show('slow');
+       $(inputFile).val("");
+        return false;
+    }
+   
+}
+
+function validateStepThree(url)
+{
+    var cI = 0;
+    var fileC = 0;
+$('.ssf').each(function(index,element){
+    if($(element).val()=="")
+    {
+        $(element).next('.error').show('slow');
+        cI++;
+    }
+    else 
+    {
+        $(element).next('.error').hide('slow');
+
+    }
+});
+
+var passportfile = $('#passportFile');
+var thaiCard = $('#thaicard_file');
+var scorecard = $('#score_file');
+
+if(passportfile.val() == "")
+{
+    fileC++;
+    passportfile.next('.error').show('slow');
+}
+else if(!checkformat(passportfile))
+{
+   fileC++;
+   passportfile.prev('.error2').show('slow');
+}
+else 
+{
+    passportfile.next('.error').hide('slow');
+    passportfile.prev('.error2').hide('slow');
+
+}
+
+if(thaiCard.val() == "")
+{
+   fileC++;
+   thaiCard.next('.error').show('slow');
+}
+else if(!checkformat(thaiCard))
+{
+    thaiCard.prev('.error2').show('slow');
+fileC++;
+}
+else 
+{
+    thaiCard.next('.error').hide('slow');
+    thaiCard.prev('.error2').hide('slow');
+
+}
+if(scorecard.val() == "")
+{
+    fileC++;
+ scorecard.next('.error').show('slow');   
+}
+else if(!checkformat(scorecard))
+{
+   fileC++;
+ scorecard.prev('.error2').show('slow');   
+
+}
+else {
+ scorecard.next('.error').hide('slow');   
+ scorecard.prev('.error2').hide('slow');   
+
+}
+
+if(cI > 0 || fileC > 0)
+{
+    alert("ERROR: Please check, you have left something unattended.");
+}
+else 
+{
+    var passportnumber = $('#passportNumber').val();
+    var passportExpiry = $('#passport_expiry').val();
+    var toeic_score = $('#toeic_score').val();
+    var uni_name = $('#uni_name').val();
+var arr = [passportnumber,passportExpiry,toeic_score,uni_name];
+    $.get(url,{data: arr},function(data){
+        if(data.error == false)
+        {
+            var $active = $('.wizard .nav-tabs li.active');
+            $active.next().removeClass('disabled');
+            nextTab($active);
+        }
+    },'json');
+}
+
+
+
+}
+
+function checkCVformat(cvFile)
+{
+    var file = $(cvFile).val();
+    var allowed_extensions = new Array("pdf");
+    var file_extension = file.split('.').pop().toLowerCase();
+
+    if(allowed_extensions.includes(file_extension))
+    {
+       $(cvFile).prev('.error2').hide('slow');
+        return true;
+
+    }
+    else 
+    {
+       $(cvFile).prev('.error2').show('slow');
+       $(cvFile).val("");
+        return false;
+    }
+}
+
+
+$('#formform').submit(function(e){
+    var cC = 0;
+    var cv = $('#cv_file');
+    var rC = 0;
+    if(cv.val() == "")
+    {
+        $(cv).next('.error').show('slow');
+        cC++;
+    }
+    else if(!checkCVformat(cv))
+    {
+        cC++;
+    }
+    else 
+    {
+        $(cv).next('.error').hide('slow');
+        $(cv).prev('.error2').hide('slow');
+
+    }
+
+    $('.oq').each(function(index,element){
+        if(!$(element).is(":checked"))
+        {
+            rC++;
+        }
+    });
+
+    if(cC > 0 || rC > 0)
+    {
+        alert('ERROR: Please check, you have left something unattended.');
+        e.preventDefault();
+
+    }
+    else 
+    {
+        $('#formform').bind('submit');
+    }
+});
