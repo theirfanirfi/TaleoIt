@@ -209,6 +209,7 @@ class ClientController extends Controller
 
     public function application($id)
     {
-        
+        $form = FormModel::find($id);
+        return view('client.application',['form' => $form]);
     }
 }
