@@ -26,7 +26,7 @@
             <div class="box col-md-12">
             <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>Submitted Forms</h2>
+                <h2><i class="glyphicon glyphicon-user"></i>Final Interview Candidates</h2>
         
                 <div class="box-icon">
                     <a href="#" class="btn btn-minimize btn-round btn-default"><i

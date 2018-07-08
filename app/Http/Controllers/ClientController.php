@@ -212,4 +212,73 @@ class ClientController extends Controller
         $form = FormModel::find($id);
         return view('client.application',['form' => $form]);
     }
+
+    public function deleteApp($id)
+    {
+        $form = FormModel::find($id);
+        if($form->delete())
+        {
+            return redirect()->back()->with('success','Application Deleted.');
+        }
+        else
+        {
+            return redirect()->back()->with('error','Error occurred in deleting the application. Try Again.');
+        }
+    }
+
+    public function changeAppStatus(Request $req)
+    {
+        $form_id = $req->input('form_id');
+        $status = $req->input('status');
+        $status_var = "";
+        switch($status)
+        {
+            case 0:
+            $status_var = "Submitted";
+            break;
+            case 1:
+            
+            $status_var = "Final Interview";
+            break;
+            case 2:
+            
+            $status_var = "Pre Screening";
+            break;
+            case 3:
+            
+            $status_var = "Rejected";
+            break;
+            case 4:
+            
+            $status_var = "Hired";
+            break;
+
+            case 5:
+            
+            $status_var = "Screened";
+            break;
+
+            default:
+            $status_var = "Submitted";
+            $status = 0;
+        }
+        $response['error'] = true;
+        $form = FormModel::find($form_id);
+        $form->application_status = $status_var;
+        $form->app_status = $status;
+
+        if($form->save())
+        {
+            $response['error'] = false;
+
+        }
+
+        echo json_encode($response);
+    }
+
+    public function finalInterview()
+    {
+        $forms = FormModel::whereApp_status(1)->get();
+        return view('client.finalinterview',['forms' => $forms]);
+    }
 }

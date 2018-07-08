@@ -31,6 +31,12 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
     Route::get('/','ClientController@index')->name('client');
     Route::get('/forms','ClientController@submittedForms')->name('forms');
     Route::get('/app/{id}','ClientController@application')->name('app');
+    Route::get('/deleteApp/{id}','ClientController@deleteApp')->name('deleteApp');
+    Route::get('changeAppStatus','ClientController@changeAppStatus')->name('changeAppStatus');
+
+    //final interview
+
+    Route::get('/finalInterview','ClientController@finalInterview')->name('finalinterview');
 
     // Client Profile
     Route::get('/profile','ClientController@profile')->name('profile');

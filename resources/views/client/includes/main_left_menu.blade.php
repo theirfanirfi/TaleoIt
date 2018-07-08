@@ -18,7 +18,7 @@
                     </li>
 
                     <li>
-                            <a class="ajax-link" href="{{route('shortlisted')}}"><i class="glyphicon glyphicon-user green"></i><span> Final Interview</span></a>
+                            <a class="ajax-link" href="{{route('finalinterview')}}"><i class="glyphicon glyphicon-user green"></i><span> Final Interview</span></a>
                     </li>
 
                     <li>

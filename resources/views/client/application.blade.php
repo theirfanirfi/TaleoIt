@@ -40,6 +40,24 @@
             @endif
             
             <div class="row" style="margin-top:12px; padding:12px;">
+                    <div class="col-md-3">
+                      <label>Application Status: </label> <span class="label label-success">{{$form->application_status}} </span>
+                    </div>
+
+                    <div class="col-md-3">
+                            <label>Change Status: </label> 
+                            <select class="form-control changeStatus" form_id="{{$form->id}}">
+                                    <option value="0" @if($form->app_status == 0) {{"selected"}} @endif>Submitted</option>
+                                            <option value="1" @if($form->app_status == 1) {{"selected"}} @endif >Final Interview</option>
+                                            <option value="2" @if($form->app_status == 2) {{"selected"}} @endif >Pre Screening</option>
+                                            <option value="3" @if($form->app_status == 3) {{"selected"}} @endif >Rejected</option>
+                                            <option value="4" @if($form->app_status == 4) {{"selected"}} @endif >Hired</option>
+                                            <option value="5" @if($form->app_status == 5) {{"selected"}} @endif >Screened</option>
+                                        </select>
+                          </div>
+                </div> 
+
+            <div class="row" style="margin-top:12px; padding:12px;">
                 <div class="col-md-3">
                     <label> 1. First Name: </label> {{$form->firstname}}
                 </div>
@@ -260,5 +278,22 @@
            
         }
 
+    $('.changeStatus').change(function(){
+        var v = $(this).val();
+        var fid = $(this).attr('form_id');
+        var url = "{{route('changeAppStatus')}}";
+        $.get(url,{status: v, form_id: fid},function(data){
+            if(data.error == false)
+            {
+                
+                alert('Application Status Updated.');
+                location.reload();
+            }
+            else
+            {
+                alert('Error occurred in changing the application status try again.');
+            }
+        },'json');
+    });
     </script>
 @endsection
