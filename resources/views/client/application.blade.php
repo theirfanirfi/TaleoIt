@@ -183,10 +183,56 @@
 
 
                                     <div class="col-md-3">
-                                    <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->cvFileName}}"><img src="{{URL::asset('img/cv.png')}}" style="width:95%;height:220px;" /></a> 
+                                    <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><img src="{{URL::asset('img/cv.png')}}" style="width:95%;height:220px;" /></a> 
                                    
                                         </div>  
-                                </div>     
+                                </div>  
+
+                                <div class="row" style="margin-top:12px; padding:12px;">
+                                        <div class="col-md-3">
+                                          <label>29. University Name:</label> {{$form->universityName}}
+                                        </div>
+                                    </div> 
+                                
+                                <div class="row" style="margin-top:12px; padding:12px;">
+                                        <div class="col-md-3">
+                                                        <h5>30. Cover Letter:</h5>   
+                                        </div>
+                                    </div> 
+
+                                    <div class="row" style="margin-top:2px; padding:2px;">
+                                            <div class="col-md-12">
+                                            <p style="text-align: justify;"><?php echo $form->coverLetter; ?></p>
+                                            </div>
+                                        </div> 
+
+
+
+                            
+                                        <div class="row" style="margin-top:12px; padding:12px;">
+                                                <div class="col-md-3">
+                                                   <h3>Other Questions</h3>
+                                                </div>
+                                            </div> 
+
+                                            <div class="row" style="margin-top:12px; padding:12px;">
+                                                    <div class="col-md-3">
+                                                       <label>31. Tatto: </label> {{$form->tatoo}}
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                            <label>32. Glasses: </label> {{$form->glasses}}
+                                                         </div>
+
+
+                                                         <div class="col-md-3">
+                                                                <label>33. Japanese: </label> {{$form->japanase}}
+                                                             </div>
+
+                                                             <div class="col-md-3">
+                                                                    <label>34. Confirm: </label> {{$form->confirm}}
+                                                                 </div>
+                                                </div> 
 
             </div>
             </div>
