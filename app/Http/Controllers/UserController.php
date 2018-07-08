@@ -115,4 +115,107 @@ class UserController extends Controller
         $response['error'] =  false;
         echo json_encode($response);
     }
+
+    public function submitForm(Request $req)
+    {
+
+        if(FormModel::checkForm(Auth::user()->id) == 0){
+        $form = new FormModel();
+        $form->firstname = Session()->get('firstname');
+        $form->lastname = Session()->get('lastname');
+        $form->streetAddress = Session()->get('streetAddress');
+        $form->city = Session()->get('city');
+        $form->stateRegion = Session()->get('state');
+        $form->zip = Session()->get('zip');
+        $form->country = Session()->get('country');
+        $form->contactPhone = Session()->get('phone');
+        $form->age = Session()->get('age');
+        $form->gender = Session()->get('gender');
+        $form->email = Session()->get('email');
+        $form->height = Session()->get('height');
+        $form->weight = Session()->get('weight');
+
+
+        $form->applied_for_ana_year =  Session()->get('applied_for_ana_year');
+        $form->applied_for_ana = Session()->get('applied_for_ana');
+        $form->airline = Session()->get('airline');
+        $form->work_experience = Session()->get('work_experience');
+        $form->japanese_culture =  Session()->get('japanese_culture');
+        $form->internation_experience =  Session()->get('internation_experience');
+        $form->japanese_lang =  Session()->get('japanese_lang');
+        $form->school_name =  Session()->get('school_name');
+        $form->school_year = Session()->get('school_year');
+        $form->employer_name = Session()->get('employer_name');
+        $form->employer_year = Session()->get('employer_year');
+
+        $form->passportNumber = Session()->get('passportNumber');
+        $form->passportExpiry = Session()->get('passportExpiry');
+        $form->toeicScore = Session()->get('toeic_score');
+        $form->universityName = Session()->get('uni_name');
+
+        //request
+        $additionalText = $req->input('cv_additional_text');
+        $form->coverLetter = $additionalText;
+        $form->tatoo = $req->input('tatoo');
+        $form->glasses = $req->input('glasses');
+        $form->japanase = $req->input('study_japanese_if_hired');
+        $form->confirm = $req->input('confirm_form');
+
+        $destination = "./uploads";
+        //files
+        if($form->save()){
+        $passportFile = $req->file('passport_file');
+        $pName = $passportFile->getClientOriginalName();
+        $extP = $passportFile->getClientOriginalExtension();
+
+        $thaicard_file = $req->file('thai_id_card');
+        $tCard = $thaicard_file->getClientOriginalName();
+        $extC = $thaicard_file->getClientOriginalExtension();
+
+
+
+        $score_file = $req->file('toeic_score_card');
+        $sF = $score_file->getClientOriginalName();
+        $extS = $score_file->getClientOriginalExtension();
+
+
+        
+        $cv_file = $req->file('cv_file');
+        $cF = $cv_file->getClientOriginalName();
+        $extCV = $cv_file->getClientOriginalExtension();
+
+
+        if($passportFile->move($destination,"000".$form->id."pp".".".$extP))
+        {
+            $form->passportFileName = "000".$form->id."pp".".".$extP;
+            $form->save();
+        }
+
+        if($thaicard_file->move($destination,"000".$form->id."id".".".$extC))
+        {
+            $form->idCardFileName  = "000".$form->id."id".".".$extC;
+            $form->save();
+        }
+
+
+        if($score_file->move($destination,"000".$form->id."to".".".$extS))
+        {
+            $form->toeicFileName  = "000".$form->id."to".".".$extS;
+            $form->save();
+        }
+
+        if($cv_file->move($destination,"000".$form->id."cv".".".$extCV))
+        {
+            $form->cvFileName  = "000".$form->id."cv".".".$extCV;
+            $form->save();
+        }
+
+        }
+    }
+    else 
+    {
+        echo "you have already submitted the form";
+    }
+        
+    }
 }

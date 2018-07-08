@@ -29,7 +29,6 @@
                 <h2><i class="glyphicon glyphicon-user"></i>Submitted Forms</h2>
         
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                     <a href="#" class="btn btn-minimize btn-round btn-default"><i
                             class="glyphicon glyphicon-chevron-up"></i></a>
                     <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
@@ -58,18 +57,18 @@
             </tr>
             </thead>
             <tbody>
-
+                @foreach($forms as $f)
             <tr>
-                <td>Irfan Ullah</td>
-                <td class="center">Male</td>
-                <td class="center">21</td>
+            <td><a href="{{route('app',['id' => $f->id])}}">{{$f->firstname. " ".$f->lastname}}</a></td>
+            <td class="center">{{$f->gender}}</td>
+            <td class="center">{{$f->age}}</td>
                 <td class="center">
-                  kp
+                 {{$f->stateRegion}}
                 </td>
                 <td class="center">
-                  Pakistan
+                 {{$f->country}}
                 </td>
-                <td>example text</td>
+            <td>{{$f->passportFileName}}</td>
                 <td>example text</td>
                 <td>                     <a class="btn-sm btn-info" href="#">
                         <i class="glyphicon glyphicon-zoom-in icon-white"></i>
@@ -100,7 +99,7 @@
                     </td>
 
             </tr>
-
+@endforeach
             </tbody>
             </table>
             </div>

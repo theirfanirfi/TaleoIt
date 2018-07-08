@@ -450,7 +450,7 @@ $('#formform').submit(function(e){
         }
     });
 
-    if(cC > 0 || rC > 0)
+    if(cC > 0 || rC > 4)
     {
         alert('ERROR: Please check, you have left something unattended.');
         e.preventDefault();

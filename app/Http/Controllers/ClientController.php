@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Http\Models\FormModel;
 use Auth;
 class ClientController extends Controller
 {
@@ -17,7 +18,8 @@ class ClientController extends Controller
 
     public function submittedForms()
     {
-        return view('client.submittedforms');
+        $forms = FormModel::all();
+        return view('client.submittedforms',['forms' => $forms]);
     }
 
     public function profile()
@@ -203,5 +205,10 @@ class ClientController extends Controller
         {
             return redirect()->back()->with('error','Error Occurred in deleting the Recruiter. Please Try Again.');
         }
+    }
+
+    public function application($id)
+    {
+        
     }
 }
