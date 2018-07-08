@@ -78,13 +78,13 @@
             <!-- Notification dropdown starts -->
             <div class="btn-group pull-right">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-bell blue"></i><span class="hidden-sm hidden-xs"></span>
+                <i class="glyphicon glyphicon-bell blue"><span class="label label-danger" id="notification"></span></i><span class="hidden-sm hidden-xs"></span>
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="glyphicon glyphicon-bullhorn green"></i>  Form Submitted</a></li>
+               <!-- <ul class="dropdown-menu">
+                    <li><a href="#"><i class="glyphicon glyphicon-bullhorn green"></i> Form Submitted</a></li>
                     <li class="divider"></li>
-                </ul>
+                </ul> -->
             </div>
             <!-- user dropdown ends -->
 

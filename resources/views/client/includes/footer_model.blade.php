@@ -77,5 +77,38 @@ noty({"text":"{{Session('success')}}","layout":"top","type":"success"});
 
     </script>
 @endif
+
+<script>
+        function checkNotification()
+        {
+            var url = "{{route('checkNotification')}}";
+            $.get(url,function(data){
+                if(data > 0){
+                $('#notification').html(data);
+                }
+            });
+        }
+        setInterval(checkNotification,3000);
+        </script>
+
+<script>
+        $('.changeStatus').change(function(){
+            var v = $(this).val();
+            var fid = $(this).attr('form_id');
+            var url = "{{route('changeAppStatus')}}";
+            $.get(url,{status: v, form_id: fid},function(data){
+                if(data.error == false)
+                {
+                    
+                    alert('Application Status Updated.');
+                    location.reload();
+                }
+                else
+                {
+                    alert('Error occurred in changing the application status try again.');
+                }
+            },'json');
+        });
+        </script>
 </body>
 </html>

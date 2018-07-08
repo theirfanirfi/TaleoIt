@@ -19,6 +19,7 @@ class ClientController extends Controller
     public function submittedForms()
     {
         $forms = FormModel::all();
+        FormModel::whereAlert_status(0)->update(['alert_status' => 1]);
         return view('client.submittedforms',['forms' => $forms]);
     }
 
@@ -88,7 +89,9 @@ class ClientController extends Controller
 
     public function rejectedList()
     {
-        return view('client.submittedforms');
+        
+        $forms = FormModel::whereApp_status(3)->get();
+        return view('client.rejected',['forms' => $forms]);
     }
 
     public function addRecruiter()
@@ -281,4 +284,29 @@ class ClientController extends Controller
         $forms = FormModel::whereApp_status(1)->get();
         return view('client.finalinterview',['forms' => $forms]);
     }
+
+    public function prescreening()
+    {
+        $forms = FormModel::whereApp_status(2)->get();
+        return view('client.prescreening',['forms' => $forms]);
+    }
+
+    public function hired()
+    {
+        $forms = FormModel::whereApp_status(4)->get();
+        return view('client.hired',['forms' => $forms]);
+    }
+
+    public function screened()
+    {
+        $forms = FormModel::whereApp_status(5)->get();
+        return view('client.hired',['forms' => $forms]);
+    }
+
+    public function checkNotification()
+    {
+        $forms = FormModel::whereAlert_status(0)->count();
+        echo $forms;
+    }
+    
 }

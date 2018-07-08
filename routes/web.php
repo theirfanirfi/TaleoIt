@@ -38,6 +38,21 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
 
     Route::get('/finalInterview','ClientController@finalInterview')->name('finalinterview');
 
+    //pre screening
+
+    Route::get('/prescreening','ClientController@prescreening')->name('prescreening');
+
+    //hired
+
+    Route::get('/hired','ClientController@hired')->name('hired');
+
+    //screened
+
+    Route::get('/screened','ClientController@screened')->name('screened');
+
+    //checkNotification
+
+    Route::get('/checkNotification','ClientController@checkNotification')->name('checkNotification');
     // Client Profile
     Route::get('/profile','ClientController@profile')->name('profile');
     Route::post('/updateProfile','ClientController@updateProfile')->name('updateProfile');

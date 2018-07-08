@@ -22,7 +22,7 @@
                     </li>
 
                     <li>
-                            <a class="ajax-link" href="{{route('waitinglist')}}"><i class="glyphicon glyphicon-user yellow"></i><span> Pre Screening </span></a>
+                            <a class="ajax-link" href="{{route('prescreening')}}"><i class="glyphicon glyphicon-user yellow"></i><span> Pre Screening </span></a>
                     </li>
 
                     <li>
@@ -30,15 +30,11 @@
                     </li>
 
                     <li>
-                            <a class="ajax-link" href="{{route('rejected')}}"><i class="glyphicon glyphicon-user red"></i><span> Hired</span></a>
+                            <a class="ajax-link" href="{{route('hired')}}"><i class="glyphicon glyphicon-user red"></i><span> Hired</span></a>
                     </li>
 
                     <li>
-                            <a class="ajax-link" href="{{route('rejected')}}"><i class="glyphicon glyphicon-user red"></i><span> Screened </span></a>
-                    </li>
-
-                    <li>
-                            <a class="ajax-link" href=""><i class="glyphicon glyphicon-bullhorn"></i><span> Notifications</span></a>
+                            <a class="ajax-link" href="{{route('screened')}}"><i class="glyphicon glyphicon-user red"></i><span> Screened </span></a>
                     </li>
                     
                     <li class="accordion">
