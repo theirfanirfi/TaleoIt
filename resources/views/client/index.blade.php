@@ -9,6 +9,7 @@
     </div>
 </noscript>
 
+
 <div id="content" class="col-lg-10 col-sm-10">
     <!-- content starts -->
 
@@ -27,36 +28,61 @@
 
 
         <div class="col-md-3 col-sm-3 col-xs-6">
-                <a data-toggle="tooltip" title="6 new Forms" class="well top-block" href="#">
+                <a data-toggle="tooltip" title="" class="well top-block" href="{{route('forms')}}">
                     <i class="glyphicon glyphicon-user blue"></i>
         
                     <div>Total Applications</div>
-                    <div>507</div>
-                    <span class="notification">6</span>
+                <div>{{$submitted}}</div>
+                  <!--  <span class="notification"></span> -->
                 </a>
             </div>
 
 
         
             <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a data-toggle="tooltip" title="" class="well top-block" href="#">
+                    <a data-toggle="tooltip" title="" class="well top-block" href="{{route('finalinterview')}}">
                         <i class="glyphicon glyphicon-star green"></i>
             
-                        <div>Shortlisted Applicants</div>
-                        <div>228</div>
-                        <span class="notification green">4</span>
+                        <div>Final Interview</div>
+                    <div>{{$final}}</div>
                     </a>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-6">
-                        <a data-toggle="tooltip" title="" class="well top-block" href="#">
+                        <a data-toggle="tooltip" title="" class="well top-block" href="{{route('prescreening')}}">
                             <i class="glyphicon glyphicon-user red"></i>
                 
-                            <div>Rejected Applicants</div>
-                            <div>25</div>
-                            <span class="notification red">12</span>
+                            <div>Pre Screening</div>
+                        <div>{{$pre}}</div>
                         </a>
-                    </div>    
+                    </div>   
+                    
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                            <a data-toggle="tooltip" title="" class="well top-block" href="{{route('screened')}}">
+                                <i class="glyphicon glyphicon-user yellow"></i>
+                    
+                                <div>Screened</div>
+                            <div>{{$screened}}</div>
+                            </a>
+                        </div>   
+
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                                <a data-toggle="tooltip" title="" class="well top-block" href="{{route('hired')}}">
+                                    <i class="glyphicon glyphicon-user green"></i>
+                        
+                                    <div>Hired</div>
+                                <div>{{$hired}}</div>
+                                </a>
+                            </div> 
+                            
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <a data-toggle="tooltip" title="" class="well top-block" href="{{route('rejected')}}">
+                                        <i class="glyphicon glyphicon-user red"></i>
+                            
+                                        <div>Rejected</div>
+                                    <div>{{$rejected}}</div>
+                                    </a>
+                                </div> 
                 
                 
 </div>

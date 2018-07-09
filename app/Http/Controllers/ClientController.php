@@ -13,7 +13,13 @@ class ClientController extends Controller
 
     public function index()
     {
-        return view('client.index');
+        $submitted = FormModel::all()->count();
+        $final = FormModel::whereApp_status(1)->count();
+        $prescreening = FormModel::whereApp_status(2)->count();
+        $rejected = FormModel::whereApp_status(3)->count();
+        $hired = FormModel::whereApp_status(4)->count();
+        $screened = FormModel::whereApp_status(5)->count();
+        return view('client.index',['submitted' => $submitted, 'final' => $final, 'pre' => $prescreening, 'rejected' => $rejected, 'hired' => $hired, 'screened' => $screened]);
     }
 
     public function submittedForms()
