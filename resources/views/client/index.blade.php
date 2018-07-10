@@ -20,7 +20,24 @@
 <li>
     <a href="#">Dashboard</a>
 </li>
+<li>
+   
+</li>
 </ul>
+<div class="dropdown">
+    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Export
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="{{route('exportSubmittedXL')}}">Export All Submitted Applications</a></li>
+    <li><a href="{{route('exportFinalXL')}}">Export Final Interview</a></li>
+      <li><a href="{{route('exportPreXL')}}">Export Pre-Scanning</a></li>
+      <li><a href="{{route('exportScanned')}}">Export Screened</a></li>
+      <li><a href="{{route('exportHired')}}">Export Hired</a></li>
+      <li><a href="{{route('exportRejectedXL')}}">Export Rejected</a></li>
+    </ul>
+  </div>
 </div>
 
 <div class="row">

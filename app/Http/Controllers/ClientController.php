@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Http\Models\FormModel;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
 class ClientController extends Controller
 {
     //
@@ -314,5 +315,137 @@ class ClientController extends Controller
         $forms = FormModel::whereAlert_status(0)->count();
         echo $forms;
     }
+
+
+    public function exportSubmittedXL()
+  {
+    $form = FormModel::all();
+    $forms = array();
+    foreach($form as $f){
+      $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+    }
+
+    Excel::create("Submitted Applications", function($excel) use ($forms) {
+
+    $excel->sheet('Submitted Applications', function($sheet) use ($forms) {
+
+        $sheet->fromArray($forms
+        );
+
+    });
+
+})->export('xlsx');
+
+}
+
+
+
+public function exportFinalXL()
+{
+  $form = FormModel::whereApp_status(1)->get();
+  $forms = array();
+  foreach($form as $f){
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+  }
+
+  Excel::create("Final Interview Candidates", function($excel) use ($forms) {
+
+  $excel->sheet('Final Interview Candidates', function($sheet) use ($forms) {
+
+      $sheet->fromArray($forms
+      );
+
+  });
+
+})->export('xlsx');
+
+}
+
+
+
+public function exportRejectedXL()
+{
+  $form = FormModel::whereApp_status(3)->get();
+  $forms = array();
+  foreach($form as $f){
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+  }
+
+  Excel::create("Final Interview Candidates", function($excel) use ($forms) {
+
+  $excel->sheet('Final Interview Candidates', function($sheet) use ($forms) {
+
+      $sheet->fromArray($forms
+      );
+
+  });
+
+})->export('xlsx');
+
+}
+
+
+public function exportPreXL()
+{
+  $form = FormModel::whereApp_status(2)->get();
+  $forms = array();
+  foreach($form as $f){
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+  }
+
+  Excel::create("Pre Scanning Candidates", function($excel) use ($forms) {
+
+  $excel->sheet('Pre Scanning Candidates', function($sheet) use ($forms) {
+
+      $sheet->fromArray($forms
+      );
+
+  });
+
+})->export('xlsx');
+
+}
+
+public function exportScanned()
+{
+  $form = FormModel::whereApp_status(5)->get();
+  $forms = array();
+  foreach($form as $f){
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+  }
+
+  Excel::create("Scanned Candidates", function($excel) use ($forms) {
+
+  $excel->sheet('Scanned Candidates', function($sheet) use ($forms) {
+
+      $sheet->fromArray($forms
+      );
+
+  });
+
+})->export('xlsx');
+
+}
+
+public function exportHired()
+{
+  $form = FormModel::whereApp_status(4)->get();
+  $forms = array();
+  foreach($form as $f){
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+  }
+
+  Excel::create("Hired Candidates", function($excel) use ($forms) {
+
+  $excel->sheet('Hired Candidates', function($sheet) use ($forms) {
+
+      $sheet->fromArray($forms
+      );
+
+  });
+
+})->export('xlsx');
+
+}
     
 }

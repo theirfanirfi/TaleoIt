@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/',function(){
+return redirect('/login');
+});
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -87,6 +91,17 @@ Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
 
     //update Recruiter
     Route::post('/updateRecruiter','ClientController@updateRecruiter')->name('updateRecruiter');
+// Export SUbmitted forms
+
+Route::get('/exportSubmitted','ClientController@exportSubmittedXL')->name('exportSubmittedXL');
+
+//export final
+
+Route::get('/exportFinalXL','ClientController@exportFinalXL')->name('exportFinalXL');
+Route::get('/exportRejectedXL','ClientController@exportRejectedXL')->name('exportRejectedXL');
+Route::get('/exportPreXL','ClientController@exportPreXL')->name('exportPreXL');
+Route::get('/exportScanned','ClientController@exportScanned')->name('exportScanned');
+Route::get('/exportHired','ClientController@exportHired')->name('exportHired');
 
 });
 
