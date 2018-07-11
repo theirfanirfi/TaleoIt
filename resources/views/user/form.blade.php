@@ -899,13 +899,13 @@ span.round-tab:hover {
         
         
                                     
-                                                <div class="row" style="margin-top:12px; padding:12px;">
+                                                <div class="row" style="margin-top:12px;  padding:12px;">
                                                         <div class="col-md-3">
                                                            <h3>Other Questions</h3>
                                                         </div>
                                                     </div> 
         
-                                                    <div class="row" style="margin-top:12px; padding:12px;">
+                                                    <div class="row" style="margin-top:12px;margin-bottom:124px; padding:12px;">
                                                             <div class="col-md-3">
                                                                <label>31. Tatto: </label> {{$form->tatoo}}
                                                             </div>
@@ -1023,6 +1023,14 @@ function cnfrm(link)
                 , function(){ alertify.error('Action Cancelled.')});
     return false;
 }
+
+        function smalWindow(link){
+            var x = screen.width/2 - 700/2;
+    var y = screen.height/2 - 450/2;
+            window.open(link.href,'targetWindow', "toolbar=no,location=no,position=center,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600px,height=400px,left="+x+",top="+y+"");
+
+           
+        }
     </script>
 
 <script src="{{URL::asset('js/form.js')}}"></script>

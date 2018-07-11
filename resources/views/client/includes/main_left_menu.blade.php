@@ -35,6 +35,7 @@
 
                     <li>
                             <a class="ajax-link" href="{{route('screened')}}"><i class="glyphicon glyphicon-user red"></i><span> Screened </span></a>
+                            <a class="ajax-link" href="{{route('wdApps')}}"><i class="glyphicon glyphicon-user red"></i><span> Widthdrawn Applications </span></a>
                     </li>
                     
                     <li class="accordion">

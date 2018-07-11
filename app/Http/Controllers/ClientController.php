@@ -310,6 +310,13 @@ class ClientController extends Controller
         return view('client.screened',['forms' => $forms]);
     }
 
+
+    public function wdApps()
+    {
+        $forms = FormModel::where(['isWithDrawn' => 1])->get();
+        return view('client.withdrawnApps',['forms' => $forms]);
+    }
+
     public function checkNotification()
     {
         $forms = FormModel::whereAlert_status(0)->count();

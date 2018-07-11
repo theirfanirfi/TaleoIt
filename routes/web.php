@@ -103,6 +103,11 @@ Route::get('/exportPreXL','ClientController@exportPreXL')->name('exportPreXL');
 Route::get('/exportScanned','ClientController@exportScanned')->name('exportScanned');
 Route::get('/exportHired','ClientController@exportHired')->name('exportHired');
 
+//withdrawn
+
+Route::get('/wdApps','ClientController@wdApps')->name('wdApps');
+
+
 });
 
 
