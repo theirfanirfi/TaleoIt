@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $form = FormModel::whereUser_id($user->id);
+        $form = FormModel::whereUser_id($user->id)->where(['isWithDrawn' => 0]);
         return view('user.form',['user' => $user, 'form' => $form]);
     }
 
@@ -243,5 +243,22 @@ class UserController extends Controller
         return redirect()->back()->with('error','You have already submitted the Application.');
     }
         
+    }
+
+
+    public function withdraw()
+    {
+        $user = Auth::user();
+        $form = FormModel::whereUser_id($user->id)->first();
+        $form->isWithDrawn = 1;
+        if($form->save())
+        {
+            return redirect()->back()->with('success','Application is withdrawned');
+        }
+        else 
+        {
+            return redirect()->back()->with('error','Error Occurred in withdrawing the Application. Please try again.');
+
+        }
     }
 }

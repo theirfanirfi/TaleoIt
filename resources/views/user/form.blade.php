@@ -17,6 +17,17 @@
 <script src="{{URL::asset('js/jquery-ui.min.js')}}"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+
  <!-- The fav icon -->
  <link rel="shortcut icon" href="{{URL::asset('img/taleo/taleo.png') }}">
 <style type="text/css">
@@ -329,6 +340,9 @@ span.round-tab:hover {
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            @if($form->count() > 0 && $form->first()->app_status == 0)
+                        <li><a onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a></li>
+                       @endif
                         <li><a href="{{route('logout')}}">Logout</a></li>
                          <!-- <li><a href="#">Another action</a></li>
                           <li><a href="#">Something else here</a></li>
@@ -336,9 +350,11 @@ span.round-tab:hover {
                           <li><a href="#">Separated link</a></li> -->
                         </ul>
                       </div>
+
+                 
         </div>
     </div>
-
+@if(!($form->count() > 0 && $form->first()->app_status ==0))
     <div class="row">
     	<section>
         <div class="wizard">
@@ -513,7 +529,7 @@ span.round-tab:hover {
                         </div>
 
                         <hr/>
-                        
+
                         <div class="row" style="margin-top:26px;">
 
                                 <div class="col-md-6">
@@ -719,6 +735,197 @@ span.round-tab:hover {
                 </div>
             </form>
         </div>
+    @else 
+
+    <h3>Your Submitted Application Summary</h3>
+<?php $form = $form->first(); ?>
+    <div class="row" style="margin-top:12px; padding:12px;">
+            <div class="col-md-3">
+                <label> 1. First Name: </label> {{$form->firstname}}
+            </div>
+
+            <div class="col-md-3">
+                    <label> 2. Last Name: </label> {{$form->lastname}}
+                </div>
+
+                <div class="col-md-5">
+                        <label> 3. Street Address: </label> {{$form->streetAddress}}
+                    </div>    
+        </div>
+
+
+
+        <div class="row" style="margin-top:12px; padding:12px;">
+                <div class="col-md-3">
+                    <label> 4. City: </label> {{$form->city}}
+                </div>
+
+                <div class="col-md-3">
+                        <label> 5. State: </label> {{$form->stateRegion}}
+                    </div>
+
+                    <div class="col-md-4">
+                            <label> 6. ZIP: </label> {{$form->zip}}
+                        </div>    
+            </div>
+
+
+
+            <div class="row" style="margin-top:12px; padding:12px;">
+                    <div class="col-md-3">
+                        <label> 7. Country: </label> {{$form->country}}
+                    </div>
+    
+                    <div class="col-md-3">
+                            <label> 8. Contact Phone: </label> {{$form->contactPhone}}
+                        </div>
+    
+                        <div class="col-md-4">
+                                <label> 9. Age: </label> {{$form->age}}
+                            </div>    
+                </div> 
+
+
+                <div class="row" style="margin-top:12px; padding:12px;">
+                        <div class="col-md-3">
+                            <label> 10. Gender: </label> {{$form->gender}}
+                        </div>
+        
+                        <div class="col-md-3">
+                                <label> 11. Email: </label> {{$form->email}}
+                            </div>
+        
+                            <div class="col-md-3">
+                                    <label> 12. Height: </label> {{$form->height}}
+                                </div> 
+                            <div class="col-md-3">
+                                    <label> 13. Weight: </label> {{$form->weight}}
+
+                                </div>       
+                    </div> 
+
+
+                    <div class="row" style="margin-top:12px; padding:12px;">
+                            <div class="col-md-3">
+                                            <h3>Questions</h3>   
+                            </div>
+                        </div> 
+
+                                            
+                    <div class="row" style="margin-top:12px; padding:12px;">
+                            <div class="col-md-3">
+                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}} @if(!empty($form->applied_for_ana_year)) <label> 15. Screening year: </label> {{$form->applied_for_ana_year}} @endif
+                               
+                            </div>
+
+                            <div class="col-md-3">
+                                    <label> 16. Work Experience: </label> {{$form->work_experience}}
+
+                                </div>   
+
+                                <div class="col-md-5">
+                                        <label> 17 & 18. Airline Experience and Position: </label> {{$form->airline}}
+    
+                                    </div>   
+                        </div>  
+
+                        <div class="row" style="margin-top:12px; padding:12px;">
+                                <div class="col-md-3">
+                                    <label> 19. Japanese Language Skill: </label> {{$form->japanese_lang}}
+                                </div>
+
+
+                                <div class="col-md-3">
+                                        <label> 20. Japanese Culture: </label> {{$form->japanese_culture}}
+                                        @if(!empty($form->school_name)) <label>21. School Name: </label> {{$form->school_name}}
+                                        <br/>
+                                        <label>
+                                            22. School Year: {{$form->school_year}}
+                                        </label>
+                                        @elseif(!empty($employer_name))
+                                        <label>23. Employer Name: </label> {{$form->employer_name}}
+                                        <br/>
+                                        <label>
+                                            24. Employement Year: {{$form->employer_year}}
+                                        </label>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-md-3">
+                                            <label> 25. International Experience: </label> {{$form->internation_experience}}
+                                        </div>
+                        </div>
+
+                        <div class="row" style="margin-top:12px; padding:12px;">
+                                <div class="col-md-3">
+                                                <h3>Documents</h3>   
+                                </div>
+                            </div> 
+
+
+                            
+                            <div class="row" style="margin-top:12px; padding:12px;">
+                                    <div class="col-md-4">
+                                    <a  onclick="smalWindow(this); return false;" href="{{URL::asset('uploads')}}/{{$form->passportFileName}}"><i class="glyphicon glyphicon-file"></i> Passport File</a> 
+                                        <br/>    
+                                        <br/>    
+                                    <label>26. Passport Number: </label> {{$form->passportNumber}} <br/>
+                                        <label>27. Passport Expiry: </label> {{$form->passportExpiry}}
+                                </div>
+
+
+                                            
+                                    <div class="col-md-4">
+                                            <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                           <br/>
+                                           <label>29. University Name:</label> {{$form->universityName}}
+
+                                                </div>  
+                                        </div>  
+    
+                                        
+                                        <div class="row" style="margin-top:12px; padding:12px;">
+                                                <div class="col-md-3">
+                                                                <h5>30. Cover Letter:</h5>   
+                                                </div>
+                                            </div> 
+        
+                                            <div class="row" style="margin-top:2px; padding:2px;">
+                                                    <div class="col-md-12">
+                                                    <p style="text-align: justify;"><?php echo $form->coverLetter; ?></p>
+                                                    </div>
+                                                </div> 
+        
+        
+        
+                                    
+                                                <div class="row" style="margin-top:12px; padding:12px;">
+                                                        <div class="col-md-3">
+                                                           <h3>Other Questions</h3>
+                                                        </div>
+                                                    </div> 
+        
+                                                    <div class="row" style="margin-top:12px; padding:12px;">
+                                                            <div class="col-md-3">
+                                                               <label>31. Tatto: </label> {{$form->tatoo}}
+                                                            </div>
+        
+                                                            <div class="col-md-3">
+                                                                    <label>32. Glasses: </label> {{$form->glasses}}
+                                                                 </div>
+        
+        
+                                                                 <div class="col-md-3">
+                                                                        <label>33. Japanese: </label> {{$form->japanase}}
+                                                                     </div>
+        
+                                                                     <div class="col-md-3">
+                                                                            <label>34. Confirm: </label> {{$form->confirm}}
+                                                                         </div>
+                                                        </div> 
+        
+
+    @endif
     </section>
    </div>
 </div>
@@ -809,6 +1016,13 @@ $(document).ready(function()
 	
 	return false;
 });
+
+function cnfrm(link)
+{
+    alertify.confirm('Withdraw Application', 'Do you want to Widthdraw the Application?', function(){ location.href = link.href; }
+                , function(){ alertify.error('Action Cancelled.')});
+    return false;
+}
     </script>
 
 <script src="{{URL::asset('js/form.js')}}"></script>

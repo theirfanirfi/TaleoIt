@@ -14,18 +14,18 @@ class ClientController extends Controller
 
     public function index()
     {
-        $submitted = FormModel::all()->count();
-        $final = FormModel::whereApp_status(1)->count();
-        $prescreening = FormModel::whereApp_status(2)->count();
-        $rejected = FormModel::whereApp_status(3)->count();
-        $hired = FormModel::whereApp_status(4)->count();
-        $screened = FormModel::whereApp_status(5)->count();
+        $submitted = FormModel::where(['isWithDrawn' => 0])->count();
+        $final = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->count();
+        $prescreening = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->count();
+        $rejected = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->count();
+        $hired = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->count();
+        $screened = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->count();
         return view('client.index',['submitted' => $submitted, 'final' => $final, 'pre' => $prescreening, 'rejected' => $rejected, 'hired' => $hired, 'screened' => $screened]);
     }
 
     public function submittedForms()
     {
-        $forms = FormModel::all();
+        $forms = FormModel::where(['isWithDrawn' => 0])->get();
         FormModel::whereAlert_status(0)->update(['alert_status' => 1]);
         return view('client.submittedforms',['forms' => $forms]);
     }
@@ -97,7 +97,7 @@ class ClientController extends Controller
     public function rejectedList()
     {
         
-        $forms = FormModel::whereApp_status(3)->get();
+        $forms = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->get();
         return view('client.rejected',['forms' => $forms]);
     }
 
@@ -288,25 +288,25 @@ class ClientController extends Controller
 
     public function finalInterview()
     {
-        $forms = FormModel::whereApp_status(1)->get();
+        $forms = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->get();
         return view('client.finalinterview',['forms' => $forms]);
     }
 
     public function prescreening()
     {
-        $forms = FormModel::whereApp_status(2)->get();
+        $forms = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->get();
         return view('client.prescreening',['forms' => $forms]);
     }
 
     public function hired()
     {
-        $forms = FormModel::whereApp_status(4)->get();
+        $forms = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->get();
         return view('client.hired',['forms' => $forms]);
     }
 
     public function screened()
     {
-        $forms = FormModel::whereApp_status(5)->get();
+        $forms = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->get();
         return view('client.screened',['forms' => $forms]);
     }
 
@@ -319,7 +319,7 @@ class ClientController extends Controller
 
     public function exportSubmittedXL()
   {
-    $form = FormModel::all();
+    $form = FormModel::where(['isWithDrawn' => 0])->get();
     $forms = array();
     foreach($form as $f){
       $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
@@ -342,7 +342,7 @@ class ClientController extends Controller
 
 public function exportFinalXL()
 {
-  $form = FormModel::whereApp_status(1)->get();
+  $form = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->get();
   $forms = array();
   foreach($form as $f){
     $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
@@ -365,7 +365,7 @@ public function exportFinalXL()
 
 public function exportRejectedXL()
 {
-  $form = FormModel::whereApp_status(3)->get();
+  $form = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->get();
   $forms = array();
   foreach($form as $f){
     $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
@@ -387,7 +387,7 @@ public function exportRejectedXL()
 
 public function exportPreXL()
 {
-  $form = FormModel::whereApp_status(2)->get();
+  $form = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->get();
   $forms = array();
   foreach($form as $f){
     $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
@@ -408,7 +408,7 @@ public function exportPreXL()
 
 public function exportScanned()
 {
-  $form = FormModel::whereApp_status(5)->get();
+  $form = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->get();
   $forms = array();
   foreach($form as $f){
     $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
@@ -429,7 +429,7 @@ public function exportScanned()
 
 public function exportHired()
 {
-  $form = FormModel::whereApp_status(4)->get();
+  $form = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->get();
   $forms = array();
   foreach($form as $f){
     $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
