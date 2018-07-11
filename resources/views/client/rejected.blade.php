@@ -67,7 +67,7 @@
                 <td class="center">
                  {{$f->country}}
                 </td>
-            <td><i class="label label-warning">{{$f->application_status}}</i></td>
+            <td><i class="label label-danger">{{$f->application_status}}</i></td>
             <td>{{$f->universityName}}</td>
 
                 <td>

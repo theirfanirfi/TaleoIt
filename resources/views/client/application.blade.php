@@ -41,7 +41,27 @@
             
             <div class="row" style="margin-top:12px; padding:12px;">
                     <div class="col-md-3">
-                      <label>Application Status: </label> <span class="label label-success">{{$form->application_status}} </span>
+                      <label>Application Status: </label> <span class="label 
+                      <?php switch($form->app_status){
+                        case 0:
+                        echo "label-info";
+                        break;
+                        case 1:
+                        echo "label-success";
+                        break;
+                        case 2:
+                        echo "label-warning";
+                        break;
+                        case 3:
+                        echo "label-danger";
+                        break;
+                        case 4: 
+                        echo "label-success";
+                        break;
+                        case 5:
+                        echo "label-primary";
+                        break;
+                      } ?>">{{$form->application_status}} </span>
                     </div>
 
                     <div class="col-md-3">

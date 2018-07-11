@@ -67,7 +67,27 @@
                 <td class="center">
                  {{$f->country}}
                 </td>
-            <td><i class="label label-warning">{{$f->application_status}}</i></td>
+            <td><i class="label 
+                <?php switch($f->app_status){
+                  case 0:
+                  echo "label-info";
+                  break;
+                  case 1:
+                  echo "label-success";
+                  break;
+                  case 2:
+                  echo "label-warning";
+                  break;
+                  case 3:
+                  echo "label-danger";
+                  break;
+                  case 4: 
+                  echo "label-success";
+                  break;
+                  case 5:
+                  echo "label-primary";
+                  break;
+                } ?>">{{$f->application_status}}</i></td>
             <td>{{$f->universityName}}</td>
 
                 <td>

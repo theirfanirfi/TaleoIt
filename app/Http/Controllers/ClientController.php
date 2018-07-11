@@ -307,7 +307,7 @@ class ClientController extends Controller
     public function screened()
     {
         $forms = FormModel::whereApp_status(5)->get();
-        return view('client.hired',['forms' => $forms]);
+        return view('client.screened',['forms' => $forms]);
     }
 
     public function checkNotification()

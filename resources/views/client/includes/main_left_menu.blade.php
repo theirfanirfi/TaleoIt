@@ -46,8 +46,9 @@
                         </li>
                       
                     </ul>
-                    <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox" style="display:none;" checked></label>
-                </div>
+                  <!--  <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox" style="display:none;"></label>
+                -->
+            </div>
             </div>
         </div>
         <!--/span-->

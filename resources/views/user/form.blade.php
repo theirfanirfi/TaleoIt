@@ -291,7 +291,29 @@ span.round-tab:hover {
         <div class="col-md-4">
             <p> <strong>Application Status: </strong>
             @if($form->count() > 0)
+            <span class="label 
+            <?php switch($form->app_status){
+              case 0:
+              echo "label-info";
+              break;
+              case 1:
+              echo "label-success";
+              break;
+              case 2:
+              echo "label-warning";
+              break;
+              case 3:
+              echo "label-danger";
+              break;
+              case 4: 
+              echo "label-success";
+              break;
+              case 5:
+              echo "label-primary";
+              break;
+            } ?>">
             {{$form->first()->application_status}}
+        </span>
             @else
             {{"not submitted"}}
             @endif
