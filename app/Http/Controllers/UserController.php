@@ -119,7 +119,9 @@ class UserController extends Controller
     public function submitForm(Request $req)
     {
 
-        if(FormModel::checkForm(Auth::user()->id) == 0){
+        $success = 0;
+        $user = Auth::user();
+        if(FormModel::checkForm($user->id) == 0){
         $form = new FormModel();
         $form->firstname = Session()->get('firstname');
         $form->lastname = Session()->get('lastname');
@@ -134,7 +136,8 @@ class UserController extends Controller
         $form->email = Session()->get('email');
         $form->height = Session()->get('height');
         $form->weight = Session()->get('weight');
-
+        
+        $form->user_id = $user->id;
 
         $form->applied_for_ana_year =  Session()->get('applied_for_ana_year');
         $form->applied_for_ana = Session()->get('applied_for_ana');
@@ -167,10 +170,10 @@ class UserController extends Controller
         $passportFile = $req->file('passport_file');
         $pName = $passportFile->getClientOriginalName();
         $extP = $passportFile->getClientOriginalExtension();
-
-        $thaicard_file = $req->file('thai_id_card');
-        $tCard = $thaicard_file->getClientOriginalName();
-        $extC = $thaicard_file->getClientOriginalExtension();
+            $success++;
+        // $thaicard_file = $req->file('thai_id_card');
+        // $tCard = $thaicard_file->getClientOriginalName();
+        // $extC = $thaicard_file->getClientOriginalExtension();
 
 
 
@@ -189,32 +192,55 @@ class UserController extends Controller
         {
             $form->passportFileName = "000".$form->id."pp".".".$extP;
             $form->save();
+            $success++;
+
         }
 
-        if($thaicard_file->move($destination,"000".$form->id."id".".".$extC))
-        {
-            $form->idCardFileName  = "000".$form->id."id".".".$extC;
-            $form->save();
-        }
+        // if($thaicard_file->move($destination,"000".$form->id."id".".".$extC))
+        // {
+        //     $form->idCardFileName  = "000".$form->id."id".".".$extC;
+        //     $form->save();
+        // }
 
 
         if($score_file->move($destination,"000".$form->id."to".".".$extS))
         {
             $form->toeicFileName  = "000".$form->id."to".".".$extS;
             $form->save();
+            $success++;
+
         }
 
         if($cv_file->move($destination,"000".$form->id."cv".".".$extCV))
         {
             $form->cvFileName  = "000".$form->id."cv".".".$extCV;
             $form->save();
+            $success++;
+
         }
 
         }
+        else 
+        {
+        return redirect()->back()->with('error','Error Occurred in Submitting the Application. Please try again.');
+
+        }
+
+        if($success > 0)
+        {
+        return redirect()->back()->with('success','Application Submitted.');
+            
+        }
+        else 
+        {
+            return redirect()->back()->with('error','Error Occurred in Submitting the Application. Please try again.');
+
+        }
+        
     }
     else 
     {
-        echo "you have already submitted the form";
+        return redirect()->back()->with('error','You have already submitted the Application.');
     }
         
     }

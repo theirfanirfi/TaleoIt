@@ -292,7 +292,7 @@ span.round-tab:hover {
             <p> <strong>Application Status: </strong>
             @if($form->count() > 0)
             <span class="label 
-            <?php switch($form->app_status){
+            <?php switch($form->first()->app_status){
               case 0:
               echo "label-info";
               break;
@@ -497,7 +497,8 @@ span.round-tab:hover {
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step2">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-2"></div>
+                            <div class="col-md-8">
                                 <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
                                 <br/>
                                 <input type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
@@ -508,7 +509,12 @@ span.round-tab:hover {
                                 <input type="text" @if(Session('applied_for_ana_year')) value="{{Session('applied_for_ana_year')}}" @endif id="datepicker" name="applied_for_ana_last_screening_year_txt" class="form-control" style="width:60%;" />
                                 <p class="error" style="display:none;color:red;font-style:italic;">Screening Year is Required.</p>
                                 
+                            </div>
                         </div>
+
+                        <hr/>
+                        
+                        <div class="row" style="margin-top:26px;">
 
                                 <div class="col-md-6">
                                         <label for="work_experience">Work Experience: Describe your previous work Experience </label>
@@ -519,14 +525,19 @@ span.round-tab:hover {
                                         <input type="radio" value="D" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
                                 </div>
 
+                                <div class="col-md-6">
+                                        <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
+                                        <input type="text" id="airline" name="airline" @if(Session('airline')) value="{{Session('airline')}}" @endif class="form-control" placeholder="Airline Name and Position" />  
+    
+                                    </div>
+
                             </div>
 
-                            <div class="row" style="margin-top:16px;">
-                                <div class="col-md-6">
-                                    <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
-                                    <input type="text" id="airline" name="airline" @if(Session('airline')) value="{{Session('airline')}}" @endif class="form-control" placeholder="Airline Name and Position" />  
+                            <hr/>
 
-                                </div>
+                            <div class="row" style="margin-top:26px;">
+                                <div class="col-md-3"></div>
+
                                 <div class="col-md-6">
                                         <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
                                         <input type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
@@ -538,8 +549,9 @@ span.round-tab:hover {
                                     </div>
       
                             </div>
+                            <hr/>
 
-                            <div class="row" style="margin-top:16px;">
+                            <div class="row" style="margin-top:26px;">
                                     
 
                                         <div class="col-md-6">
@@ -604,8 +616,9 @@ span.round-tab:hover {
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <div class="step33">
                             <div class="row mar_ned" style="margin-top:12px;">
-                                <div class="col-md-4">
-                                    <label><strong>Passport: </strong> upload clear copy of your passport.</label> <p style="color:red;">Only Thai passport is acceptable.</p> <br/>
+                                <div class="col-md-12">
+                                    <h3>Passport Details</h3>
+                                    <label><strong>Passport: </strong> upload clear copy of your passport.</label> <p style="color:red;">Only Thai passport is acceptable.</p>
                                     <p class="error2" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
                                     
                                     <input type="file" name="passport_file" id="passportFile" class="fi form-control" onchange="checkformat(this);" /> 
@@ -619,15 +632,20 @@ span.round-tab:hover {
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label><strong>Thai ID Card: </strong> Please Upload clear copy of your Thai ID Card.</label></br>
+                            </div>
+<hr/>
+                            <div class="row mar_ned" style="margin-top:22px;">
+                                <div class="col-md-12">
+                                <h3>TOEIC Score Details:</h3>
+
+                                 <!--   <label><strong>Thai ID Card: </strong> Please Upload clear copy of your Thai ID Card.</label></br>
                                     <p class="error2" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
                                    
                                     <input type="file" id="thaicard_file" name="thai_id_card" class="fi form-control" onchange="checkformat(this);" />
                                     
                                     <p class="error" style="display:none;font-size:11px;color:red;">Field is Required.</p>
                                    
-                                </br>
+                                </br> -->
                                 <label>TOEIC Score - Upload: Please upload copy of your recent TOEIC Score Card here</label>
                                 <br/>
                                 <p class="error2" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
@@ -642,7 +660,13 @@ span.round-tab:hover {
                                 
                             </div>
 
-                                <div class="col-md-4">
+                        </div>
+
+                        <hr/>
+
+                        <div class="row mar_ned" style="margin-top:22px;">
+                                <div class="col-md-12">
+                                    <h3>Education:</h3>
                                     <label>Education History: Please enter university/institute name which grant bachelor's degree</label><br/>
                                     <input type="text" @if(Session('uni_name')) value="{{Session('uni_name')}}" @endif name="uni_name" id="uni_name" placeholder="University/Institute Name" class="ssf form-control" />
                                     <p class="error" style="display:none;font-size:11px;color:red;">Field is Required.</p>

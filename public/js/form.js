@@ -324,7 +324,7 @@ $('.ssf').each(function(index,element){
 });
 
 var passportfile = $('#passportFile');
-var thaiCard = $('#thaicard_file');
+//var thaiCard = $('#thaicard_file');
 var scorecard = $('#score_file');
 
 if(passportfile.val() == "")
@@ -344,22 +344,24 @@ else
 
 }
 
-if(thaiCard.val() == "")
-{
-   fileC++;
-   thaiCard.next('.error').show('slow');
-}
-else if(!checkformat(thaiCard))
-{
-    thaiCard.prev('.error2').show('slow');
-fileC++;
-}
-else 
-{
-    thaiCard.next('.error').hide('slow');
-    thaiCard.prev('.error2').hide('slow');
+// if(thaiCard.val() == "")
+// {
+//    fileC++;
+//    thaiCard.next('.error').show('slow');
+// }
+// else if(!checkformat(thaiCard))
+// {
+//     thaiCard.prev('.error2').show('slow');
+// fileC++;
+// }
+// else 
+// {
+//     thaiCard.next('.error').hide('slow');
+//     thaiCard.prev('.error2').hide('slow');
 
-}
+// }
+
+
 if(scorecard.val() == "")
 {
     fileC++;
