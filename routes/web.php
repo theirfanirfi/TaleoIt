@@ -153,6 +153,28 @@ Route::get('put-in-dir', function() {
 });
 
 Route::get('create-dir', function() {
-    Storage::cloud()->makeDirectory('Test Dir');
-    return 'Directory was created in Google Drive';
+    $dir = '/';
+    $recursive = false; // Get subdirectories also?
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+
+
+    $dir = $contents->where('type', '=', 'dir')
+        ->where('filename', '=', 'Test')
+        ->first(); // There could be duplicate directory names!
+    $filename = 'laravel.png';
+    $filePath = public_path("uploads\\00013pp.jpg");
+    $fileData = File::get($filePath);
+
+    $dir2 = $dir['path'];
+    $contents2 = collect(Storage::cloud()->listContents($dir2, $recursive));
+    $dir2 = $contents2->where('type', '=', 'dir')
+    ->where('filename', '=', 'Test')
+    ->first(); // There could be duplicate directory names!
+    dd($dir);
+    //echo "<br/> anoterh </br>";
+    //dd($dir2);
+    exit();
+
+    Storage::cloud()->put($dir2['path']."/".$filename, $fileData);
+
 });

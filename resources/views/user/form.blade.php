@@ -27,7 +27,8 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
-
+<link href="{{ URL::asset('css/jquery.noty.css') }}" rel='stylesheet'>
+<link href="{{ URL::asset('css/noty_theme_default.css') }}" rel='stylesheet'>
  <!-- The fav icon -->
  <link rel="shortcut icon" href="{{URL::asset('img/taleo/taleo.png') }}">
 <style type="text/css">
@@ -298,7 +299,7 @@ span.round-tab:hover {
 <body>
 <div class="container">
 
-    <div class="row" style="margin-top:12px;">
+    <div class="row" style="margin-top:12px;margin-bottom:44px;">
         <div class="col-md-4">
             <p> <strong>Application Status: </strong>
             @if($form->count() > 0)
@@ -329,20 +330,24 @@ span.round-tab:hover {
             {{"not submitted"}}
             @endif
             </p>
+
+            <br/>
+
+            @if($form->count() > 0)
+            <p><strong>Application ID: </strong> {{$form->first()->id}} </p>
+            @endif
         </div>
         <div class="col-md-6">
             <img style="height:80px;" src="{{URL::asset('img/taleo/taleo.png') }}" class="img-responsive" />
         </div>
         <div class="col-md-2">
-                <div class="dropdown">
+                <div class="dropdown" style="margin-bottom:4px;">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                           {{$user->name}}
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            @if($form->count() > 0 && $form->first()->app_status == 0)
-                        <li><a onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a></li>
-                       @endif
+
                         <li><a href="{{route('logout')}}">Logout</a></li>
                          <!-- <li><a href="#">Another action</a></li>
                           <li><a href="#">Something else here</a></li>
@@ -350,11 +355,14 @@ span.round-tab:hover {
                           <li><a href="#">Separated link</a></li> -->
                         </ul>
                       </div>
+                      @if($form->count() > 0 && $form->first()->isWithDrawn == 0)
+                      <a style="float:left;" class="btn btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a>
+                     @endif
 
                  
         </div>
     </div>
-@if(!($form->count() > 0 && $form->first()->app_status ==0))
+@if(!($form->count() > 0 && $form->first()->isWithDrawn == 0))
     <div class="row">
     	<section>
         <div class="wizard">
@@ -513,8 +521,7 @@ span.round-tab:hover {
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step2">
                             <div class="row">
-                                <div class="col-md-2"></div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
                                 <br/>
                                 <input type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
@@ -532,18 +539,28 @@ span.round-tab:hover {
 
                         <div class="row" style="margin-top:26px;">
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                         <label for="work_experience">Work Experience: Describe your previous work Experience </label>
                                         <br/>
-                                        <input type="radio" value="A" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
+                                        <input type="radio" value="A" @if(Session('work_experience') == "A") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. <br/>
                                         <input type="radio" value="B" @if(Session('work_experience') == "B") {{"checked"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </br>
                                         <input type="radio" value="C" @if(Session('work_experience') == "C") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</br>
                                         <input type="radio" value="D" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</br>
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
+                            <div class="row" style="margin-top:26px;">
+                        
+                                <hr/>
+                                <div class="col-md-8">
                                         <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
-                                        <input type="text" id="airline" name="airline" @if(Session('airline')) value="{{Session('airline')}}" @endif class="form-control" placeholder="Airline Name and Position" />  
+                                        <p>Airline Name: </p>
+                                        <input type="text" id="airline" name="airline" @if(Session('airline')) value="{{Session('airline')}}" @endif class="form-control" placeholder="Airline Name" />  
+    
+                                        <br/>
+
+                                       <p>Position:</p>
+                                        <input type="text" id="airlinePosition" name="airlinePosition" @if(Session('airlinePosition')) value="{{Session('airlinePosition')}}" @endif class="form-control" placeholder="Airline Position" />  
     
                                     </div>
 
@@ -551,10 +568,60 @@ span.round-tab:hover {
 
                             <hr/>
 
+
+
                             <div class="row" style="margin-top:26px;">
-                                <div class="col-md-3"></div>
+                                    
 
                                 <div class="col-md-6">
+                                        <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
+                                        <input type="radio" @if(Session('japanese_lang') == "A") {{"checked"}} @endif value="A" class="japanese_lang" name="japanese_lang"> <strong>A: </strong> No Previous experience<br/>
+                                        <input type="radio" @if(Session('japanese_lang') == "B") {{"checked"}} @endif value="B" class="japanese_lang" name="japanese_lang"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </br>
+                                        <input type="radio" @if(Session('japanese_lang') == "C") {{"checked"}} @endif value="C" class="japanese_lang" name="japanese_lang"> <strong>C: </strong> I have studied or studies Japanese culture. </br>
+                                        <input type="radio" @if(Session('japanese_lang') == "D") {{"checked"}} @endif value="D" class="japanese_lang" name="japanese_lang"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </br>
+                                        <p style="font-size:11px;color:red;font-style:italic;">If you answered D, please enter most recent school or employer name you have studied or worked for.</p>
+                                   <div class="row">
+                                       <div class="col-md-6">
+                                        <input type="text" name="school_name" class="form-control" @if(Session('school_name')) value="{{Session('school_name')}}" @endif id="school_name" placeholder="School Name" /> 
+                                    <p class="error" style="display:none;color:Red;font-size:12px;">School Name is Required.</p>   
+                                    </div>
+                                       <div class="col-md-6">
+                                    <input type="date"  name="school_year" class="form-control" @if(Session('school_year')) value="{{Session('school_year')}}" @endif  id="school_year" placeholder="School Year"/> 
+                                    <p  class="error" style="display:none;color:Red;font-size:12px;">School Year is Required.</p>   
+                                       
+                                </div>
+                                   </div>
+                                   <div class="row">
+                                       <div class="col-md-5"></div>
+                                       <div class="col-md-1">OR</div>
+                                       <div class="col-md-4"></div>
+                                   </div>
+                                   <div class="row" style="margin-top:4px;">
+                                        <div class="col-md-6">
+                                         <input type="text" name="employer_name" class="form-control" @if(Session('employer_name')) value="{{Session('employer_name')}}" @endif id="employer_name" placeholder="Employer Name" /> 
+                                         <p  class="error" style="display:none;color:Red;font-size:12px;">Employer Name is Required.</p>   
+                                       
+                               
+                                        </div>
+                                        <div class="col-md-6">
+                                     <input type="date" name="employer_year" class="form-control" @if(Session('employer_year')) value="{{Session('employer_year')}}" @endif id="employer_year"/> 
+                                     <p  class="error" style="display:none;color:Red;font-size:12px;">Employement Year is Required.</p>   
+                                       
+                               
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                                </div>
+
+                                <hr/>
+
+
+
+                            <div class="row" style="margin-top:26px;">
+
+                                <div class="col-md-8">
                                         <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
                                         <input type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
                                         <input type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </br>
@@ -570,48 +637,8 @@ span.round-tab:hover {
                             <div class="row" style="margin-top:26px;">
                                     
 
-                                        <div class="col-md-6">
-                                                <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
-                                                <input type="radio" @if(Session('japanese_lang') == "A") {{"checked"}} @endif value="A" class="japanese_lang" name="japanese_lang"> <strong>A: </strong> No Previous experience<br/>
-                                                <input type="radio" @if(Session('japanese_lang') == "B") {{"checked"}} @endif value="B" class="japanese_lang" name="japanese_lang"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </br>
-                                                <input type="radio" @if(Session('japanese_lang') == "C") {{"checked"}} @endif value="C" class="japanese_lang" name="japanese_lang"> <strong>C: </strong> I have studied or studies Japanese culture. </br>
-                                                <input type="radio" @if(Session('japanese_lang') == "D") {{"checked"}} @endif value="D" class="japanese_lang" name="japanese_lang"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </br>
-                                                <p style="font-size:11px;color:red;font-style:italic;">If you answered D, please enter most recent school or employer name you have studied or worked for.</p>
-                                           <div class="row">
-                                               <div class="col-md-6">
-                                                <input type="text" name="school_name" class="form-control" @if(Session('school_name')) value="{{Session('school_name')}}" @endif id="school_name" placeholder="School Name" /> 
-                                            <p class="error" style="display:none;color:Red;font-size:12px;">School Name is Required.</p>   
-                                            </div>
-                                               <div class="col-md-6">
-                                            <input type="date"  name="school_year" class="form-control" @if(Session('school_year')) value="{{Session('school_year')}}" @endif  id="school_year" placeholder="School Year"/> 
-                                            <p  class="error" style="display:none;color:Red;font-size:12px;">School Year is Required.</p>   
-                                               
-                                        </div>
-                                           </div>
-                                           <div class="row">
-                                               <div class="col-md-5"></div>
-                                               <div class="col-md-1">OR</div>
-                                               <div class="col-md-4"></div>
-                                           </div>
-                                           <div class="row" style="margin-top:4px;">
-                                                <div class="col-md-6">
-                                                 <input type="text" name="employer_name" class="form-control" @if(Session('employer_name')) value="{{Session('employer_name')}}" @endif id="employer_name" placeholder="Employer Name" /> 
-                                                 <p  class="error" style="display:none;color:Red;font-size:12px;">Employer Name is Required.</p>   
-                                               
-                                       
-                                                </div>
-                                                <div class="col-md-6">
-                                             <input type="date" name="employer_year" class="form-control" @if(Session('employer_year')) value="{{Session('employer_year')}}" @endif id="employer_year"/> 
-                                             <p  class="error" style="display:none;color:Red;font-size:12px;">Employement Year is Required.</p>   
-                                               
-                                       
-                                                </div>
-                                            </div>
-
-                                            </div>
-
                                             
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                     <label>International Experience: Describe your International experience</label> <br/>
                                                     <input type="radio" value="A" class="internation_experience" @if(Session('internation_experience') == "A") {{"checked"}} @endif name="internation_experience"> <strong>A: </strong> No Previous experience<br/>
                                                     <input type="radio" value="B" class="internation_experience" @if(Session('internation_experience') == "B") {{"checked"}} @endif name="internation_experience"> <strong>B: </strong> I have studied or worked in International environment. </br>
@@ -716,7 +743,7 @@ span.round-tab:hover {
                                 <div class="col-md-10">
                             <label>Online Questions</label>
                             <br/>
-                        <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" class="oq" name="tattoo" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="tattoo" value="No" /> </p>
+                        <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" class="oq" name="tatoo" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="tatoo" value="No" /> </p>
                         <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input class="oq" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="glasses" value="No" /> </p>
                         <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input type="radio" class="oq" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
                         <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input type="radio" class="oq" name="confirm_form" value="yes" /> <strong>No</strong> <input type="radio" class="oq" name="confirm_form" value="No" /> </p>
@@ -823,9 +850,15 @@ span.round-tab:hover {
 
                                 </div>   
 
-                                <div class="col-md-5">
-                                        <label> 17 & 18. Airline Experience and Position: </label> {{$form->airline}}
-    
+                                <div class="col-md-6">
+                                    @if(!empty($form->airline))
+                                        <label> 17. Airline Name: </label> {{$form->airline}}
+                                    @endif
+
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    @if(!empty($form->airlinePosition))
+                                    <label> 18. Airline Position: </label> {{$form->airlinePosition}}
+                                @endif
                                     </div>   
                         </div>  
 
@@ -876,11 +909,18 @@ span.round-tab:hover {
 
                                             
                                     <div class="col-md-4">
-                                            <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                            <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}"><i class="glyphicon glyphicon-file"></i> TOEIC Score Card</a> 
                                            <br/>
-                                           <label>29. University Name:</label> {{$form->universityName}}
+                                           <label>28. TOEIC Score:</label> {{$form->toeicScore}}
 
                                                 </div>  
+
+                                                <div class="col-md-4">
+                                                        <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                                       <br/>
+                                                       <label>29. University Name:</label> {{$form->universityName}}
+            
+                                                            </div>       
                                         </div>  
     
                                         
@@ -1032,7 +1072,52 @@ function cnfrm(link)
            
         }
     </script>
+<!-- library for cookie management -->
+<script src="{{URL::asset('js/jquery.cookie.js') }}"></script>
+<!-- calender plugin -->
+<script src="{{URL::asset('bower_components/moment/min/moment.min.js') }}"></script>
+<script src="{{URL::asset('bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+<!-- data table plugin -->
+<script src="{{URL::asset('js/jquery.dataTables.min.js') }}"></script>
 
+<!-- select or dropdown enhancer -->
+<script src="{{URL::asset('bower_components/chosen/chosen.jquery.min.js') }}"></script>
+<!-- plugin for gallery image view -->
+<script src="{{URL::asset('bower_components/colorbox/jquery.colorbox-min.js') }}"></script>
+<!-- notification plugin -->
+<script src="{{URL::asset('js/jquery.noty.js') }}"></script>
+<!-- library for making tables responsive -->
+<script src="{{URL::asset('bower_components/responsive-tables/responsive-tables.js') }}"></script>
+<!-- tour plugin -->
+<script src="{{URL::asset('bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js') }}"></script>
+<!-- star rating plugin -->
+<script src="{{URL::asset('js/jquery.raty.min.js') }}"></script>
+<!-- for iOS style toggle switch -->
+<script src="{{URL::asset('js/jquery.iphone.toggle.js') }}"></script>
+<!-- autogrowing textarea plugin -->
+<script src="{{URL::asset('js/jquery.autogrow-textarea.js') }}"></script>
+<!-- multiple file upload plugin -->
+<script src="{{URL::asset('js/jquery.uploadify-3.1.min.js') }}"></script>
+<!-- history.js for cross-browser state change on ajax -->
+<script src="{{URL::asset('js/jquery.history.js') }}"></script>
+<!-- application script for Charisma demo -->
+<script src="{{URL::asset('js/charisma.js') }}"></script>
 <script src="{{URL::asset('js/form.js')}}"></script>
+
+@if(Session('error'))
+<script>
+    
+noty({"text":"{{Session('error')}}","layout":"center","type":"error"});
+
+    </script>
+@endif
+
+@if(Session('success'))
+<script>
+    
+noty({"text":"{{Session('success')}}","layout":"top","type":"success"});
+
+    </script>
+@endif
 </body>
 </html>

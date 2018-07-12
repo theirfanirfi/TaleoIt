@@ -104,11 +104,17 @@ function checkStepTwoFields(url){
     $('.work_experience').each(function(index,element){
         if(!$(element).is(':checked'))
         {
+
+            workI++;
+        }
+        else if($(element).is(":checked") && ($(element).val() == "A" || $(element).val() == "B") && ($('#airline').val() == "" || $('#airlinePosition').val() == "")){
             workI++;
         }
         else
         {
             object["work_experience"] = $(element).val();
+            object["airline"] = $('#airline').val();
+            object["airlinePosition"] = $('#airlinePosition').val();
         }
     });
 
@@ -247,18 +253,18 @@ function checkStepTwoFields(url){
         }
     });
 
-    if($('#airline').val() == "")
-    {
-        Ai++;
-    }
-    else
-    {
-        object["airline"] = $('#airline').val();   
+    // if($('#airline').val() == "")
+    // {
+    //     Ai++;
+    // }
+    // else
+    // {
+    //     object["airline"] = $('#airline').val();   
 
-    }
+    // }
 
 
-    if(anaI > 3 || workI > 3 || jI > 3 || jL > 3 || iI > 3 || Ai > 0)
+    if(anaI > 3 || workI > 3 || jI > 3 || jL > 3 || iI > 3)
     {
         alert('Error: Please check, You have left something unattended.');
     }

@@ -48,6 +48,8 @@ class UserController extends Controller
         $school_year = "";
         $employer_name = "";
         $employer_year = "";
+        $airline = "";
+        $airlinePosition = "";
 
 
         if($applied_for_ana == "D" || $applied_for_ana == "C")
@@ -60,7 +62,9 @@ class UserController extends Controller
         }
 
         $airline = $data["airline"];
+        $airlinePosition = $data["airlinePosition"];
         $work_experience = $data['work_experience'];
+
         $japanese_culture = $data['japanese_culture'];
         $internation_experience = $data['internation_experience'];
         $japanese_lang = $data['japanese_lang'];
@@ -86,6 +90,7 @@ class UserController extends Controller
         Session()->put('applied_for_ana',$applied_for_ana);
         Session()->put('applied_for_ana_year',$applied_for_ana_year);
         Session()->put('airline',$airline);
+        Session()->put('airlinePosition',$airlinePosition);
         Session()->put('work_experience',$work_experience);
         Session()->put('japanese_culture',$japanese_culture);
         Session()->put('internation_experience',$internation_experience);
@@ -142,6 +147,7 @@ class UserController extends Controller
         $form->applied_for_ana_year =  Session()->get('applied_for_ana_year');
         $form->applied_for_ana = Session()->get('applied_for_ana');
         $form->airline = Session()->get('airline');
+        $form->airlinePosition = Session()->get('airlinePosition');
         $form->work_experience = Session()->get('work_experience');
         $form->japanese_culture =  Session()->get('japanese_culture');
         $form->internation_experience =  Session()->get('internation_experience');
@@ -188,9 +194,9 @@ class UserController extends Controller
         $extCV = $cv_file->getClientOriginalExtension();
 
 
-        if($passportFile->move($destination,"000".$form->id."pp".".".$extP))
+        if($passportFile->move($destination,$form->id."pp".".".$extP))
         {
-            $form->passportFileName = "000".$form->id."pp".".".$extP;
+            $form->passportFileName = $form->id."pp".".".$extP;
             $form->save();
             $success++;
 
@@ -203,17 +209,17 @@ class UserController extends Controller
         // }
 
 
-        if($score_file->move($destination,"000".$form->id."to".".".$extS))
+        if($score_file->move($destination,$form->id."to".".".$extS))
         {
-            $form->toeicFileName  = "000".$form->id."to".".".$extS;
+            $form->toeicFileName  = $form->id."to".".".$extS;
             $form->save();
             $success++;
 
         }
 
-        if($cv_file->move($destination,"000".$form->id."cv".".".$extCV))
+        if($cv_file->move($destination,$form->id."cv".".".$extCV))
         {
-            $form->cvFileName  = "000".$form->id."cv".".".$extCV;
+            $form->cvFileName  = $form->id."cv".".".$extCV;
             $form->save();
             $success++;
 

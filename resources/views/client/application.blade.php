@@ -159,8 +159,16 @@
                                 </div>   
 
                                 <div class="col-md-5">
-                                        <label> 17 & 18. Airline Experience and Position: </label> {{$form->airline}}
-    
+                                        @if(!empty($form->airline))
+                                        <label> 17. Airline Name: </label> {{$form->airline}}
+                                    @endif
+
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    @if(!empty($form->airlinePosition))
+                                    <label> 18. Airline Position: </label> {{$form->airlinePosition}}
+                                @endif
                                     </div>   
                         </div>  
 
