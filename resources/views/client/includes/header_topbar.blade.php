@@ -56,8 +56,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="{{URL::asset('img/taleo/taleo.png') }}" class="hidden-md"/>
-                <span>ToleoIt</span></a>
+            <a class="" href="index.html"> <img style="width:250px;margin-top:5px;margin-left:6px;" alt="Charisma Logo" src="{{URL::asset('img/taleo/taleo.png') }}" class="hidden-md"/>
+              <!--  <span>ToleoIt</span></a> -->
 
             <!-- user dropdown starts -->
             <div class="btn-group pull-right">
