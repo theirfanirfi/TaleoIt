@@ -300,7 +300,7 @@ span.round-tab:hover {
 <div class="container">
 
     <div class="row" style="margin-top:12px;margin-bottom:44px;">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p> <strong>Application Status: </strong>
             @if($form->count() > 0)
             <span class="label 
@@ -340,7 +340,7 @@ span.round-tab:hover {
         <div class="col-md-6">
             <img style="height:80px;" src="{{URL::asset('img/taleo/taleo.png') }}" class="img-responsive" />
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
                 <div class="dropdown" style="margin-bottom:4px;">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                           {{$user->name}}
