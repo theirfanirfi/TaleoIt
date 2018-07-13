@@ -394,6 +394,14 @@ span.round-tab:hover {
                     </li>
 
                     <li role="presentation" class="disabled">
+                            <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-picture"></i>
+                                </span>
+                            </a>
+                        </li>
+
+                    <li role="presentation" class="disabled">
                         <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
                                 <i class="glyphicon glyphicon-ok"></i>
@@ -524,7 +532,7 @@ span.round-tab:hover {
                             <div class="col-md-12">
                                 <label for="applied_for_ana">Have you previously applied for a cabin Attendant Position with ANA? </label>
                                 <br/>
-                                <input type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant <br/>
+                              <p>  <input type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>A: </strong> No, First time Applicant </p>
                                 <input type="radio" value="B" @if(Session('applied_for_ana') == "B") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</br>
                                 <input type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</br>
                                 <input type="radio" value="D" @if(Session('applied_for_ana') == "D") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</br>
@@ -535,8 +543,12 @@ span.round-tab:hover {
                             </div>
                         </div>
 
+                    </div>
+
                         <hr/>
 
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                                <div class="step3">
                         <div class="row" style="margin-top:26px;">
 
                                 <div class="col-md-12">
@@ -622,7 +634,7 @@ span.round-tab:hover {
                             <div class="row" style="margin-top:26px;">
 
                                 <div class="col-md-8">
-                                        <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
+                                        <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
                                         <input type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None<br/>
                                         <input type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </br>
                                         <input type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </br>
@@ -656,8 +668,8 @@ span.round-tab:hover {
                             <li><button type="button" id="steptwo" class="btn btn-primary next-step">Save and continue</button></li>
                         </ul>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="step3">
-                        <div class="step33">
+                    <div class="tab-pane" role="tabpanel" id="step4">
+                        <div class="step4">
                             <div class="row mar_ned" style="margin-top:12px;">
                                 <div class="col-md-12">
                                     <h3>Passport Details</h3>
@@ -725,6 +737,26 @@ span.round-tab:hover {
                             <li><button type="button" id="stepthree" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
                         </ul>
                     </div>
+
+
+
+                    <div class="tab-pane" role="tabpanel" id="step5">
+                            <div class="step5">
+                                <div class="row">
+                                 
+                                </div>
+    
+
+                              @csrf
+                                <ul class="list-inline pull-right">
+                                        <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                        <li><button type="submit" id="stepfour" class="btn btn-primary btn-info-full next-step">Save and Submit</button></li>
+                                    </ul>
+                            </div>
+                        </div>
+
+
+
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <div class="step44">
                             <div class="row">

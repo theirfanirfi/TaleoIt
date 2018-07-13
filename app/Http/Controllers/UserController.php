@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $form = FormModel::whereUser_id($user->id)->where(['isWithDrawn' => 0]);
-        return view('user.form',['user' => $user, 'form' => $form]);
+        return view('user.formm',['user' => $user, 'form' => $form]);
     }
 
     public function stepone(Request $req)
