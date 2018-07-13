@@ -31,7 +31,9 @@
 <link href="{{ URL::asset('css/noty_theme_default.css') }}" rel='stylesheet'>
  <!-- The fav icon -->
  <link rel="shortcut icon" href="{{URL::asset('img/taleo/taleo.png') }}">
+ <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
 <style type="text/css">
+* {font-family: 'Roboto Condensed', sans-serif;}
     .wizard {
     margin: 20px auto;
     background: #fff;
