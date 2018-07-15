@@ -1,113 +1,148 @@
 @extends('client.clientlayout')
 @section('content')
-<noscript>
-    <div class="alert alert-block col-md-12">
-        <h4 class="alert-heading">Warning!</h4>
-
-        <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
-            enabled to use this site.</p>
-    </div>
-</noscript>
-
-
-<div id="content" class="col-lg-10 col-sm-10">
-    <!-- content starts -->
-
-  
-
-<div>
-<ul class="breadcrumb">
-<li>
-    <a href="#">Dashboard</a>
-</li>
-<li>
-   
-</li>
-</ul>
-<div class="dropdown" style="margin-bottom:4px;">
-    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Export
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="{{route('exportSubmittedXL')}}">Export All Submitted Applications</a></li>
-    <li><a href="{{route('exportFinalXL')}}">Export Final Interview</a></li>
-      <li><a href="{{route('exportPreXL')}}">Export Pre-Scanning</a></li>
-      <li><a href="{{route('exportScanned')}}">Export Screened</a></li>
-      <li><a href="{{route('exportHired')}}">Export Hired</a></li>
-      <li><a href="{{route('exportRejectedXL')}}">Export Rejected</a></li>
-    </ul>
-  </div>
-</div>
-
 <div class="row">
 
 
-
-        <div class="col-md-3 col-sm-3 col-xs-6">
-                <a data-toggle="tooltip" title="" class="well top-block" href="{{route('forms')}}">
-                    <i class="glyphicon glyphicon-user blue"></i>
-        
-                    <div>Total Applications</div>
-                <div>{{$submitted}}</div>
-                  <!--  <span class="notification"></span> -->
-                </a>
-            </div>
-
-
-        
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a data-toggle="tooltip" title="" class="well top-block" href="{{route('finalinterview')}}">
-                        <i class="glyphicon glyphicon-star green"></i>
-            
-                        <div>Final Interview</div>
-                    <div>{{$final}}</div>
-                    </a>
+      <div class="col-xl-3 col-md-6 col-12">
+            <a style="color:white;" href="{{route('forms')}}">
+                <div class="info-box bg-b-yellow">
+                  <span class="info-box-icon push-bottom"><i class="material-icons">select_all</i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Total Applicants</span>
+                  <span class="info-box-number">{{$submitted}}</span>
+                  <!--  <div class="progress">
+                      <div class="progress-bar" style="width: 45%"></div>
+                    </div>
+                    <span class="progress-description">
+                          45% Increase in 28 Days
+                        </span> -->
+                  </div>
+                  <!-- /.info-box-content -->
                 </div>
+            </a>
+                <!-- /.info-box -->
 
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                        <a data-toggle="tooltip" title="" class="well top-block" href="{{route('prescreening')}}">
-                            <i class="glyphicon glyphicon-user red"></i>
-                
-                            <div>Pre Screening</div>
-                        <div>{{$pre}}</div>
+              </div>
+
+
+              <div class="col-xl-3 col-md-6 col-12">
+                    <a style="color:white;" href="{{route('finalinterview')}}">
+                    <div class="info-box bg-b-green">
+                      <span class="info-box-icon push-bottom"><i class="material-icons">grade</i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Final Interview</span>
+                      <span class="info-box-number">{{$final}}</span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                </a>
+                    <!-- /.info-box -->
+                  </div>
+
+
+            
+                  <div class="col-xl-3 col-md-6 col-12">
+                    <a style="color:white;" href="{{route('hired')}}">
+                        <div class="info-box bg-b-blue">
+                          <span class="info-box-icon push-bottom"><i class="material-icons">verified_user</i></span>
+                          <div class="info-box-content">
+                            <span class="info-box-text">Hired</span>
+                          <span class="info-box-number">{{$hired}}</span>
+                          </div>
+                          <!-- /.info-box-content -->
                         </a>
-                    </div>   
-                    
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                            <a data-toggle="tooltip" title="" class="well top-block" href="{{route('screened')}}">
-                                <i class="glyphicon glyphicon-user yellow"></i>
-                    
-                                <div>Screened</div>
-                            <div>{{$screened}}</div>
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                
+              <div class="col-xl-3 col-md-6 col-12">
+                    <a style="color:white;" href="{{route('prescreening')}}">
+                    <div class="info-box bg-b-pink">
+                      <span class="info-box-icon push-bottom"><i class="material-icons">visibility_off</i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Pre-Screening</span>
+                      <span class="info-box-number">{{$pre}}</span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </a>
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 col-12">
+                    <a style="color:white;" href="{{route('screened')}}">
+                        <div class="info-box bg-b-blue">
+                          <span class="info-box-icon push-bottom"><i class="material-icons">visibility</i></span>
+                          <div class="info-box-content">
+                            <span class="info-box-text">Screened</span>
+                          <span class="info-box-number">{{$screened}}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </a>
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-xl-3 col-md-6 col-12">
+                           <a style="color:white;" href="{{route('rejected')}}">
+                            <div class="info-box bg-b-pink">
+                              <span class="info-box-icon push-bottom"><i class="material-icons">backspace</i></span>
+                              <div class="info-box-content">
+                                <span class="info-box-text">Rejected</span>
+                              <span class="info-box-number">{{$rejected}}</span>
+                              </div>
+                              <!-- /.info-box-content -->
                             </a>
-                        </div>   
+                            </div>
+                            <!-- /.info-box -->
+                          </div>
 
-                        <div class="col-md-3 col-sm-3 col-xs-6">
-                                <a data-toggle="tooltip" title="" class="well top-block" href="{{route('hired')}}">
-                                    <i class="glyphicon glyphicon-user green"></i>
-                        
-                                    <div>Hired</div>
-                                <div>{{$hired}}</div>
+                          <div class="col-xl-3 col-md-6 col-12">
+                               <a style="color:white;" href="{{route('wdApps')}}">
+                                <div class="info-box bg-b-yellow">
+                                  <span class="info-box-icon push-bottom"><i class="material-icons">blur_on</i></span>
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Withdrawn</span>
+                                  <span class="info-box-number">{{$rejected}}</span>
+                                  </div>
+                                  <!-- /.info-box-content -->
                                 </a>
-                            </div> 
-                            
-                            <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <a data-toggle="tooltip" title="" class="well top-block" href="{{route('rejected')}}">
-                                        <i class="glyphicon glyphicon-user red"></i>
-                            
-                                        <div>Rejected</div>
-                                    <div>{{$rejected}}</div>
+                                </div>
+                                <!-- /.info-box -->
+                              </div>
+
+
+                        
+                              <div class="col-xl-3 col-md-6 col-12">
+                                   <a style="color:white;" href="{{route('finalinterview')}}">
+                                    <div class="info-box bg-b-green">
+                                      <span class="info-box-icon push-bottom"><i class="material-icons">cloud</i></span>
+                                      <div class="info-box-content">
+                                        <span class="info-box-text">Documents</span>
+                                      <span class="info-box-number">Click to View</span>
+                                      </div>
+                                      <!-- /.info-box-content -->
                                     </a>
-                                </div> 
-                
-                
+                                    </div>
+                                    <!-- /.info-box -->
+                                  </div>
+
+                                
+                                                        
+                              <div class="col-xl-3 col-md-6 col-12">
+                                    <a style="color:white;" href="{{route('recruiters')}}">
+                                    <div class="info-box bg-b-pink">
+                                      <span class="info-box-icon push-bottom"><i class="material-icons">people</i></span>
+                                      <div class="info-box-content">
+                                        <span class="info-box-text">Recruiters</span>
+                                      <span class="info-box-number">{{0}}</span>
+                                      </div>
+                                      <!-- /.info-box-content -->
+                                    </a>
+                                    </div>
+                                    <!-- /.info-box -->
+                                  </div>
+                  
 </div>
-
-<!-- content ends -->
-</div><!--/#content.col-md-0-->
-</div><!--/fluid-row-->
-
-
-<hr>
 @endsection

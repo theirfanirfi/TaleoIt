@@ -1,137 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- BEGIN HEAD -->
+<?php $user = "";
+if(Auth::user())
+{
+    $user = Auth::user();
+}
+?>
 <head>
-    <!--
-        ===
-        Author: Irfan Ullah
-        Email: TheIrfanIrfi@gmail.com
-
-    -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
     <title>TaleoIt</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="TaleoIt">
-    <meta name="au
-    thor" content="Irfan Ullah">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+    <link href="{{ URL::asset('fonts/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ URL::asset('fonts/material-design-icons/material-icon.css') }}" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="{{ URL::asset('assets/plugins/material/material.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/material_style.css') }}">
+    <link href="{{ URL::asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css"/>
+	<!-- Jquery Toast css -->
+	<link rel="stylesheet" href="{{ URL::asset('assets/plugins/jquery-toast/dist/jquery.toast.min.css') }}">
 
-    <!-- The styles -->
-    <link id="bs-css" href="{{URL::asset('css/bootstrap-cerulean.min.css') }}" rel="stylesheet">
-    <link href="{{URL::asset('css/bootstrap-cerulean.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('css/charisma-app.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('bower_components/fullcalendar/dist/fullcalendar.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('bower_components/fullcalendar/dist/fullcalendar.print.css') }}" rel='stylesheet' media='print'>
-    <link href="{{ URL::asset('bower_components/chosen/chosen.min.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('bower_components/colorbox/example3/colorbox.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('bower_components/responsive-tables/responsive-tables.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/jquery.noty.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/noty_theme_default.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/elfinder.min.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/elfinder.theme.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/jquery.iphone.toggle.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/uploadify.css') }}" rel='stylesheet'>
-    <link href="{{ URL::asset('css/animate.min.css') }}" rel='stylesheet'>
-
-    <!-- jQuery -->
-    <script src="{{ URL::asset('bower_components/jquery/jquery.min.js') }}"></script>
-
-    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- The fav icon -->
-    <link rel="shortcut icon" href="{{URL::asset('img/taleo/taleo.png') }}">
-
+	<!-- Theme Styles -->
+    <link href="{{ URL::asset('assets/css/theme/dark/theme_style.css') }}" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="{{ URL::asset('assets/css/theme/dark/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ URL::asset('assets/css/theme/dark/theme-color.css') }}" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+    <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.ico') }}" /> 
 </head>
+<!-- END HEAD -->
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <!-- start header -->
+		<div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner ">
+                <!-- logo start -->
+                <div class="page-logo">
+                    <a href="index.html">
+                    <span class="logo-icon material-icons fa-rotate-45">school</span>
+                    <span class="logo-default" >CREW ASIA</span> </a>
+                </div>
+                <!-- logo end -->
+				<ul class="nav navbar-nav navbar-left in">
+					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+				</ul>
+               <!--  <form class="search-form-opened" action="#" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <span class="input-group-btn">
+                          <a href="javascript:;" class="btn submit">
+                             <i class="icon-magnifier"></i>
+                           </a>
+                        </span>
+                    </div>
+                </form> -->
+                <!-- start mobile menu -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+               <!-- end mobile menu -->
+                <!-- start header menu -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                    	<li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
+                    	<!-- start language menu -->
+                     <!--   <li class="dropdown language-switch">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="../assets/img/flags/gb.png" class="position-left" alt=""> English <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="deutsch"><img src="../assets/img/flags/de.png" alt=""> Deutsch</a>
+                                </li>
+                                <li>
+                                    <a class="ukrainian"><img src="../assets/img/flags/ua.png" alt=""> Українська</a>
+                                </li>
+                                <li>
+                                    <a class="english"><img src="../assets/img/flags/gb.png" alt=""> English</a>
+                                </li>
+                                <li>
+                                    <a class="espana"><img src="../assets/img/flags/es.png" alt=""> España</a>
+                                </li>
+                                <li>
+                                    <a class="russian"><img src="../assets/img/flags/ru.png" alt=""> Русский</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <!-- end language menu -->
+                        <!-- start notification dropdown -->
+                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge headerBadgeColor1"> 6 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3><span class="bold">Notifications</span></h3>
+                                    <span class="notification-label purple-bgcolor">New 6</span>
+                                </li>
+                            <!--    <li>
+                                    <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">just now</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle deepPink-bgcolor"><i class="fa fa-check"></i></span> Congratulations!. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 mins</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle purple-bgcolor"><i class="fa fa-user o"></i></span>
+                                                <b>John Micle </b>is now following you. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">7 mins</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle blue-bgcolor"><i class="fa fa-comments-o"></i></span>
+                                                <b>Sneha Jogi </b>sent you a message. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">12 mins</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle pink"><i class="fa fa-heart"></i></span>
+                                                <b>Ravi Patel </b>like your photo. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">15 mins</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle yellow"><i class="fa fa-warning"></i></span> Warning! </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">10 hrs</span>
+                                                <span class="details">
+                                                <span class="notification-icon circle red"><i class="fa fa-times"></i></span> Application error. </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="dropdown-menu-footer">
+                                        <a href="javascript:void(0)"> All notifications </a>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </li>
+                        <!-- end notification dropdown -->
 
-<body>
-    <!-- topbar starts -->
-    <div class="navbar navbar-default" role="navigation">
-
-        <div class="navbar-inner">
-            <button type="button" class="navbar-toggle pull-left animated flip">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="" href="index.html"> <img style="width:250px;margin-top:5px;margin-left:6px;" alt="Charisma Logo" src="{{URL::asset('img/taleo/taleo.png') }}" class="hidden-md"/>
-              <!--  <span>ToleoIt</span></a> -->
-
-            <!-- user dropdown starts -->
-            <div class="btn-group pull-right">
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> {{Auth::user()->name}}</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="{{route('profile')}}">Profile</a></li>
-                    <li class="divider"></li>
-                <li><a href="{{route('logout')}}">Logout</a></li>
-                </ul>
-            </div>
-            <!-- user dropdown ends -->
-
-
-            
-            <!-- Notification dropdown starts -->
-            <div class="btn-group pull-right">
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-bell blue"><span class="label label-danger" id="notification"></span></i><span class="hidden-sm hidden-xs"></span>
-                    <span class="caret"></span>
-                </button>
-               <!-- <ul class="dropdown-menu">
-                    <li><a href="#"><i class="glyphicon glyphicon-bullhorn green"></i> Form Submitted</a></li>
-                    <li class="divider"></li>
-                </ul> -->
-            </div>
-            <!-- user dropdown ends -->
-
-            <!-- theme selector starts -->
-            <div class="btn-group pull-right theme-container animated tada">
-               <!-- <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-tint"></i><span
-                        class="hidden-sm hidden-xs"> Change Theme / Skin</span>
-                    <span class="caret"></span>
-                </button> -->
-                <ul class="dropdown-menu" id="themes">
-                    <li><a data-value="classic" href="#"><i class="whitespace"></i> Classic</a></li>
-                    <li><a data-value="cerulean" href="#"><i class="whitespace"></i> Cerulean</a></li>
-                    <li><a data-value="cyborg" href="#"><i class="whitespace"></i> Cyborg</a></li>
-                    <li><a data-value="simplex" href="#"><i class="whitespace"></i> Simplex</a></li>
-                    <li><a data-value="darkly" href="#"><i class="whitespace"></i> Darkly</a></li>
-                    <li><a data-value="lumen" href="#"><i class="whitespace"></i> Lumen</a></li>
-                    <li><a data-value="slate" href="#"><i class="whitespace"></i> Slate</a></li>
-                    <li><a data-value="spacelab" href="#"><i class="whitespace"></i> Spacelab</a></li>
-                    <li><a data-value="united" href="#"><i class="whitespace"></i> United</a></li>
-                </ul>
-            </div>
-            <!-- theme selector ends -->
-<!--
-            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
-                <li><a href="#"><i class="glyphicon glyphicon-globe"></i> Visit Site</a></li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-star"></i> Dropdown <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+ 						<li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle " src="../assets/img/dp.jpg" />
+                                <span class="username username-hide-on-mobile"> {{$user->name}} </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="{{route('profile')}}">
+                                        <i class="icon-settings"></i> Settings
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                <a href="{{route('logout')}}">
+                                        <i class="icon-logout"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- end manage user dropdown -->
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                             <a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton">
+	                           <i class="material-icons">more_vert</i>
+	                        </a>
+                        </li>
                     </ul>
-                </li>
-                <li>
-                    <form class="navbar-search pull-left">
-                        <input placeholder="Search" class="search-query form-control col-md-10" name="query"
-                               type="text">
-                    </form>
-                </li>
-            </ul> -->
-
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- topbar ends -->
+        <!-- end header -->
+        <!-- start color quick setting -->
+        <div class="quick-setting-main">
+			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
+			<div class="quick-setting display-none">
+				<ul id="themecolors" >
+                    <!--
+				<li><p class="selector-title">Main Layouts</p></li>
+				<li class="complete"><div class="theme-color layout-theme">
+				<a href="../light/blank_page.html" data-theme="light"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				</div></li>	-->
+				<li><p class="selector-title">Sidebar Color</p></li>
+				<li class="complete"><div class="theme-color sidebar-theme">
+				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="blue"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="indigo"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="cyan"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="green"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="red"><span class="head"></span><span class="cont"></span></a>
+				</div></li>
+             	<li><p class="selector-title">Header Brand color</p></li>
+             	<li class="theme-option"><div class="theme-color logo-theme">
+             	<a href="#" data-theme="logo-white"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-dark"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-blue"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-indigo"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-cyan"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-green"><span class="head"></span><span class="cont"></span></a>
+				<a href="#" data-theme="logo-red"><span class="head"></span><span class="cont"></span></a>
+             	</div></li>
+             	<li><p class="selector-title">Header color</p></li>
+             	<li class="theme-option"><div class="theme-color header-theme">
+             	<a href="#" data-theme="header-white"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-dark"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-blue"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-indigo"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-cyan"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-green"><span class="head"></span><span class="cont"></span></a>
+             	<a href="#" data-theme="header-red"><span class="head"></span><span class="cont"></span></a>
+             	</div></li>
+			</ul>
+			</div>
+        </div>
+
+		<!-- end color quick setting -->

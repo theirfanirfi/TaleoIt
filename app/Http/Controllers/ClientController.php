@@ -20,20 +20,20 @@ class ClientController extends Controller
         $rejected = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->count();
         $hired = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->count();
         $screened = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->count();
-        return view('client.index',['submitted' => $submitted, 'final' => $final, 'pre' => $prescreening, 'rejected' => $rejected, 'hired' => $hired, 'screened' => $screened]);
+        return view('client.index',['submitted' => $submitted, 'final' => $final, 'pre' => $prescreening, 'rejected' => $rejected, 'hired' => $hired, 'screened' => $screened, 'page' =>"Dashboard"]);
     }
 
     public function submittedForms()
     {
         $forms = FormModel::where(['isWithDrawn' => 0])->get();
         FormModel::whereAlert_status(0)->update(['alert_status' => 1]);
-        return view('client.submittedforms',['forms' => $forms]);
+        return view('client.submittedforms',['forms' => $forms, 'page' => "All Applicants"]);
     }
 
     public function profile()
     {
         $user = Auth::user();
-        return view('client.profile',['user' => $user]);
+        return view('client.profile',['user' => $user, 'page' =>'Settings']);
     }
 
     public function updateProfile(Request $req)
@@ -98,12 +98,12 @@ class ClientController extends Controller
     {
         
         $forms = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->get();
-        return view('client.rejected',['forms' => $forms]);
+        return view('client.rejected',['forms' => $forms,'page' => 'Rejected Applicants']);
     }
 
     public function addRecruiter()
     {
-        return view('client.addRecuriter');
+        return view('client.addRecuriter', ['page' => 'Add Recruiter']);
     }
 
     public function recruiter(Request $req)
@@ -289,32 +289,32 @@ class ClientController extends Controller
     public function finalInterview()
     {
         $forms = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->get();
-        return view('client.finalinterview',['forms' => $forms]);
+        return view('client.finalinterview',['forms' => $forms, 'page' => 'Final Interview Candidates']);
     }
 
     public function prescreening()
     {
         $forms = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->get();
-        return view('client.prescreening',['forms' => $forms]);
+        return view('client.prescreening',['forms' => $forms, 'page' => 'Pre-Screening Applicants']);
     }
 
     public function hired()
     {
         $forms = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->get();
-        return view('client.hired',['forms' => $forms]);
+        return view('client.hired',['forms' => $forms,'page' => 'Hired Candidates']);
     }
 
     public function screened()
     {
         $forms = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->get();
-        return view('client.screened',['forms' => $forms]);
+        return view('client.screened',['forms' => $forms, 'page' => 'Screened Applicants']);
     }
 
 
     public function wdApps()
     {
         $forms = FormModel::where(['isWithDrawn' => 1])->get();
-        return view('client.withdrawnApps',['forms' => $forms]);
+        return view('client.withdrawnApps',['forms' => $forms, 'page' => 'Withdrawn Candidates']);
     }
 
     public function checkNotification()

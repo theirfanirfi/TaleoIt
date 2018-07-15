@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="{{ URL::asset('bower_components/jquery/jquery.min.js') }}"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
 <style>
 * {
   box-sizing: border-box;
@@ -88,31 +99,30 @@ button:hover {
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
       <label>Name:</label>
-    <p><input oninput="this.className = ''" @if(Session('firstname')) value="{{Session('firstname')}}" @endif id="firstname" name="firstname" placeholder="First Name"></p>
-    <p><input oninput="this.className = ''" id="lastname" @if(Session('lastname')) value="{{Session('lastname')}}" @endif name="lastname" placeholder="Last Name"></p>
+    <p><input  oninput="this.className = ''" @if(Session('firstname')) value="{{Session('firstname')}}" @endif id="firstname" name="firstname" placeholder="First Name"></p>
+    <p><input  oninput="this.className = ''" id="lastname" @if(Session('lastname')) value="{{Session('lastname')}}" @endif name="lastname" placeholder="Last Name"></p>
     
     <label>Street Address:</label>
-    <p><input oninput="this.className = ''" name="streetAddress" @if(Session('streetAddress')) value="{{Session('streetAddress')}}" @endif id="address" placeholder="Street Address"></p>
+    <p><input  oninput="this.className = ''" name="streetAddress" @if(Session('streetAddress')) value="{{Session('streetAddress')}}" @endif id="address" placeholder="Street Address"></p>
     
     <label>City:</label>
-    <p><input oninput="this.className = ''" @if(Session('city')) value="{{Session('city')}}" @endif id="city" name="city" placeholder="City"></p>
+    <p><input  oninput="this.className = ''" @if(Session('city')) value="{{Session('city')}}" @endif id="city" name="city" placeholder="City"></p>
     
 
     <label>State/Region:</label>
-    <p><input oninput="this.className = ''" id="state" @if(Session('state')) value="{{Session('state')}}" @endif name="stateRegion" placeholder="State/Region"></p>
+    <p><input  oninput="this.className = ''" id="state" @if(Session('state')) value="{{Session('state')}}" @endif name="stateRegion" placeholder="State/Region"></p>
     
     <label>ZIP:</label>
     <p><input oninput="this.className = ''" id="zip" @if(Session('zip')) value="{{Session('zip')}}" @endif name="zip" placeholder="ZIP"></p>
     
     <label>Country:</label>
-    <p><input oninput="this.className = ''" id="country" @if(Session('country')) value="{{Session('country')}}" @endif name="country" placeholder="Country"></p>
+    <p><input  oninput="this.className = ''" id="country" @if(Session('country')) value="{{Session('country')}}" @endif name="country" placeholder="Country"></p>
     
     <label>Contact Phone:</label>
-    <p><input oninput="this.className = ''" id="phone" name="contactPhone" @if(Session('phone')) value="{{Session('phone')}}" @endif placeholder="Contact Phone"></p>
+    <p><input  oninput="this.className = ''" id="phone" name="contactPhone" @if(Session('phone')) value="{{Session('phone')}}" @endif placeholder="Contact Phone"></p>
     
     <label>Age:</label>
-    <p><input oninput="this.className = ''" name="age" id="age" @if(Session('age')) value="{{Session('age')}}" @endif placeholder="Age"></p>
-    
+    <p><input  oninput="this.className = ''" name="age" id="age" @if(Session('age')) value="{{Session('age')}}" @endif placeholder="Age"></p>
     <label>Gender:</label>
     <p>
             <select name="gender" style="padding:8px;" id="gender">
@@ -122,13 +132,13 @@ button:hover {
     </p>
     
     <label>Email:</label>
-    <p><input type="email" oninput="this.className = ''" @if(Session('email')) value="{{Session('email')}}" @endif id="email" name="email" placeholder="Email"></p>
+    <p><input class="input" type="email" oninput="this.className = ''" @if(Session('email')) value="{{Session('email')}}" @endif id="email" name="email" placeholder="Email"></p>
     
     <label>Height:</label>
-    <p><input type="number" oninput="this.className = ''" @if(Session('height')) value="{{Session('height')}}" @endif id="height" name="height" placeholder="Please Enter Height in CM. Example: 167"></p>
+    <p><input class="input" type="number" oninput="this.className = ''" @if(Session('height')) value="{{Session('height')}}" @endif id="height" name="height" placeholder="Please Enter Height in CM. Example: 167"></p>
     
     <label>Weight:</label>
-    <p><input type="number" oninput="this.className = ''" id="weight" @if(Session('weight')) value="{{Session('weight')}}" @endif name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4"></p>
+    <p><input  class="input" type="number" oninput="this.className = ''" id="weight" @if(Session('weight')) value="{{Session('weight')}}" @endif name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4"></p>
     
 </div>
 
@@ -140,7 +150,13 @@ button:hover {
         <p><input style="width:16px;" type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</p>
         <p><input style="width:16px;" type="radio" value="D" @if(Session('applied_for_ana') == "D") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</p>
         <p style="font-size:11px;color:red;font-style:italic;">If you answered C or D, Please enter the last screening year you have Attendend. Example: 2016</p>
-        <input  type="text" @if(Session('applied_for_ana_year')) value="{{Session('applied_for_ana_year')}}" @endif id="datepicker" name="applied_for_ana_last_screening_year_txt" style="width:60%;" />
+        <select id="applied_for_ana_last_screening_year_txt" name="applied_for_ana_last_screening_year_txt" style="width:30%;padding:12px;">
+          <option value="">Select Year</option>
+          @for($i = 1980; $i <= date('Y'); $i++)
+        <option value="{{$i}}">{{$i}}</option>
+          @endfor
+        </select>
+        
         <p class="error" style="display:none;color:red;font-style:italic;">Screening Year is Required.</p>
         
       </div>
@@ -196,19 +212,19 @@ button:hover {
 
   <div class="tab">
         <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
-        <p><input type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
-        <p><input type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>>
-        <p><input type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>>
-        <p><input type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>>
+        <p><input style="width:16px;"  type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
+        <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>>
+        <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>>
+        <p><input style="width:16px;" type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>>
 
   </div>
 
   <div class="tab">
         <label>International Experience: Describe your International experience</label> <br/>
-        <p><input type="radio" value="A" class="internation_experience" @if(Session('internation_experience') == "A") {{"checked"}} @endif name="internation_experience"> <strong>A: </strong> No Previous experience</p>
-        <p><input type="radio" value="B" class="internation_experience" @if(Session('internation_experience') == "B") {{"checked"}} @endif name="internation_experience"> <strong>B: </strong> I have studied or worked in International environment. </p>
-        <p><input type="radio" value="C" class="internation_experience" @if(Session('internation_experience') == "C") {{"checked"}} @endif name="internation_experience"> <strong>C: </strong> I have studied abroad. </p>
-        <p><input type="radio" value="D" class="internation_experience" @if(Session('internation_experience') == "D") {{"checked"}} @endif name="internation_experience"> <strong>D: </strong> I have worked abroad. </p>
+        <p><input style="width:16px;" type="radio" value="A" class="internation_experience" @if(Session('internation_experience') == "A") {{"checked"}} @endif name="internation_experience"> <strong>A: </strong> No Previous experience</p>
+        <p><input style="width:16px;" type="radio" value="B" class="internation_experience" @if(Session('internation_experience') == "B") {{"checked"}} @endif name="internation_experience"> <strong>B: </strong> I have studied or worked in International environment. </p>
+        <p><input style="width:16px;" type="radio" value="C" class="internation_experience" @if(Session('internation_experience') == "C") {{"checked"}} @endif name="internation_experience"> <strong>C: </strong> I have studied abroad. </p>
+        <p><input style="width:16px;" type="radio" value="D" class="internation_experience" @if(Session('internation_experience') == "D") {{"checked"}} @endif name="internation_experience"> <strong>D: </strong> I have worked abroad. </p>
        
   </div>
 
@@ -270,10 +286,10 @@ button:hover {
   <div class="tab">
         <label>Online Questions</label>
         <br/>
-    <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input type="radio" class="oq" name="tatoo" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="tatoo" value="No" /> </p>
-    <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input class="oq" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="glasses" value="No" /> </p>
-    <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input type="radio" class="oq" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
-    <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input type="radio" class="oq" name="confirm_form" value="yes" /> <strong>No</strong> <input type="radio" class="oq" name="confirm_form" value="No" /> </p>
+    <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;"   type="radio" class="oq11" name="tatoo" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="tatoo" value="No" /> </p>
+    <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="oq11" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="glasses" value="No" /> </p>
+    <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="oq11" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+    <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="oq11" name="confirm_form" value="yes" /> <strong>No</strong> <input type="radio" class="oq" name="confirm_form" value="No" /> </p>
        
         <br/>
   </div>
@@ -303,7 +319,7 @@ button:hover {
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
-
+var t = 0;
 function showTab(n) {
   // This function will display the specified tab of the form...
   var x = document.getElementsByClassName("tab");
@@ -326,12 +342,23 @@ function showTab(n) {
 function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
+
+if(n == 1 && t == 0 )
+{
+  t = n;
+}
+else 
+{
+  t++;
+}
+
   // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
+  if (n == 1 && !validateForm(t)){ return false; } else { if(t == 1) {make("{{route('stepone')}}");} else if(t == 2){} }
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
+
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
@@ -342,21 +369,103 @@ function nextPrev(n) {
   showTab(currentTab);
 }
 
-function validateForm() {
+function make(url)
+{
+  var firstname = $('#firstname').val();
+var lastname = $('#lastname').val();
+var streetAddress = $('#address').val();
+var city = $('#city').val();
+var state = $('#state').val();
+var zip = $('#zip').val();
+var country = $('#country').val();
+var phone = $('#phone').val();
+var age = $('#age').val();
+var gender = $('#gender').val();
+var email = $('#email').val();
+var height = $('#height').val();
+var weight = $('#weight').val();
+
+   var arr = [firstname,lastname,streetAddress,city,state,
+zip,country,phone,age,gender,email,height,weight];
+
+$.get(url,{data: arr},function(data){
+if(data.error == false)
+{
+return true;
+}
+else 
+{
+  
+   return false;
+}
+},'json');
+}
+
+
+function validateForm(t) {
   // This function deals with validation of the form fields
-  var x, y, i, valid = true;
+  var x, y, i, r = 0, inp = 0, valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
+  //alert($("input[type=radio]").length);
+  for(j = 0; j < y.length; j++)
+  {
+    if(y[j].type== "radio" && !$(y[j]).is(":checked"))
+    {
+      r++;
+    }
+    else if(y[j].type == "radio" && $(y[j]).is(":checked") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
+    {
+      r++;
+      alertify.set('notifier','position', 'top-center');
+      alertify.warning("Please select Year.");
+  
+    }
+
+     else if(y[j].type == "radio" && $(y[j]).is(":checked") && (($(y[j]).val() == "A" || $(y[j]).val() == "B") && ($('#airline').val() == "" || $('#airlinePosition').val() == "")))
+    {
+      r++;
+      alertify.set('notifier','position', 'top-center');
+      alertify.warning("As You have selected option "+ $(y[j]).val() +",Please Enter Airline Name and Position.");
+      
+    }
+
+    //  else if((y[j].type == "radio" && $(y[j]).is(":checked") && $(y[j]).val() == "D") && (($('#school_name').val() == "" || $('#school_year').val() == "")) || ($('#employer_name').val() == "" && $('#employer_year').val() == ""))
+    // {
+    //   r++;
+    //   alertify.set('notifier','position', 'top-center');
+    //   alertify.warning("As You have selected option "+ $(y[j]).val() +",Please Enter School Name and Year OR Employer Name and Employement Year");
+      
+   // }
+
+
+  }
+
+ 
+
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
+    
+  if(y[i].name == "airline" || y[i].name == "airlinePosition" || y[i].name == "school_name" || y[i].name == "school_year" || y[i].name == "employer_name" || y[i].name == "employer_year")
+  {
+    continue;
+  }
+
+    if (y[i].value == "" || r > 3) {
       // add an "invalid" class to the field:
       y[i].className += " invalid";
+      inp++;
       // and set the current valid status to false
       valid = false;
     }
   }
+  if(r > 3 || inp > 0)
+  {
+    alertify.set('notifier','position', 'top-center');
+    alertify.error("You have left the questions unattended. Please attend the questions and proceed.");
+  }
+
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
