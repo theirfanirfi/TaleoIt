@@ -29,12 +29,25 @@ if(Auth::user())
 	<!-- Jquery Toast css -->
 	<link rel="stylesheet" href="{{ URL::asset('assets/plugins/jquery-toast/dist/jquery.toast.min.css') }}">
 
-	<!-- Theme Styles -->
+    <!-- Theme Styles -->
+    @if(Session('dark') == 1)
     <link href="{{ URL::asset('assets/css/theme/dark/theme_style.css') }}" rel="stylesheet" id="rt_style_components" type="text/css" />
     <link href="{{ URL::asset('assets/css/theme/dark/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('assets/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />
-	<link href="{{ URL::asset('assets/css/theme/dark/theme-color.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/theme/dark/theme-color.css') }}" rel="stylesheet" type="text/css" />
+    @else 
+
+    <link href="{{ URL::asset('assets/css/theme/light/theme_style.css') }}" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="{{ URL::asset('assets/css/theme/light/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ URL::asset('assets/css/theme/light/theme-color.css') }}" rel="stylesheet" type="text/css" />
+
+
+
+    @endif
+    <link href="{{ URL::asset('assets/css/pages/formlayout.css') }}" rel="stylesheet" type="text/css" />
 	<!-- favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.ico') }}" /> 
 </head>
@@ -198,12 +211,11 @@ if(Auth::user())
 			<button class="control-sidebar-btn btn" data-toggle="control-sidebar"><i class="fa fa-cog fa-spin"></i></button>
 			<div class="quick-setting display-none">
 				<ul id="themecolors" >
-                    <!--
 				<li><p class="selector-title">Main Layouts</p></li>
 				<li class="complete"><div class="theme-color layout-theme">
-				<a href="../light/blank_page.html" data-theme="light"><span class="head"></span><span class="cont"></span></a>
-				<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
-				</div></li>	-->
+                <a href="{{route('light')}}" data-theme="light"><span class="head"></span><span class="cont"></span></a>
+				<a href="{{route('dark')}}" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+				</div></li>	
 				<li><p class="selector-title">Sidebar Color</p></li>
 				<li class="complete"><div class="theme-color sidebar-theme">
 				<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>

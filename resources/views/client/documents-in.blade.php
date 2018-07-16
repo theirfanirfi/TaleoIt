@@ -10,7 +10,7 @@
     </div>
 <div class="col-md-1"></div>
     <div class="col-md-1">
-            <a href="" style="color:white;">
+    <a href="{{route('passports',['status' => $status])}}" style="color:white;">
             <i class="material-icons" style="font-size:120px;">folder</i>
             <p style="margin-left:14px;">Passports</p>
             </a>
@@ -18,7 +18,7 @@
 
 <div class="col-md-1"></div>
 <div class="col-md-2">
-        <a href="" style="color:white;">
+        <a href="{{route('toeicscorecard',['status' => $status])}}" style="color:white;">
         <i class="material-icons" style="font-size:120px;">folder</i>
         <p style="margin-left:06px;">TOEIC Score Cards</p>
         </a>

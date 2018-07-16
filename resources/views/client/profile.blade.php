@@ -1,13 +1,6 @@
 @extends('client.clientlayout')
 @section('content')
-<noscript>
-        <div class="alert alert-block col-md-12">
-            <h4 class="alert-heading">Warning!</h4>
-    
-            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
-                enabled to use this site.</p>
-        </div>
-    </noscript>
+
     
     <div id="content" class="col-lg-10 col-sm-10">
         <!-- content starts -->
@@ -23,19 +16,54 @@
     </li>
     </ul> -->
     </div>
+
+
+    <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2>Security Question</h2>
+                        <p>In case you forget your password, You will be able to reset your password by answering the Security Question set by you.
+                            Please set the security Question, If you haven't.
+                        </p>
+                    </div>
+                    <div class="box-content">
+                    <form role="form" method="POST" action="{{route('securityQuestion')}}">
+
+                                <div class="form-group">
+                                        <label>Select Security Question</label>
+                                        <br/>
+                                        <select class="security" name="security" class="form-control" style="padding:12px;">
+                                                <option value="">Select a question from the following options.</option>
+                                                <option value="1">Who's your daddy?</option>
+                                                <option value="2">What is your favorite color?</option>
+                                                <option value="3">What is your mother's favorite aunt's favorite color?</option>
+                                                <option value="4">Where does the rain in Spain mainly fall?</option>
+                                                <option value="5">If Mary had three apples, would you steal them?</option>
+                                                <option value="6">What brand of food did your first pet eat?</option>
+                                             </select>
+                               </div>
+                               @csrf
+                            <div class="form-group">
+                                <label>Answer</label>
+                            <input type="password" name="answer" class="form-control" id="answer" placeholder="Answer">
+                            </div>
+                       
+                            <button type="submit" class="btn btn-warning">Set Security Question</button>
+                        </form>
+        
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+        
+        </div><!--/row-->
     
     <div class="row">
             <div class="box col-md-12">
                 <div class="box-inner">
                     <div class="box-header well" data-original-title="">
-                        <h2><i class="glyphicon glyphicon-edit"></i> Update Profile</h2>
-        
-                        <div class="box-icon">
-                            <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                    class="glyphicon glyphicon-chevron-up"></i></a>
-                            <a href="#" class="btn btn-close btn-round btn-default"><i
-                                    class="glyphicon glyphicon-remove"></i></a>
-                        </div>
+                        <h2></h2>
                     </div>
                     <div class="box-content">
                     <form role="form" method="POST" action="{{route('updateProfile')}}">
@@ -50,7 +78,7 @@
                             <input type="email" name="email" value="{{$user->email}}" class="form-control" id="Email1" placeholder="Enter email">
                             </div>
                        
-                            <button type="submit" class="btn btn-default">Update</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
         
                     </div>
@@ -67,15 +95,7 @@
                 <div class="box col-md-12">
                     <div class="box-inner">
                         <div class="box-header well" data-original-title="">
-                            <h2><i class="glyphicon glyphicon-edit"></i> Change Password</h2>
-            
-                            <div class="box-icon">
-                          
-                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                        class="glyphicon glyphicon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round btn-default"><i
-                                        class="glyphicon glyphicon-remove"></i></a>
-                            </div>
+                            <h2>Change Password</h2>
                         </div>
                         <div class="box-content">
                         <form role="form" method="POST" action="{{route('changePassword')}}">

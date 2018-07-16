@@ -161,13 +161,13 @@ class ClientController extends Controller
     public function recruiters()
     {
         $recruiters = User::recruiters();
-        return view('client.recruiters',['recruiters' => $recruiters]);
+        return view('client.recruiters',['recruiters' => $recruiters,'page' => 'Recruiters']);
     }
 
     public function editRecruiter($id)
     {
         $user = User::find($id);
-        return view('client.editRecruiter',['user' => $user]);
+        return view('client.editRecruiter',['user' => $user, 'page' => ' Update Recruiter :  '.$user->name]);
     }
 
     public function updateRecruiter(Request $req)
@@ -176,9 +176,15 @@ class ClientController extends Controller
         $email = $req->input('email');
         $password = $req->input('password');
         $id = $req->input('id');
+        $control = $req->input('control');
         if($name == "" || $email == "")
         {
             return redirect()->back()->with('error','Full Name and Email Fields are required.');
+        }
+        else if($control == "")
+        {
+            return redirect()->back()->with('error','Please select Any option in the controls.');
+
         }
         else
         {
@@ -206,6 +212,16 @@ class ClientController extends Controller
                 {
                     $user->password = Hash::make($password);
                 }
+            }
+
+            if($control == "fullcontrol")
+            {
+                $user->isFullAccess = 1;
+            }
+            else 
+            {
+                $user->isFullAccess = 0;
+
             }
 
 
@@ -556,33 +572,88 @@ public function docsubmitted()
 
 public function docspre()
 {
-    return view('client.documents-in',['page' => 'Pre-Screening Applications Documents']);
+    return view('client.documents-in',['page' => 'Pre-Screening Applications Documents','status' => 2]);
 }
 
 public function docscreened()
 {
-    return view('client.documents-in',['page' => 'Screened Applications Documents']);
+    return view('client.documents-in',['page' => 'Screened Applications Documents','status' => 5]);
 }
 
 public function docsfinal()
 {
-    return view('client.documents-in',['page' => 'Final Interview Candidates Documents']);
+    return view('client.documents-in',['page' => 'Final Interview Candidates Documents','status' => 1]);
 }
 
 public function docshired()
 {
-    return view('client.documents-in',['page' => 'Hired Candidates Documents']);
+    return view('client.documents-in',['page' => 'Hired Candidates Documents','status' => 4]);
 }
 
 public function docsrejected()
 {
-    return view('client.documents-in',['page' => 'Rejected Candidates Documents']);
+    return view('client.documents-in',['page' => 'Rejected Candidates Documents','status' => 3]);
 }
 
 public function cvs($status)
 {
-$forms = FormModel::select(['id','cvFileName','toeicFileName','passportFileName'])->where(['app_status' => $status])->get();
+$forms = FormModel::select(['id','cvFileName'])->where(['app_status' => $status])->get();
     return view('client.actualdocs',['page' => 'CVs','forms' => $forms]);
+}
+
+public function passports($status)
+{
+$forms = FormModel::select(['id','passportFileName'])->where(['app_status' => $status])->get();
+    return view('client.actualpassportdocs',['page' => 'Passports','forms' => $forms]);
+}
+
+public function toeicscorecard($status)
+{
+$forms = FormModel::select(['id','toeicFileName'])->where(['app_status' => $status])->get();
+    return view('client.actualtoeicdocs',['page' => 'TOEIC Score Cards','forms' => $forms]);
+}
+
+public function securityQuestion(Request $req)
+{
+    $question = $req->input('security');
+    $answer = $req->input('answer');
+    $user = Auth::user();
+    if($question == "" || $answer == "")
+    {
+        return redirect()->back()->with('error','Please Select Question and Answer it.');
+    }
+    else 
+    {
+        $u = User::find($user->id);
+        $u->securityQuestion = $question;
+        $u->answer = $answer;
+        if($u->save())
+        {
+            return redirect()->back()->with('success','Security Question Set.');
+
+        }
+        else
+        {
+        return redirect()->back()->with('error','Error Occurred in setting the Security Question. Please Try again.');
+
+        }
+    }
+}
+
+public function light()
+{
+Session()->put('light',1);
+Session()->forget('dark');
+return redirect()->back();
+}
+
+
+public function dark()
+{
+    Session()->put('dark',1);
+    Session()->forget('light'); 
+return redirect()->back();
+
 }
     
 }

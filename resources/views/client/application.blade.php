@@ -1,13 +1,5 @@
 @extends('client.clientlayout')
 @section('content')
-<noscript>
-        <div class="alert alert-block col-md-12">
-            <h4 class="alert-heading">Warning!</h4>
-    
-            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
-                enabled to use this site.</p>
-        </div>
-    </noscript>
     
     <div id="content" class="col-lg-10 col-sm-10">
         <!-- content starts -->
@@ -26,13 +18,6 @@
             <div class="box col-md-12">
             <div class="box-inner">
             <div class="box-header well" data-original-title="">
-            <h2><i class="glyphicon glyphicon-user"></i>Candidate Profile </h2>
-        
-                <div class="box-icon">
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                            class="glyphicon glyphicon-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>
             </div>
             <div class="box-content">
              @if(session('key'))   
@@ -222,7 +207,7 @@
 
                                     <div class="col-md-3" style="text-align: center;">
                                         <h2>TOEIC Score Card</h2>
-                                    <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}" style="font-size:64px;" class="glyphicon glyphicon-file"></a>
+                                    <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}" style="font-size:64px;"><i class="material-icons" style="font-size:44px;">attachment</i></a>
                                    <br/>
                                     <label>28. TOEIC Score: </label> {{$form->toeicScore}}    
                                     </div>
@@ -302,23 +287,5 @@
 
            
         }
-
-    $('.changeStatus').change(function(){
-        var v = $(this).val();
-        var fid = $(this).attr('form_id');
-        var url = "{{route('changeAppStatus')}}";
-        $.get(url,{status: v, form_id: fid},function(data){
-            if(data.error == false)
-            {
-                
-                alert('Application Status Updated.');
-                location.reload();
-            }
-            else
-            {
-                alert('Error occurred in changing the application status try again.');
-            }
-        },'json');
-    });
     </script>
 @endsection

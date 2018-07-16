@@ -19,6 +19,14 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+Route::get('/forgotpassword',function(){
+return view('forgotpassword');
+})->name('forgotpassword');
+
+Route::get('/clogin', function () {
+    return view('clientlogin');
+})->name('clogin');
+
 Route::get('/register',function(){
     return view('register');
 })->name('register');
@@ -26,6 +34,8 @@ Route::get('/register',function(){
 Route::post('/registerClient','LoginController@registerClient')->name('registerClient');
 Route::post('/loginClient','LoginController@loginClient')->name('loginClient');
 Route::get('/logout','LoginController@logOut')->name('logout');
+
+Route::post('/credentialsAnswered','LoginController@credentialsAnswered')->name('credentialsAnswered');
 
 /*
 @ Client Routes
@@ -121,6 +131,20 @@ Route::get('/docsrejected','ClientController@docsrejected')->name('docsrejected'
 //get actual cvs
 Route::get('/cvs/{status}','ClientController@cvs')->name('cvs');
 
+//get actual Passports
+Route::get('/passports/{status}','ClientController@passports')->name('passports');
+
+//get actual toeicscorecard
+Route::get('/toeicscorecard/{status}','ClientController@toeicscorecard')->name('toeicscorecard');
+
+
+Route::post('/securityQuestion','ClientController@securityQuestion')->name('securityQuestion');
+
+
+//changing layout color
+
+Route::get('/light','ClientController@light')->name('light');
+Route::get('/dark','ClientController@dark')->name('dark');
 
 });
 
