@@ -45,9 +45,14 @@
                             <div class="form-group">
                                     <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
-                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                  <p>  <input type="radio" name="control" id="fullcontrol"  value="fullcontrol"/>  <label for="fullcontrol">Full Control </label></p>
+                                  <p> <input type="radio" id="docs_only" name="control" value="docs_only" />  <label for="docs_only">Share Documents only </label> </p>
+                            </div>
                        
-                            <button type="submit" class="btn btn-default">Proceed</button>
+                            <button type="submit" class="btn btn-primary">Proceed</button>
                         </form>
         
             </div>

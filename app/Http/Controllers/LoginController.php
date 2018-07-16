@@ -60,6 +60,14 @@ class LoginController extends Controller
                    return redirect('/admin');
                    break;
                    case 2:
+                   if($user->first()->isFullAccess == 1)
+                   {
+                       Session()->put('Access',"1");
+                   }
+                   else 
+                   {
+                    Session()->put('Access',"0");
+                   }
                    return redirect('/client');
                    break;
                    case 3:

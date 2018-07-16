@@ -108,6 +108,10 @@ Route::get('/exportHired','ClientController@exportHired')->name('exportHired');
 Route::get('/wdApps','ClientController@wdApps')->name('wdApps');
 
 
+// Documents
+Route::get('/documents','ClientController@documents')->name('documents');
+
+
 });
 
 

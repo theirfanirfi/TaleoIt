@@ -111,16 +111,22 @@ class ClientController extends Controller
         $name = $req->input('fullname');
         $email = $req->input('email');
         $password = $req->input('password');
+        $control = $req->input('control');
         if($name== "" || $email == "" || $password == "")
         {
             return redirect()->back()->with('error','All fields are required');
+        }
+        else if($control == "")
+        {
+            return redirect()->back()->with('error','Please choose the Control option.');
+
         }
         else
         {
             $user = User::whereEmail($email);
             if($user->count() > 0)
             {
-                return redirect()->back()->with('error','User with Same email Already exists.');
+                return redirect()->back()->with('error','User/Recruiter with Same Email Already exists.');
             }
             else
             {
@@ -130,6 +136,16 @@ class ClientController extends Controller
                 $u->password = Hash::make($password);
                 $u->role = 2;
                 $u->isRecruiter = 1;
+
+                if($control == "fullcontrol"){
+                $u->isFullAccess = 1;
+
+                }
+                else 
+                {
+                    $u->isFullAccess = 0;
+                }
+
                 if($u->save())
                 {
                     return redirect()->back()->with('success','Recruiter Added.');
@@ -515,6 +531,11 @@ public function exportHired()
 
 })->export('xlsx');
 
+}
+
+public function documents()
+{
+    
 }
     
 }

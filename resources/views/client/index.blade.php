@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
 
-
+  @if(Session('Access') == 1)
       <div class="col-xl-3 col-md-6 col-12">
             <a style="color:white;" href="{{route('forms')}}">
                 <div class="info-box bg-b-yellow">
@@ -111,7 +111,7 @@
                                 </div>
                                 <!-- /.info-box -->
                               </div>
-
+@endif
 
                         
                               <div class="col-xl-3 col-md-6 col-12">
@@ -129,6 +129,7 @@
                                   </div>
 
                                 
+                                  @if(Session('Access') == 1)
                                                         
                               <div class="col-xl-3 col-md-6 col-12">
                                     <a style="color:white;" href="{{route('recruiters')}}">
@@ -143,6 +144,8 @@
                                     </div>
                                     <!-- /.info-box -->
                                   </div>
+
+                                  @endif
                   
 </div>
 @endsection

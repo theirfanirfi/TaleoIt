@@ -31,7 +31,7 @@
                            </a>
                        </li>
 
-
+                       @if(Session('Access') == 1)
                        <li class="nav-item start ">
                             <a href="{{route('forms')}}" class="nav-link">
                                     <i class="material-icons">select_all</i>
@@ -92,7 +92,7 @@
                                                         </a>
                                                     </li>
 
-
+                                                    @endif
                                                     <li class="nav-item">
                                                             <a href="{{route('wdApps')}}" class="nav-link">
                                                                     <i class="material-icons">cloud</i>
@@ -100,7 +100,8 @@
                                                                  
                                                                 </a>
                                                             </li>
-
+                                                        
+                                                            @if(Session('Access') == 1)
                                             <li class="nav-item">
                                                     <a href="#" class="nav-link nav-toggle">
                                                             <i class="material-icons">people</i>
@@ -123,6 +124,7 @@
                                                                 </li>
                                                         </ul>
                                                     </li>
+                                        @endif
 
 
                    </ul>
