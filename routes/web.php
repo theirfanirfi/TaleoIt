@@ -37,6 +37,9 @@ Route::get('/logout','LoginController@logOut')->name('logout');
 
 Route::post('/credentialsAnswered','LoginController@credentialsAnswered')->name('credentialsAnswered');
 
+Route::get('/resetPassword','LoginController@resetPassword')->name('resetPassword');
+Route::post('processReset','LoginController@processReset')->name('processReset');
+
 /*
 @ Client Routes
 @ Protected By Middleware #ClientWare

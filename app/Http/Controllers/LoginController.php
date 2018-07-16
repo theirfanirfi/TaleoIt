@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
+
 class LoginController extends Controller
 {
     //
@@ -100,7 +101,62 @@ class LoginController extends Controller
 
     public function credentialsAnswered(Request $req)
     {
-        
+        $email = $req->input('email');
+        $question = $req->input('security');
+        $answer = $req->input('answer');
+
+        $user = User::whereEmail(['email' => $email, 'question' => $question, 'answer' => $answer]);
+        if($user->count() > 0)
+        {
+            Session()->put('password_reset_id',$user->first()->id);
+            return redirect('/resetPassword');
+        }
+        else 
+        {
+            return redirect()->back()->with('error',"Invalid Credentials."); 
+
+        }
+    }
+
+    public function resetPassword()
+    {
+        if(Session('password_reset_id') != null){
+        return view('resetPassword');
+
+        }
+        return redirect('/');
+    }
+
+    public function processReset(Request $req)
+    {
+        $user = User::find(Session('password_reset_id'));
+        $nPassword = $req->input('new_password');
+        $cPassword = $req->input('confirm_password');
+
+        if($nPassword == "" || $cPassword == "")
+        {
+            return redirect()->back()->with('error','All Field are Required.');
+        }
+        else if($nPassword !== $cPassword)
+        {
+            return redirect()->back()->with('error','New Password and Confirm Password mismatched.');
+
+        }
+        else 
+        {
+            $user->password = Hash::make($nPassword);
+            if($user->save())
+            {
+                Session()->forget('password_reset_id');
+            return redirect('/login')->with('success','Password Changed.');
+
+            }
+            else 
+            {
+            return redirect()->back()->with('error','Error Occurred in Reseting the Password. Try Again.');
+
+            }
+        }
     }
 
   

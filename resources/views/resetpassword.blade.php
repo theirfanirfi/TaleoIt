@@ -53,36 +53,26 @@
     <div class="row">
         <div class="well col-md-5 center login-box">
             <div class="alert alert-info">
-              Enter the Required Credentials to reset your password.
+              Enter New Password
             </div>
-        <form class="form-horizontal" action="{{route('credentialsAnswered')}}" method="post">
+        <form class="form-horizontal" action="{{route('processReset')}}" method="post">
                 <fieldset>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-addon"><i class="glyphicon red">@</i></span>
-                        <input type="email" class="form-control" name="email" placeholder="Email">
+                        <span class="input-group-addon"><i class="glyphicon red">P</i></span>
+                        <input type="password" class="form-control" name="new_password" placeholder="New Password">
                     </div>
                     <div class="clearfix"></div><br>
                     @csrf
-                    <div class="form-group">
-                            <select name="security" class="form-control" style="margin-left:15px;margin-right:12px;width:95%;">
-                                    <option value="">Select a question from the following options.</option>
-                                    <option value="1">Who's your daddy?</option>
-                                    <option value="2">What is your favorite color?</option>
-                                    <option value="3">What is your mother's favorite aunt's favorite color?</option>
-                                    <option value="4">Where does the rain in Spain mainly fall?</option>
-                                    <option value="5">If Mary had three apples, would you steal them?</option>
-                                    <option value="6">What brand of food did your first pet eat?</option>
-                                 </select>
-                    </div>
+
 
                     <div class="input-group input-group-lg">
-                            <span class="input-group-addon"><i class="glyphicon red"></i></span>
-                            <input type="password" class="form-control" name="answer" placeholder="Answer">
+                            <span class="input-group-addon"><i class="glyphicon red">C</i></span>
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
                         </div>
                     <div class="clearfix"></div>
                     <p class="center col-md-5">
                         <button type="submit" class="btn btn-primary">Reset Password</button>
-                    <a href="{{route('forgotpassword')}}" class="btn btn-secondary">Forgot Password?</a>
+                    <a href="{{route('clogin')}}" class="btn btn-secondary">Login</a>
                     </p>
                 </fieldset>
             </form>
