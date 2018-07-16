@@ -94,7 +94,7 @@
 
                                                     @endif
                                                     <li class="nav-item">
-                                                            <a href="{{route('wdApps')}}" class="nav-link">
+                                                            <a href="{{route('documents')}}" class="nav-link">
                                                                     <i class="material-icons">cloud</i>
                                                                     <span class="title">Documents</span>
                                                                  

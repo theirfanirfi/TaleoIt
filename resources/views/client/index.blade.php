@@ -115,7 +115,7 @@
 
                         
                               <div class="col-xl-3 col-md-6 col-12">
-                                   <a style="color:white;" href="{{route('finalinterview')}}">
+                                   <a style="color:white;" href="{{route('documents')}}">
                                     <div class="info-box bg-b-green">
                                       <span class="info-box-icon push-bottom"><i class="material-icons">cloud</i></span>
                                       <div class="info-box-content">

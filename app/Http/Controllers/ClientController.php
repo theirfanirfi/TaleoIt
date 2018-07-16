@@ -535,7 +535,7 @@ public function exportHired()
 
 public function documents()
 {
-    
+    return view('client.documents',['page' => 'Documents']);
 }
     
 }
