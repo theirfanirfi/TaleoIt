@@ -111,6 +111,13 @@ Route::get('/wdApps','ClientController@wdApps')->name('wdApps');
 // Documents
 Route::get('/documents','ClientController@documents')->name('documents');
 
+Route::get('/docsubmitted','ClientController@docsubmitted')->name('docsubmitted');
+Route::get('/docspre','ClientController@docspre')->name('docspre');
+Route::get('/docscreened','ClientController@docscreened')->name('docscreened');
+Route::get('/docsfinal','ClientController@docsfinal')->name('docsfinal');
+Route::get('/docshired','ClientController@docshired')->name('docshired');
+Route::get('/docsrejected','ClientController@docsrejected')->name('docsrejected');
+
 
 });
 

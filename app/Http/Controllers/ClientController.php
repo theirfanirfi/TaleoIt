@@ -537,5 +537,35 @@ public function documents()
 {
     return view('client.documents',['page' => 'Documents']);
 }
+
+public function docsubmitted()
+{
+    return view('client.documents-in',['page' => 'Submitted Applications Documents']);
+}
+
+public function docspre()
+{
+    return view('client.documents-in',['page' => 'Pre-Screening Applications Documents']);
+}
+
+public function docscreened()
+{
+    return view('client.documents-in',['page' => 'Screened Applications Documents']);
+}
+
+public function docsfinal()
+{
+    return view('client.documents-in',['page' => 'Final Interview Candidates Documents']);
+}
+
+public function docshired()
+{
+    return view('client.documents-in',['page' => 'Hired Candidates Documents']);
+}
+
+public function docsrejected()
+{
+    return view('client.documents-in',['page' => 'Rejected Candidates Documents']);
+}
     
 }
