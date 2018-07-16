@@ -118,6 +118,9 @@ Route::get('/docsfinal','ClientController@docsfinal')->name('docsfinal');
 Route::get('/docshired','ClientController@docshired')->name('docshired');
 Route::get('/docsrejected','ClientController@docsrejected')->name('docsrejected');
 
+//get actual cvs
+Route::get('/cvs/{status}','ClientController@cvs')->name('cvs');
+
 
 });
 

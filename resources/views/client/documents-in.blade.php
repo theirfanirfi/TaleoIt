@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-1">
-    <a href="{{route('docsubmitted')}}" style="color:white;">
+    <a href="{{route('cvs',['status' => $status])}}" style="color:white;">
         <i class="material-icons" style="font-size:120px;">folder</i>
         <p style="margin-left:24px;">CVs</p>
         </a>

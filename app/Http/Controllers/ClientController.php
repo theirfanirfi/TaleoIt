@@ -236,7 +236,7 @@ class ClientController extends Controller
     public function application($id)
     {
         $form = FormModel::find($id);
-        return view('client.application',['form' => $form]);
+        return view('client.application',['form' => $form,'page' => 'Applicant Profile']);
     }
 
     public function deleteApp($id)
@@ -538,9 +538,20 @@ public function documents()
     return view('client.documents',['page' => 'Documents']);
 }
 
+/*
+* Status for loading various documents
+* O : Submitted
+* 1: Final Interview
+* 2: Pre-screening
+* 3: Rejected
+* 4: Hired
+* 5: Screened
+*/
+
 public function docsubmitted()
 {
-    return view('client.documents-in',['page' => 'Submitted Applications Documents']);
+//$forms = FormModel::select(['id','cvFileName','toeicFileName','passportFileName'])->get();
+    return view('client.documents-in',['page' => 'Submitted Applications Documents','status' => 0]);
 }
 
 public function docspre()
@@ -566,6 +577,12 @@ public function docshired()
 public function docsrejected()
 {
     return view('client.documents-in',['page' => 'Rejected Candidates Documents']);
+}
+
+public function cvs($status)
+{
+$forms = FormModel::select(['id','cvFileName','toeicFileName','passportFileName'])->where(['app_status' => $status])->get();
+    return view('client.actualdocs',['page' => 'CVs','forms' => $forms]);
 }
     
 }
