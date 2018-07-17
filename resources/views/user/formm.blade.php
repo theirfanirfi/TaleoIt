@@ -6,6 +6,8 @@
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 
 <!-- CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
 <!-- Default theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
@@ -13,6 +15,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
 * {
   box-sizing: border-box;
@@ -93,9 +96,79 @@ button:hover {
 }
 </style>
 <body>
+  <div class="container">
+    <div class="row" style="margin-top:24px;">
+<div class="col-md-4">
+  <p> <strong>Application Status: </strong>
+    @if($form->count() > 0)
+    <span class="label 
+    <?php switch($form->first()->app_status){
+      case 0:
+      echo "label-info";
+      break;
+      case 1:
+      echo "label-success";
+      break;
+      case 2:
+      echo "label-warning";
+      break;
+      case 3:
+      echo "label-danger";
+      break;
+      case 4: 
+      echo "label-success";
+      break;
+      case 5:
+      echo "label-primary";
+      break;
+    } ?>">
+    {{$form->first()->application_status}}
+</span>
+    @else
+    <span class="label label-default">{{"Not Submitted"}}</span>
+    @endif
+    </p>
 
-<form id="regForm" action="/action_page.php">
-  <h1>Register:</h1>
+    <br/>
+
+    @if($form->count() > 0)
+    <p><strong>Application ID: </strong> {{$form->first()->id}} </p>
+    @endif
+
+    <div class="row">
+      <div class="col-md-12">
+          @if($form->count() > 0)
+          <p><strong>Application ID: </strong> {{$form->first()->id}} </p>
+          @endif
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <img style="height:40px;" src="{{URL::asset('img/taleo/taleo.png') }}" class="img-responsive" />
+</div>
+
+<div class="col-md-4">
+    <div class="dropdown" style="margin-bottom:4px;float:right;">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          {{$user->name}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+        <li><a href="{{route('logout')}}">Logout</a></li>
+        </ul>
+      </div>
+      @if($form->count() > 0 && $form->first()->isWithDrawn == 0)
+      <a style="float:left;" class="btn btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a>
+     @endif
+</div>
+</div>
+
+
+
+  </div>
+<form id="regForm" action="{{route('submitForm')}}" method="POST">
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
       <label>Name:</label>
@@ -209,6 +282,7 @@ button:hover {
            
   </div>
 
+  
 
   <div class="tab">
         <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
@@ -411,7 +485,12 @@ function validateForm(t) {
   {
     if(y[j].type== "radio" && !$(y[j]).is(":checked") && (y[j].name != "tatoo" || y[j].name != "glasses" || y[j].name != "study_japanese_if_hired" || y[j].name != "confirm_form"))
     {
+
       r++;
+    }
+    else if(y[j].name == "tatoo" || y[j].name == "glasses" || y[j].name == "study_japanese_if_hired" || y[j].name == "confirm_form")
+    {
+      console.log(y[j]);
     }
     else if((y[j].type == "radio" && $(y[j]).is(":checked") && y[j].name == "applied_for_ana") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
     {

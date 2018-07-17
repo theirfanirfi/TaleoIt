@@ -128,39 +128,64 @@ class UserController extends Controller
         $user = Auth::user();
         if(FormModel::checkForm($user->id) == 0){
         $form = new FormModel();
-        $form->firstname = Session()->get('firstname');
-        $form->lastname = Session()->get('lastname');
-        $form->streetAddress = Session()->get('streetAddress');
-        $form->city = Session()->get('city');
-        $form->stateRegion = Session()->get('state');
-        $form->zip = Session()->get('zip');
-        $form->country = Session()->get('country');
-        $form->contactPhone = Session()->get('phone');
-        $form->age = Session()->get('age');
-        $form->gender = Session()->get('gender');
-        $form->email = Session()->get('email');
-        $form->height = Session()->get('height');
-        $form->weight = Session()->get('weight');
+        $form->firstname = $req->input('firstname');
+        $form->lastname = $req->input('lastname');
+        $form->streetAddress = $req->input('streetAddress');
+        $form->city = $req->input('city');
+        $form->stateRegion = $req->input('state');
+        $form->zip = $req->input('zip');
+        $form->country = $req->input('country');
+        $form->contactPhone = $req->input('phone');
+        $form->age = $req->input('age');
+        $form->gender = $req->input('gender');
+        $form->email = $req->input('email');
+        $form->height = $req->input('height');
+        $form->weight = $req->input('weight');
         
         $form->user_id = $user->id;
 
-        $form->applied_for_ana_year =  Session()->get('applied_for_ana_year');
-        $form->applied_for_ana = Session()->get('applied_for_ana');
-        $form->airline = Session()->get('airline');
-        $form->airlinePosition = Session()->get('airlinePosition');
-        $form->work_experience = Session()->get('work_experience');
-        $form->japanese_culture =  Session()->get('japanese_culture');
-        $form->internation_experience =  Session()->get('internation_experience');
-        $form->japanese_lang =  Session()->get('japanese_lang');
-        $form->school_name =  Session()->get('school_name');
-        $form->school_year = Session()->get('school_year');
-        $form->employer_name = Session()->get('employer_name');
-        $form->employer_year = Session()->get('employer_year');
 
-        $form->passportNumber = Session()->get('passportNumber');
-        $form->passportExpiry = Session()->get('passportExpiry');
-        $form->toeicScore = Session()->get('toeic_score');
-        $form->universityName = Session()->get('uni_name');
+        $form->applied_for_ana = $req->input('applied_for_ana');
+
+        if($req->input('applied_for_ana') == "D" || $req->input('applied_for_ana') == "C")
+        {
+            $applied_for_ana_year =$req->input('applied_for_ana_year');
+        $form->applied_for_ana_year =  $applied_for_ana_year;
+
+        }
+
+        $form->airline = $req->input('airline');
+        $form->airlinePosition = $req->input('airlinePosition');
+        $form->work_experience = $req->input('work_experience');
+        $form->japanese_culture =  $req->input('japanese_culture');
+        $form->internation_experience =  $req->input('internation_experience');
+        $form->japanese_lang =  $req->input('japanese_lang');
+        if($req->input('japanese_lang') == "D")
+        {
+            if(!empty($req->input('school_name')))
+            {
+                $school_name = $req->input('school_name');
+                $school_year = $req->input('school_year');
+                $form->school_name =  $school_name;
+                $form->school_year = $school_year;
+            }
+            else if(!empty($req->input('employer_name')))
+            {
+                $employer_name = $req->input('employer_name');
+                $employer_year = $req->input('employer_name');
+
+                
+        $form->employer_name = $employer_name;
+        $form->employer_year = $employer_year;
+            }
+        }
+
+
+
+        $form->passportNumber = $req->input('passportNumber');
+        $form->passportExpiry = $req->input('passportExpiry');
+        $form->toeicScore = $req->input('toeic_score');
+        $form->universityName = $req->input('uni_name');
 
         //request
         $additionalText = $req->input('cv_additional_text');

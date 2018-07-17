@@ -52,7 +52,12 @@ if(Auth::user())
     <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.ico') }}" /> 
 </head>
 <!-- END HEAD -->
+@if(Session('dark') == 1)
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    @else 
+    <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+
+    @endif
     <div class="page-wrapper">
         <!-- start header -->
 		<div class="page-header navbar navbar-fixed-top">

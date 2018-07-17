@@ -349,18 +349,12 @@ span.round-tab:hover {
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
                         <li><a href="{{route('logout')}}">Logout</a></li>
-                         <!-- <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li> -->
                         </ul>
                       </div>
                       @if($form->count() > 0 && $form->first()->isWithDrawn == 0)
                       <a style="float:left;" class="btn btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a>
                      @endif
-
-                 
-        </div>
+                </div>
     </div>
 @if(!($form->count() > 0 && $form->first()->isWithDrawn == 0))
     <div class="row">
