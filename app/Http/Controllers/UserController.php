@@ -7,7 +7,7 @@ use App\Http\Models\FormModel;
 use Auth;
 class UserController extends Controller
 {
-    //
+    
     public function index()
     {
         $user = Auth::user();

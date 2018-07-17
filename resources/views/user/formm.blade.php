@@ -213,9 +213,9 @@ button:hover {
   <div class="tab">
         <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
         <p><input style="width:16px;"  type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
-        <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>>
-        <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>>
-        <p><input style="width:16px;" type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>>
+        <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>
+        <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>
+        <p><input style="width:16px;" type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>
 
   </div>
 
@@ -231,11 +231,9 @@ button:hover {
   <div class="tab">
         <h3>Passport Details</h3>
         <label><strong>Passport: </strong> upload clear copy of your passport.</label> <p style="color:red;">Only Thai passport is acceptable.</p>
-        <p class="error2" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
-        
        <p> <input type="file" name="passport_file" id="passportFile" class="fi form-control" onchange="checkformat(this);" /> </p>
-        <p class="error" style="display:none;font-size:11px;color:red;">Field is Required.</p>
-        <label>Passport Number: </label> <br/>
+       <p class="error" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
+       <label>Passport Number: </label> <br/>
     <p><input type="text" name="passport_number" @if(Session('passportNumber')) value="{{Session('passportNumber')}}" @endif id="passportNumber" class="ssf form-control" placeholder="Passport Number" /></p>
         <p class="error" style="display:none;font-size:11px;color:red;">Field is Required.</p>
         <label>Passport Expiry: </label>
@@ -278,7 +276,7 @@ button:hover {
         <p class="error" style="color:red;display:none;">Field is Required.</p>
     
         <p>You can use this text area to support or complement your application. Maximum capacity of 500pts. </p>
-        <textarea id="optionalText" class="form-control" name="cv_additional_text" style="height:300px;" maxlength="500"></textarea>
+        <textarea id="optionalText" class="form-control fi" name="cv_additional_text" style="height:300px;width:100%;" maxlength="500"></textarea>
     
         <br/>
   </div>
@@ -286,10 +284,10 @@ button:hover {
   <div class="tab">
         <label>Online Questions</label>
         <br/>
-    <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;"   type="radio" class="oq11" name="tatoo" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="tatoo" value="No" /> </p>
-    <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="oq11" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="glasses" value="No" /> </p>
-    <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="oq11" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
-    <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="oq11" name="confirm_form" value="yes" /> <strong>No</strong> <input type="radio" class="oq" name="confirm_form" value="No" /> </p>
+    <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="oq11" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="oq" type="radio" name="tatoo" value="No" /> </p>
+    <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="oq11" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
+    <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="oq11" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+    <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="oq11" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="oq" name="confirm_form" value="No" /> </p>
        
         <br/>
   </div>
@@ -411,11 +409,11 @@ function validateForm(t) {
   //alert($("input[type=radio]").length);
   for(j = 0; j < y.length; j++)
   {
-    if(y[j].type== "radio" && !$(y[j]).is(":checked"))
+    if(y[j].type== "radio" && !$(y[j]).is(":checked") && (y[j].name != "tatoo" || y[j].name != "glasses" || y[j].name != "study_japanese_if_hired" || y[j].name != "confirm_form"))
     {
       r++;
     }
-    else if(y[j].type == "radio" && $(y[j]).is(":checked") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
+    else if((y[j].type == "radio" && $(y[j]).is(":checked") && y[j].name == "applied_for_ana") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
     {
       r++;
       alertify.set('notifier','position', 'top-center');
@@ -423,7 +421,7 @@ function validateForm(t) {
   
     }
 
-     else if(y[j].type == "radio" && $(y[j]).is(":checked") && (($(y[j]).val() == "A" || $(y[j]).val() == "B") && ($('#airline').val() == "" || $('#airlinePosition').val() == "")))
+     else if(y[j].type == "radio" && $(y[j]).is(":checked") && y[j].name == "work_experience" && (($(y[j]).val() == "A" || $(y[j]).val() == "B") && ($('#airline').val() == "" || $('#airlinePosition').val() == "")))
     {
       r++;
       alertify.set('notifier','position', 'top-center');
@@ -431,13 +429,22 @@ function validateForm(t) {
       
     }
 
-    //  else if((y[j].type == "radio" && $(y[j]).is(":checked") && $(y[j]).val() == "D") && (($('#school_name').val() == "" || $('#school_year').val() == "")) || ($('#employer_name').val() == "" && $('#employer_year').val() == ""))
-    // {
-    //   r++;
-    //   alertify.set('notifier','position', 'top-center');
-    //   alertify.warning("As You have selected option "+ $(y[j]).val() +",Please Enter School Name and Year OR Employer Name and Employement Year");
+     else if(((y[j].type == "radio" && $(y[j]).is(":checked") && $(y[j]).val() == "D" && y[j].name == "japanese_lang")) &&
+      (($('#school_name').val() == "" && $('#school_year').val() == "") && ($('#employer_name').val() == "" && $('#employer_year').val() == "")))
+    {
+      r++;
+      alertify.set('notifier','position', 'top-center');
+      alertify.warning("As You have selected option "+ $(y[j]).val() +",Please Enter School Name and Year OR Employer Name and Employement Year");
       
-   // }
+   }
+
+     else if(y[j].type == "radio" && !$(y[j]).is(":checked") && y[j].name == "japanese_culture")
+    {
+      r++;
+      alertify.set('notifier','position', 'top-center');
+      alertify.warning("Please Select any option of the following.");
+      
+    }
 
 
   }
@@ -481,6 +488,50 @@ function fixStepIndicator(n) {
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
+}
+
+function checkformat(inputFile)
+{
+    var file = $(inputFile).val();
+    var allowed_extensions = new Array("jpg","png","jpeg");
+    var file_extension = file.split('.').pop().toLowerCase();
+
+    if(allowed_extensions.includes(file_extension))
+    {
+       $(inputFile).next('.error').hide('slow');
+  return true;
+
+    }
+    else 
+    {
+       $(inputFile).next('.error').show('slow');
+       $(inputFile).val("");
+       alertify.set('notifier','position', 'top-center');
+    alertify.error("Invalid File Format. Supported Files are .JPG, .JPECG and .PNG ");
+      
+        return false;
+    }
+   
+}
+
+function checkCVformat(cvFile)
+{
+    var file = $(cvFile).val();
+    var allowed_extensions = new Array("pdf");
+    var file_extension = file.split('.').pop().toLowerCase();
+
+    if(allowed_extensions.includes(file_extension))
+    {
+       $(cvFile).prev('.error2').hide('slow');
+        return true;
+
+    }
+    else 
+    {
+       $(cvFile).prev('.error2').show('slow');
+       $(cvFile).val("");
+        return false;
+    }
 }
 </script>
 
