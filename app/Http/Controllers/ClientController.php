@@ -360,70 +360,9 @@ class ClientController extends Controller
   {
     $form = FormModel::where(['isWithDrawn' => 0])->get();
     $forms = array();
-    $dir = '/';
-    $recursive = false; // Get subdirectories also?
-    $contents = collect(\Storage::cloud()->listContents($dir, $recursive));
-
-
-    $dir = $contents->where('type', '=', 'dir')
-        ->where('filename', '=', 'Submitted')
-        ->first(); // There could be duplicate directory names!
-
-
-        $dir2 = $dir['path'];
-        $contents2 = collect(\Storage::cloud()->listContents($dir2, $recursive));
-        $dir2 = $contents2->where('type', '=', 'dir');
-   
 
     foreach($form as $f){
       $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
-    
-        $i=0;
-        for($i = 0;$i<=2;$i++)
-        {
-            if($i == 0) {
-            $dir2->where('filename', '=', 'CVs')
-            ->first(); // There could be duplicate directory names!
-            $filename = $f->cvFileName;
-            $filePath = public_path("uploads\\").$filename;
-            $fileData = \File::get($filePath);
-          
-                $p = $dir2[2];
-            \Storage::cloud()->put($p['path']."/".$filename, $fileData);
-            }
-            else if($i == 1)
-            {
-                $dir2->where('filename', '=', 'Passports')
-                ->first(); // There could be duplicate directory names!
-    
-                $filename = $f->passportFileName;
-                $filePath = public_path("uploads\\").$filename;
-                $fileData = \File::get($filePath);
-            
-              
-                $p = $dir2[0];            
-            \Storage::cloud()->put($p['path']."/".$filename, $fileData);
-            }
-
-            else if($i == 2)
-            {
-                $dir2->where('filename', '=', 'TOEIC Score cards')
-                ->first(); // There could be duplicate directory names!
-    
-                $filename = $f->toeicFileName;
-                $filePath = public_path("uploads\\").$filename;
-                $fileData = \File::get($filePath);
-            
-                $p = $dir2[1];
-              
-            
-                \Storage::cloud()->put($p['path']."/".$filename, $fileData);
-            }
-            
-        }
-    
-
-
     }
 
     Excel::create("Submitted Applications", function($excel) use ($forms) {

@@ -1,9 +1,9 @@
         
         <!-- start footer -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2017 &copy; Smart University Theme By
-                <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
-            </div>
+                <div class="page-footer-inner"> <?php echo date('Y'); ?> &copy; CREW ASIA By
+                    <a href="talentsql.com" target="_top" class="makerCss">TalentSQL</a>
+                </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
             </div>
@@ -74,6 +74,7 @@ $.toast({
             $.get(url,function(data){
                 if(data > 0){
                 $('#notification').html(data);
+                $('#noti2').html(data);
                 }
             });
         }

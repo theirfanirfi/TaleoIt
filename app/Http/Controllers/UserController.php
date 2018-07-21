@@ -132,10 +132,10 @@ class UserController extends Controller
         $form->lastname = $req->input('lastname');
         $form->streetAddress = $req->input('streetAddress');
         $form->city = $req->input('city');
-        $form->stateRegion = $req->input('state');
+        $form->stateRegion = $req->input('stateRegion');
         $form->zip = $req->input('zip');
         $form->country = $req->input('country');
-        $form->contactPhone = $req->input('phone');
+        $form->contactPhone = $req->input('contactPhone');
         $form->age = $req->input('age');
         $form->gender = $req->input('gender');
         $form->email = $req->input('email');
@@ -182,8 +182,8 @@ class UserController extends Controller
 
 
 
-        $form->passportNumber = $req->input('passportNumber');
-        $form->passportExpiry = $req->input('passportExpiry');
+        $form->passportNumber = $req->input('passport_number');
+        $form->passportExpiry = $req->input('passport_expiry');
         $form->toeicScore = $req->input('toeic_score');
         $form->universityName = $req->input('uni_name');
 

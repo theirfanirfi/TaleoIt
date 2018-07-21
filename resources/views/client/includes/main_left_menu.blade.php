@@ -34,7 +34,7 @@
                        @if(Session('Access') == 1)
                        <li class="nav-item start ">
                             <a href="{{route('forms')}}" class="nav-link">
-                                    <i class="material-icons">select_all</i>
+                                    <i class="material-icons">folder_shared</i>
                                     <span class="title">Total Applications</span>
                                  
                                 </a>
@@ -42,7 +42,7 @@
 
                        <li class="nav-item">
                             <a href="{{route('prescreening')}}" class="nav-link">
-                                    <i class="material-icons">visibility_off</i>
+                                    <i class="material-icons">star</i>
                                     <span class="title">Pre-Screening</span>
                                  
                                 </a>
@@ -51,7 +51,7 @@
                     
                             <li class="nav-item">
                                     <a href="{{route('screened')}}" class="nav-link">
-                                            <i class="material-icons">visibility</i>
+                                            <i class="material-icons">cloud_done</i>
                                             <span class="title">Screened</span>
                                          
                                         </a>
@@ -59,7 +59,7 @@
 
                        <li class="nav-item">
                             <a href="{{route('finalinterview')}}" class="nav-link">
-                                    <i class="material-icons">grade</i>
+                                    <i class="material-icons">person_add</i>
                                     <span class="title">Final Interview</span>
                                  
                                 </a>
@@ -67,7 +67,7 @@
 
                             <li class="nav-item">
                                     <a href="{{route('hired')}}" class="nav-link">
-                                            <i class="material-icons">verified_user</i>
+                                            <i class="material-icons">mood</i>
                                             <span class="title">Hired</span>
                                          
                                         </a>
@@ -77,7 +77,7 @@
                         
                                     <li class="nav-item">
                                             <a href="{{route('rejected')}}" class="nav-link">
-                                                    <i class="material-icons">backspace</i>
+                                                    <i class="material-icons">mood_bad</i>
                                                     <span class="title">Rejected</span>
                                                  
                                                 </a>

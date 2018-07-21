@@ -131,9 +131,7 @@ button:hover {
 
     <br/>
 
-    @if($form->count() > 0)
-    <p><strong>Application ID: </strong> {{$form->first()->id}} </p>
-    @endif
+
 
     <div class="row">
       <div class="col-md-12">
@@ -168,18 +166,11 @@ button:hover {
 
 
   </div>
-<form id="regForm" action="{{route('submitForm')}}" method="POST">
 
-  <div class="tab">
-    <label>Online Questions</label>
-    <br/>
-<p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="tatoo" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="tatoo" type="radio" name="tatoo" value="No" /> </p>
-<p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="glasses" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="glasses" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
-<p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="study_japanese_if_hired" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="study_japanese_if_hired" type="radio" name="study_japanese_if_hired" value="No" /> </p>
-<p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="confirm_form" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="confirm_form" name="confirm_form" value="No" /> </p>
-   
-    <br/>
-</div>
+  @if($form->count() == 0)
+<form id="regForm" action="{{route('submitForm')}}" method="POST" enctype="multipart/form-data">
+
+
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
       <label>Name:</label>
@@ -352,7 +343,7 @@ button:hover {
         
         <br/>
   </div>
-
+@csrf
 
   <div class="tab">
         <label>CV: Please upload CV (Resume) here Head-shot Photo must be placed on the top of CV. <span style="color:Red;">CV File format must be PDF</span></label><br/>
@@ -366,16 +357,16 @@ button:hover {
         <br/>
   </div>
 
-  <!-- <div class="tab">
-        <label>Online Questions</label>
-        <br/>
-    <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="oq11" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="oq" type="radio" name="tatoo" value="No" /> </p>
-    <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="oq11" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="oq" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
-    <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="oq11" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="oq" type="radio" name="study_japanese_if_hired" value="No" /> </p>
-    <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="oq11" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="oq" name="confirm_form" value="No" /> </p>
-       
-        <br/>
-  </div> -->
+  <div class="tab">
+      <label>Online Questions</label>
+      <br/>
+  <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="online_ques" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="tatoo" value="No" /> </p>
+  <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="online_ques" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="online_ques" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
+  <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="online_ques" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+  <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="No" /> </p>
+     
+      <br/>
+  </div>
 
   <div style="overflow:auto;">
     <div style="float:right;">
@@ -398,7 +389,226 @@ button:hover {
     <span class="step"></span>
   </div>
 </form>
+@else 
 
+<!-- summarry -->
+
+<div class="" id="regForm">
+<h3>Your Submitted Application Summary</h3>
+<?php $form = $form->first(); ?>
+    <div class="row" style="margin-top:12px; padding:12px;">
+            <div class="col-md-3">
+                <label> 1. First Name: </label> {{$form->firstname}}
+            </div>
+
+            <div class="col-md-3">
+                    <label> 2. Last Name: </label> {{$form->lastname}}
+                </div>
+
+                <div class="col-md-5">
+                        <label> 3. Street Address: </label> {{$form->streetAddress}}
+                    </div>    
+        </div>
+
+
+
+        <div class="row" style="margin-top:12px; padding:12px;">
+                <div class="col-md-3">
+                    <label> 4. City: </label> {{$form->city}}
+                </div>
+
+                <div class="col-md-3">
+                        <label> 5. State: </label> {{$form->stateRegion}}
+                    </div>
+
+                    <div class="col-md-4">
+                            <label> 6. ZIP: </label> {{$form->zip}}
+                        </div>    
+            </div>
+
+
+
+            <div class="row" style="margin-top:12px; padding:12px;">
+                    <div class="col-md-3">
+                        <label> 7. Country: </label> {{$form->country}}
+                    </div>
+    
+                    <div class="col-md-3">
+                            <label> 8. Contact Phone: </label> {{$form->contactPhone}}
+                        </div>
+    
+                        <div class="col-md-4">
+                                <label> 9. Age: </label> {{$form->age}}
+                            </div>    
+                </div> 
+
+
+                <div class="row" style="margin-top:12px; padding:12px;">
+                        <div class="col-md-3">
+                            <label> 10. Gender: </label> {{$form->gender}}
+                        </div>
+        
+                        <div class="col-md-3">
+                                <label> 11. Email: </label> {{$form->email}}
+                            </div>
+        
+                            <div class="col-md-3">
+                                    <label> 12. Height: </label> {{$form->height}}
+                                </div> 
+                            <div class="col-md-3">
+                                    <label> 13. Weight: </label> {{$form->weight}}
+
+                                </div>       
+                    </div> 
+
+
+                    <div class="row" style="margin-top:12px; padding:12px;">
+                            <div class="col-md-3">
+                                            <h3>Questions</h3>   
+                            </div>
+                        </div> 
+
+                                            
+                    <div class="row" style="margin-top:12px; padding:12px;">
+                            <div class="col-md-3">
+                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}} @if(!empty($form->applied_for_ana_year)) <label> 15. Screening year: </label> {{$form->applied_for_ana_year}} @endif
+                               
+                            </div>
+
+                            <div class="col-md-3">
+                                    <label> 16. Work Experience: </label> {{$form->work_experience}}
+
+                                </div>   
+
+                                <div class="col-md-6">
+                                    @if(!empty($form->airline))
+                                        <label> 17. Airline Name: </label> {{$form->airline}}
+                                    @endif
+
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    @if(!empty($form->airlinePosition))
+                                    <label> 18. Airline Position: </label> {{$form->airlinePosition}}
+                                @endif
+                                    </div>   
+                        </div>  
+
+                        <div class="row" style="margin-top:12px; padding:12px;">
+                                <div class="col-md-3">
+                                    <label> 19. Japanese Language Skill: </label> {{$form->japanese_lang}}
+                                </div>
+
+
+                                <div class="col-md-3">
+                                        <label> 20. Japanese Culture: </label> {{$form->japanese_culture}}
+                                        @if(!empty($form->school_name)) <label>21. School Name: </label> {{$form->school_name}}
+                                        <br/>
+                                        <label>
+                                            22. School Year: {{$form->school_year}}
+                                        </label>
+                                        @elseif(!empty($employer_name))
+                                        <label>23. Employer Name: </label> {{$form->employer_name}}
+                                        <br/>
+                                        <label>
+                                            24. Employement Year: {{$form->employer_year}}
+                                        </label>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-md-3">
+                                            <label> 25. International Experience: </label> {{$form->internation_experience}}
+                                        </div>
+                        </div>
+
+                        <div class="row" style="margin-top:12px; padding:12px;">
+                                <div class="col-md-3">
+                                                <h3>Documents</h3>   
+                                </div>
+                            </div> 
+
+
+                            
+                            <div class="row" style="margin-top:12px; padding:12px;">
+                                    <div class="col-md-4">
+                                    <a  onclick="smalWindow(this); return false;" href="{{URL::asset('uploads')}}/{{$form->passportFileName}}"><i class="glyphicon glyphicon-file"></i> Passport File</a> 
+                                        <br/>    
+                                        <br/>    
+                                    <label>26. Passport Number: </label> {{$form->passportNumber}} <br/>
+                                        <label>27. Passport Expiry: </label> {{$form->passportExpiry}}
+                                </div>
+
+
+                                            
+                                    <div class="col-md-4">
+                                            <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}"><i class="glyphicon glyphicon-file"></i> TOEIC Score Card</a> 
+                                           <br/>
+                                           <label>28. TOEIC Score:</label> {{$form->toeicScore}}
+
+                                                </div>  
+
+                                                <div class="col-md-4">
+                                                        <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                                       <br/>
+                                                       <label>29. University Name:</label> {{$form->universityName}}
+            
+                                                            </div>       
+                                        </div>  
+    
+                                        
+                                        <div class="row" style="margin-top:12px; padding:12px;">
+                                                <div class="col-md-3">
+                                                                <label>30. Cover Letter:</label>   
+                                                </div>
+                                            </div> 
+        
+                                            <div class="row" style="margin-top:2px; padding:2px;">
+                                                    <div class="col-md-12">
+                                                    <p style="text-align: justify;"><?php echo $form->coverLetter; ?></p>
+                                                    </div>
+                                                </div> 
+        
+        
+        
+                                    
+                                                <div class="row" style="margin-top:12px;  padding:12px;">
+                                                        <div class="col-md-3">
+                                                           <h3>Other Questions</h3>
+                                                        </div>
+                                                    </div> 
+        
+                                                    <div class="row" style="margin-top:12px;margin-bottom:124px; padding:12px;">
+                                                            <div class="col-md-3">
+                                                               <label>31. Tatto: </label> {{$form->tatoo}}
+                                                            </div>
+        
+                                                            <div class="col-md-3">
+                                                                    <label>32. Glasses: </label> {{$form->glasses}}
+                                                                 </div>
+        
+        
+                                                                 <div class="col-md-3">
+                                                                        <label>33. Japanese: </label> {{$form->japanase}}
+                                                                     </div>
+        
+                                                                     <div class="col-md-3">
+                                                                            <label>34. Confirm: </label> {{$form->confirm}}
+                                                                         </div>
+                                                        </div> 
+        
+                                                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@endif
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
@@ -493,36 +703,14 @@ function validateForm(t) {
   // A loop that checks every input field in the current tab:
   //alert($("input[type=radio]").length);
 
-if(t == 0){
-      $('.tatoo').each(function(index,element){
+if(t == 10){
+      $('.online_ques').each(function(index,element){
         if(!$(element).is(":checked"))
         {
           ronline++;
         }
       });
-
-        $('.glasses').each(function(index,element){
-        if(!$(element).is(":checked"))
-        {
-          ronline++;
-        }
-      });
-
-              $('.study_japanese_if_hired').each(function(index,element){
-        if(!$(element).is(":checked"))
-        {
-          ronline++;
-        }
-      });
-
-      
-      $('.confirm_form').each(function(index,element){
-        if(!$(element).is(":checked"))
-        {
-          ronline++;
-        }
-      });
-
+console.log(ronline);
 }
 else 
 {
@@ -531,12 +719,20 @@ else
 
   for(j = 0; j < y.length; j++)
   {
-    if(y[j].type== "radio" && !$(y[j]).is(":checked") && !(y[j].class == "tatoo" || y[j].class != "glasses" || y[j].class == "study_japanese_if_hired" || y[j].class == "confirm_form" ))
+    if(y[j].type== "radio" && !$(y[j]).is(":checked") && $(y[j]).attr('class') != "online_ques")
     {
-      alert(y[j].name != "tatoo" || y[j].name != "glasses" || y[j].name != "study_japanese_if_hired" || y[j].name != "confirm_form" );
+
+      if($(y[j]).attr('class') == "online_ques")
+      {
+        console.log("inside if");
+        console.log(r + " : "+ ronline);
+        continue;
+      }
+
     r++;
+    console.log($(y[j]).attr('class'));
     }
- 
+
     else if((y[j].type == "radio" && $(y[j]).is(":checked") && y[j].name == "applied_for_ana") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
     {
       r++;
@@ -585,7 +781,11 @@ else
 
     if (y[i].value == "" || r > 3 || ronline > 4) {
       // add an "invalid" class to the field:
+      if(y[i].type != "radio"){
       y[i].className += " invalid";
+      }
+
+
       inp++;
       // and set the current valid status to false
       valid = false;

@@ -13,7 +13,7 @@ if(Auth::user())
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="SmartUniversity" />
-    <title>TaleoIt</title>
+    <title>TalentSQL</title>
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
 	<!-- icons -->
@@ -49,7 +49,7 @@ if(Auth::user())
     @endif
     <link href="{{ URL::asset('assets/css/pages/formlayout.css') }}" rel="stylesheet" type="text/css" />
 	<!-- favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.ico') }}" /> 
+    <link rel="shortcut icon" href="{{ URL::asset('img/taleo/taleo.png') }}" /> 
 </head>
 <!-- END HEAD -->
 @if(Session('dark') == 1)
@@ -65,7 +65,7 @@ if(Auth::user())
                 <!-- logo start -->
                 <div class="page-logo">
                     <a href="index.html">
-                    <span class="logo-icon material-icons fa-rotate-45">school</span>
+                  <!--  <span class="logo-icon material-icons fa-rotate-45">school</span> -->
                     <span class="logo-default" >CREW ASIA</span> </a>
                 </div>
                 <!-- logo end -->
@@ -89,41 +89,54 @@ if(Auth::user())
                <!-- end mobile menu -->
                 <!-- start header menu -->
                 <div class="top-menu">
+                    
                     <ul class="nav navbar-nav pull-right">
-                    	<li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
+                        <li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
+                        @if(Session('Access') == 1)
                     	<!-- start language menu -->
-                     <!--   <li class="dropdown language-switch">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="../assets/img/flags/gb.png" class="position-left" alt=""> English <span class="fa fa-angle-down"></span>
+                 <li class="dropdown language-switch">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="" class="position-left" alt=""> Export <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="deutsch"><img src="../assets/img/flags/de.png" alt=""> Deutsch</a>
+                                <a href="{{route('exportSubmittedXL')}}" class="deutsch">Export Submitted</a>
                                 </li>
+
                                 <li>
-                                    <a class="ukrainian"><img src="../assets/img/flags/ua.png" alt=""> Українська</a>
+                                        <a href="{{route('exportFinalXL')}}" class="deutsch">Export Final</a>
                                 </li>
+
                                 <li>
-                                    <a class="english"><img src="../assets/img/flags/gb.png" alt=""> English</a>
+                                        <a href="{{route('exportRejectedXL')}}" class="deutsch">Export Rejected</a>
                                 </li>
+
                                 <li>
-                                    <a class="espana"><img src="../assets/img/flags/es.png" alt=""> España</a>
+                                        <a href="{{route('exportPreXL')}}" class="deutsch">Export Pre-Scanned</a>
                                 </li>
+
                                 <li>
-                                    <a class="russian"><img src="../assets/img/flags/ru.png" alt=""> Русский</a>
+                                        <a href="{{route('exportScanned')}}" class="deutsch">Export Scanned</a>
+                                </li>
+
+                                <li>
+                                        <a href="{{route('exportHired')}}" class="deutsch">Export Hired</a>
                                 </li>
                             </ul>
-                        </li> -->
+                        </li>
                         <!-- end language menu -->
+
+                        @endif
+                        
                         <!-- start notification dropdown -->
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="badge headerBadgeColor1"> 6 </span>
+                                <span class="badge headerBadgeColor1" id="noti2"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
-                                    <h3><span class="bold">Notifications</span></h3>
-                                    <span class="notification-label purple-bgcolor">New 6</span>
+                                    <h3><span class="bold">Applicants</span></h3>
+                                    <span class="notification-label purple-bgcolor">New <span id="notification"></span></span>
                                 </li>
                             <!--    <li>
                                     <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
