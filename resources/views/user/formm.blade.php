@@ -444,11 +444,11 @@ button:hover {
 
 
                 <div class="row" style="margin-top:12px; padding:12px;">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label> 10. Gender: </label> {{$form->gender}}
                         </div>
         
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                                 <label> 11. Email: </label> {{$form->email}}
                             </div>
         
