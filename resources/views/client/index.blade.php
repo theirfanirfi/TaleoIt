@@ -6,7 +6,7 @@
       <div class="col-xl-3 col-md-6 col-12">
             <a style="color:white;" href="{{route('forms')}}">
                 <div class="info-box bg-b-yellow">
-                  <span class="info-box-icon push-bottom"><i class="material-icons">select_all</i></span>
+                  <span class="info-box-icon push-bottom"><i class="material-icons">folder_shared</i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Total Applicants</span>
                   <span class="info-box-number">{{$submitted}}</span>
@@ -28,7 +28,7 @@
               <div class="col-xl-3 col-md-6 col-12">
                     <a style="color:white;" href="{{route('finalinterview')}}">
                     <div class="info-box bg-b-green">
-                      <span class="info-box-icon push-bottom"><i class="material-icons">grade</i></span>
+                      <span class="info-box-icon push-bottom"><i class="material-icons">person_add</i></span>
                       <div class="info-box-content">
                         <span class="info-box-text">Final Interview</span>
                       <span class="info-box-number">{{$final}}</span>
@@ -44,7 +44,7 @@
                   <div class="col-xl-3 col-md-6 col-12">
                     <a style="color:white;" href="{{route('hired')}}">
                         <div class="info-box bg-b-blue">
-                          <span class="info-box-icon push-bottom"><i class="material-icons">verified_user</i></span>
+                          <span class="info-box-icon push-bottom"><i class="material-icons">mood</i></span>
                           <div class="info-box-content">
                             <span class="info-box-text">Hired</span>
                           <span class="info-box-number">{{$hired}}</span>
@@ -59,7 +59,7 @@
               <div class="col-xl-3 col-md-6 col-12">
                     <a style="color:white;" href="{{route('prescreening')}}">
                     <div class="info-box bg-b-pink">
-                      <span class="info-box-icon push-bottom"><i class="material-icons">visibility_off</i></span>
+                      <span class="info-box-icon push-bottom"><i class="material-icons">star</i></span>
                       <div class="info-box-content">
                         <span class="info-box-text">Pre-Screening</span>
                       <span class="info-box-number">{{$pre}}</span>
@@ -73,7 +73,7 @@
                   <div class="col-xl-3 col-md-6 col-12">
                     <a style="color:white;" href="{{route('screened')}}">
                         <div class="info-box bg-b-blue">
-                          <span class="info-box-icon push-bottom"><i class="material-icons">visibility</i></span>
+                          <span class="info-box-icon push-bottom"><i class="material-icons">cloud_done</i></span>
                           <div class="info-box-content">
                             <span class="info-box-text">Screened</span>
                           <span class="info-box-number">{{$screened}}</span>
@@ -87,7 +87,7 @@
                       <div class="col-xl-3 col-md-6 col-12">
                            <a style="color:white;" href="{{route('rejected')}}">
                             <div class="info-box bg-b-pink">
-                              <span class="info-box-icon push-bottom"><i class="material-icons">backspace</i></span>
+                              <span class="info-box-icon push-bottom"><i class="material-icons">mood_bad</i></span>
                               <div class="info-box-content">
                                 <span class="info-box-text">Rejected</span>
                               <span class="info-box-number">{{$rejected}}</span>

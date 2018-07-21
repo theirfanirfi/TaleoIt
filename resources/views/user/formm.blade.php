@@ -169,6 +169,17 @@ button:hover {
 
   </div>
 <form id="regForm" action="{{route('submitForm')}}" method="POST">
+
+  <div class="tab">
+    <label>Online Questions</label>
+    <br/>
+<p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="tatoo" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="tatoo" type="radio" name="tatoo" value="No" /> </p>
+<p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="glasses" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="glasses" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
+<p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="study_japanese_if_hired" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="study_japanese_if_hired" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+<p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="confirm_form" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="confirm_form" name="confirm_form" value="No" /> </p>
+   
+    <br/>
+</div>
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
       <label>Name:</label>
@@ -355,7 +366,7 @@ button:hover {
         <br/>
   </div>
 
-  <div class="tab">
+  <!-- <div class="tab">
         <label>Online Questions</label>
         <br/>
     <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="oq11" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="oq" type="radio" name="tatoo" value="No" /> </p>
@@ -364,7 +375,7 @@ button:hover {
     <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="oq11" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="oq" name="confirm_form" value="No" /> </p>
        
         <br/>
-  </div>
+  </div> -->
 
   <div style="overflow:auto;">
     <div style="float:right;">
@@ -425,7 +436,7 @@ else
 }
 
   // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm(t)){ return false; } else { if(t == 1) {make("{{route('stepone')}}");} else if(t == 2){} }
+  if (n == 1 && !validateForm(currentTab)){ return false; } else { if(t == 1) {make("{{route('stepone')}}");} else if(t == 2){} }
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
@@ -476,22 +487,56 @@ else
 
 function validateForm(t) {
   // This function deals with validation of the form fields
-  var x, y, i, r = 0, inp = 0, valid = true;
+  var x, y, i, r = 0, inp = 0, ronline = 0 , valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
   //alert($("input[type=radio]").length);
+
+if(t == 0){
+      $('.tatoo').each(function(index,element){
+        if(!$(element).is(":checked"))
+        {
+          ronline++;
+        }
+      });
+
+        $('.glasses').each(function(index,element){
+        if(!$(element).is(":checked"))
+        {
+          ronline++;
+        }
+      });
+
+              $('.study_japanese_if_hired').each(function(index,element){
+        if(!$(element).is(":checked"))
+        {
+          ronline++;
+        }
+      });
+
+      
+      $('.confirm_form').each(function(index,element){
+        if(!$(element).is(":checked"))
+        {
+          ronline++;
+        }
+      });
+
+}
+else 
+{
+  ronline = 0;
+}
+
   for(j = 0; j < y.length; j++)
   {
-    if(y[j].type== "radio" && !$(y[j]).is(":checked") && (y[j].name != "tatoo" || y[j].name != "glasses" || y[j].name != "study_japanese_if_hired" || y[j].name != "confirm_form"))
+    if(y[j].type== "radio" && !$(y[j]).is(":checked") && !(y[j].class == "tatoo" || y[j].class != "glasses" || y[j].class == "study_japanese_if_hired" || y[j].class == "confirm_form" ))
     {
-
-      r++;
+      alert(y[j].name != "tatoo" || y[j].name != "glasses" || y[j].name != "study_japanese_if_hired" || y[j].name != "confirm_form" );
+    r++;
     }
-    else if(y[j].name == "tatoo" || y[j].name == "glasses" || y[j].name == "study_japanese_if_hired" || y[j].name == "confirm_form")
-    {
-      console.log(y[j]);
-    }
+ 
     else if((y[j].type == "radio" && $(y[j]).is(":checked") && y[j].name == "applied_for_ana") && (($(y[j]).val() == "C" || $(y[j]).val() == "D") && $('#applied_for_ana_last_screening_year_txt').val() == ""))
     {
       r++;
@@ -538,7 +583,7 @@ function validateForm(t) {
     continue;
   }
 
-    if (y[i].value == "" || r > 3) {
+    if (y[i].value == "" || r > 3 || ronline > 4) {
       // add an "invalid" class to the field:
       y[i].className += " invalid";
       inp++;
@@ -546,7 +591,7 @@ function validateForm(t) {
       valid = false;
     }
   }
-  if(r > 3 || inp > 0)
+  if(r > 3 || inp > 0 || ronline > 4)
   {
     alertify.set('notifier','position', 'top-center');
     alertify.error("You have left the questions unattended. Please attend the questions and proceed.");
