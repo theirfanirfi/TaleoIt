@@ -159,7 +159,6 @@ Route::get('/dark','ClientController@dark')->name('dark');
 Route::post('/addNote','ClientController@addNote')->name('addNote');
 Route::get('/deleteNote/{id}','ClientController@deleteNote')->name('deleteNote');
 
-
 });
 
 
@@ -167,7 +166,7 @@ Route::get('/deleteNote/{id}','ClientController@deleteNote')->name('deleteNote')
 
 Route::group(['prefix' => 'apply', 'middleware' => 'UserWare'],function(){
 
-    Route::get('/','UserController@index');
+    Route::get('/','UserController@index')->name('apply');
     //submit form
 
     Route::post('/submitForm','UserController@submitForm')->name('submitForm');
@@ -181,6 +180,12 @@ Route::group(['prefix' => 'apply', 'middleware' => 'UserWare'],function(){
     //withdraw application
 
     Route::get('/withdrawApp','UserController@withdraw')->name('withDrawApp');
+
+    //Security question
+
+    Route::get('/sq','UserController@sq')->name('sq');
+    Route::post('/squestion','UserController@squestion')->name('squestion');
+
 
     
 

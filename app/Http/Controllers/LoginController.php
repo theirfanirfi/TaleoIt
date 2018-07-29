@@ -105,7 +105,7 @@ class LoginController extends Controller
         $question = $req->input('security');
         $answer = $req->input('answer');
 
-        $user = User::whereEmail(['email' => $email, 'question' => $question, 'answer' => $answer]);
+        $user = User::where(['email' => $email, 'securityQuestion' => $question, 'answer' => $answer]);
         if($user->count() > 0)
         {
             Session()->put('password_reset_id',$user->first()->id);

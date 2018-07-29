@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\FormModel;
+use App\User;
 use Auth;
 class UserController extends Controller
 {
@@ -290,6 +291,40 @@ class UserController extends Controller
         {
             return redirect()->back()->with('error','Error Occurred in withdrawing the Application. Please try again.');
 
+        }
+    }
+
+    public function sq()
+    {
+        $user = Auth::user();
+        $form = FormModel::whereUser_id($user->id)->where(['isWithDrawn' => 0]);
+        return view('user.sq',['user' => $user, 'form' => $form]);
+    }
+
+    public function squestion(Request $req)
+    {
+        $question = $req->input('security');
+        $answer = $req->input('answer');
+        $user = Auth::user();
+        if($question == "" || $answer == "")
+        {
+            return redirect()->back()->with('error','Please Select Question and Answer it.');
+        }
+        else 
+        {
+            $u = User::find($user->id);
+            $u->securityQuestion = $question;
+            $u->answer = $answer;
+            if($u->save())
+            {
+                return redirect()->back()->with('success','Security Question Set.');
+    
+            }
+            else
+            {
+            return redirect()->back()->with('error','Error Occurred in setting the Security Question. Please Try again.');
+    
+            }
         }
     }
 }
