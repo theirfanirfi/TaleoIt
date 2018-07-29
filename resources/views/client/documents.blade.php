@@ -51,4 +51,54 @@
                 </a>
             </div>
 </div>
+
+<div class="container">
+<div class="row">
+
+        <div class="col-xl-3 col-md-6 col-12">
+                <a style="color:white;" href="{{route('allPassports')}}">
+                <div class="info-box bg-b-yellow">
+                  <span class="info-box-icon push-bottom"><i class="material-icons">folder</i></span>
+                  <div class="info-box-content" style="padding:30px;">
+                    <span class="info-box-text">All Passports</span>
+                
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+            </a>
+                <!-- /.info-box -->
+              </div>
+
+
+
+              <div class="col-xl-3 col-md-6 col-12">
+                    <a style="color:white;" href="{{route('allCvs')}}">
+                    <div class="info-box bg-b-pink">
+                      <span class="info-box-icon push-bottom"><i class="material-icons">folder</i></span>
+                      <div class="info-box-content" style="padding:30px;">
+                        <span class="info-box-text">All C.Vs</span>
+                    
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                </a>
+                    <!-- /.info-box -->
+                  </div>
+
+
+                  <div class="col-xl-3 col-md-6 col-12">
+                        <a style="color:white;" href="{{route('allToeicScoreCards')}}">
+                        <div class="info-box bg-b-green">
+                          <span class="info-box-icon push-bottom"><i class="material-icons">folder</i></span>
+                          <div class="info-box-content" style="padding:30px;">
+                            <span class="info-box-text">TOEIC Score Cards</span>
+                        
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                    </a>
+                        <!-- /.info-box -->
+                      </div>
+</div>
+</div>
 @endsection

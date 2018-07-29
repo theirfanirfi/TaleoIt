@@ -158,7 +158,7 @@ button:hover {
         </ul>
       </div>
       @if($form->count() > 0 && $form->first()->isWithDrawn == 0)
-      <a style="float:left;" class="btn btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">Widthdraw Application</a>
+      <a style="float:left; text-decoration: none;" class="btn-lg btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">WITHDRAW APPLICATION</a>
      @endif
 </div>
 </div>
@@ -210,16 +210,16 @@ button:hover {
     <p><input class="input" type="email" oninput="this.className = ''" @if(Session('email')) value="{{Session('email')}}" @endif id="email" name="email" placeholder="Email"></p>
     
     <label>Height:</label>
-    <p><input class="input" type="number" oninput="this.className = ''" @if(Session('height')) value="{{Session('height')}}" @endif id="height" name="height" placeholder="Please Enter Height in CM. Example: 167"></p>
+    <p><input class="input" type="text" oninput="this.className = ''" @if(Session('height')) value="{{Session('height')}}" @endif id="height" name="height" placeholder="Please Enter Height in CM. Example: 167"></p>
     
     <label>Weight:</label>
-    <p><input  class="input" type="number" oninput="this.className = ''" id="weight" @if(Session('weight')) value="{{Session('weight')}}" @endif name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4"></p>
+    <p><input  class="input" type="text" oninput="this.className = ''" id="weight" @if(Session('weight')) value="{{Session('weight')}}" @endif name="weight" placeholder="Please Enter Weight in Kg only. Example: 61.4"></p>
     
 </div>
 
 
   <div class="tab">
-        <label>Have you previously applied for a cabin Attendant Position with ANA? </label>
+        <label>Have you previously applied for a Cabin Attendant position with ANA? </label>
       <p>  <input style="width:16px;" type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <span><strong>A: </strong> No, First time Applicant</span> </p>
         <p><input style="width:16px;" type="radio" value="B" @if(Session('applied_for_ana') == "B") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</p>
         <p><input style="width:16px;" type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</p>
@@ -238,7 +238,8 @@ button:hover {
 
 
   <div class="tab">
-        <label for="work_experience">Work Experience: Describe your previous work Experience: </label>
+    <h3>Work Experience: </h3>
+        <label for="work_experience">Describe your previous work Experience: </label>
          <br/>
         <p><input style="width:16px;" type="radio" value="A" @if(Session('work_experience') == "A") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. </p>
         <p><input style="width:16px;" type="radio" value="B" @if(Session('work_experience') == "B") {{"checked"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </p>
@@ -259,8 +260,9 @@ button:hover {
 
 
   <div class="tab">
-        <label>Japanese Culture: Describe your Japanese Culture experience </label> <br/>
-       <p> <input style="width:16px;"  type="radio" @if(Session('japanese_lang') == "A") {{"checked"}} @endif value="A" class="japanese_lang" name="japanese_lang"> <strong>A: </strong> No Previous experience</p>
+    <h3>Japanese Culture: </h3>
+        <label>Describe your Japanese Culture experience </label> <br/>
+       <p> <input style="width:16px;"  type="radio" @if(Session('japanese_lang') == "A") {{"checked"}} @endif value="A" class="japanese_lang" name="japanese_lang"> <strong>A: </strong> No previous experience</p>
         <p><input  style="width:16px;" type="radio" @if(Session('japanese_lang') == "B") {{"checked"}} @endif value="B" class="japanese_lang" name="japanese_lang"> <strong>B: </strong> I have interest in and am familiar with some Japanese culture. </p>
         <p><input  style="width:16px;" type="radio" @if(Session('japanese_lang') == "C") {{"checked"}} @endif value="C" class="japanese_lang" name="japanese_lang"> <strong>C: </strong> I have studied or studies Japanese culture. </p>
        <p> <input style="width:16px;"  type="radio" @if(Session('japanese_lang') == "D") {{"checked"}} @endif value="D" class="japanese_lang" name="japanese_lang"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </p>
@@ -287,7 +289,8 @@ button:hover {
   
 
   <div class="tab">
-        <label>Japanese Language skill: Describe your current Japanese skills</label> <br/>
+    <h3>Japanese Language skill: </h3>
+        <label>Describe your current Japanese skills</label> <br/>
         <p><input style="width:16px;"  type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
         <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>
         <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>
@@ -296,9 +299,10 @@ button:hover {
   </div>
 
   <div class="tab">
-        <label>International Experience: Describe your International experience</label> <br/>
-        <p><input style="width:16px;" type="radio" value="A" class="internation_experience" @if(Session('internation_experience') == "A") {{"checked"}} @endif name="internation_experience"> <strong>A: </strong> No Previous experience</p>
-        <p><input style="width:16px;" type="radio" value="B" class="internation_experience" @if(Session('internation_experience') == "B") {{"checked"}} @endif name="internation_experience"> <strong>B: </strong> I have studied or worked in International environment. </p>
+    <h3>International Experience: </h3>
+        <label>Describe your international experience</label> <br/>
+        <p><input style="width:16px;" type="radio" value="A" class="internation_experience" @if(Session('internation_experience') == "A") {{"checked"}} @endif name="internation_experience"> <strong>A: </strong> No previous experience</p>
+        <p><input style="width:16px;" type="radio" value="B" class="internation_experience" @if(Session('internation_experience') == "B") {{"checked"}} @endif name="internation_experience"> <strong>B: </strong> I have studied or worked in an international environment. </p>
         <p><input style="width:16px;" type="radio" value="C" class="internation_experience" @if(Session('internation_experience') == "C") {{"checked"}} @endif name="internation_experience"> <strong>C: </strong> I have studied abroad. </p>
         <p><input style="width:16px;" type="radio" value="D" class="internation_experience" @if(Session('internation_experience') == "D") {{"checked"}} @endif name="internation_experience"> <strong>D: </strong> I have worked abroad. </p>
        
@@ -360,10 +364,10 @@ button:hover {
   <div class="tab">
       <label>Online Questions</label>
       <br/>
-  <p>Tattoo: Do you have visible Tattoo? <strong>Yes</strong> <input style="width:16px;" type="radio" class="online_ques" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="tatoo" value="No" /> </p>
-  <p>Glasses: Can you Work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="online_ques" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="online_ques" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
-  <p>Japanese: Do you agree that you have to study Japanese if hired for further carrier in this job? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="online_ques" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="study_japanese_if_hired" value="No" /> </p>
-  <p>Confirm: Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="No" /> </p>
+  <p>Do you have visible Tattoos? <strong>Yes</strong> <input style="width:16px;" type="radio" class="online_ques" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="tatoo" value="No" /> </p>
+  <p>Can you work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="online_ques" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="online_ques" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
+  <p>Are you willing to study Japanese if hired? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="online_ques" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+  <p>Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="No" /> </p>
      
       <br/>
   </div>
@@ -394,7 +398,8 @@ button:hover {
 <!-- summarry -->
 
 <div class="" id="regForm">
-<h3>Your Submitted Application Summary</h3>
+<h3 style="color:red;">Congratulations, your application has been submitted.</h3>
+<h4>Application summary:</h4>
 <?php $form = $form->first(); ?>
     <div class="row" style="margin-top:12px; padding:12px;">
             <div class="col-md-3">
@@ -611,6 +616,7 @@ button:hover {
 @endif
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
+var f = 0;
 showTab(currentTab); // Display the crurrent tab
 var t = 0;
 function showTab(n) {
@@ -635,6 +641,12 @@ function showTab(n) {
 function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
+  if(f == 9 || f == 10)
+  {
+//     alert(x);
+// $(x).append("<h1>Please wait, your application is being submitted.</h1>");
+
+  }
 
 if(n == 1 && t == 0 )
 {
@@ -651,6 +663,7 @@ else
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
+  f++;
 
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
@@ -857,6 +870,22 @@ function checkCVformat(cvFile)
         return false;
     }
 }
+
+function cnfrm(link)
+{
+    alertify.confirm('Withdraw Application', 'Are you sure to widthdraw the Application?', function(){ location.href = link.href;
+     }
+                , function(){ alertify.error('Action Cancelled.')});
+    return false;
+}
+
+        function smalWindow(link){
+            var x = screen.width/2 - 700/2;
+    var y = screen.height/2 - 450/2;
+            window.open(link.href,'targetWindow', "toolbar=no,location=no,position=center,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600px,height=400px,left="+x+",top="+y+"");
+
+           
+        }
 </script>
 
 </body>

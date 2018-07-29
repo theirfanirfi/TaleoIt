@@ -30,7 +30,7 @@
     <div class="limiter">
 		<div class="container-login100 page-background">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="{{route('loginClient')}}" method="post">
+				<form class="login100-form validate-form" action="{{route('loginPost')}}" method="post">
 					<!-- <span class="login100-form-logo">
 						<img alt="" src="../assets/img/logo-2.png">
 					</span> -->
@@ -46,12 +46,12 @@
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-					<div class="contact100-form-checkbox">
+				<!--	<div class="contact100-form-checkbox">
 						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 						<label class="label-checkbox100" for="ckb1">
 							Remember me
 						</label>
-					</div>
+					</div> -->
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login

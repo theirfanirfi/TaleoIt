@@ -69,10 +69,10 @@ class LoginController extends Controller
                    {
                     Session()->put('Access',"0");
                    }
-                   return redirect('/client');
+                   return redirect('/admin');
                    break;
                    case 3:
-                   return redirect('/user');
+                   return redirect('/apply');
                    break;
                    default:
                    return redirect('/login');

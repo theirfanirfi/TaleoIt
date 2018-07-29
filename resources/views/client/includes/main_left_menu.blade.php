@@ -24,7 +24,7 @@
 
 
                        <li class="nav-item start ">
-                       <a href="{{route('client')}}" class="nav-link">
+                       <a href="{{route('Admin')}}" class="nav-link">
                                <i class="material-icons">dashboard</i>
                                <span class="title">Dashboard</span>
                             

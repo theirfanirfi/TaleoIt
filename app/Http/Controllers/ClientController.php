@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Http\Models\FormModel;
+use App\Http\Models\Notes;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 class ClientController extends Controller
@@ -550,6 +551,26 @@ public function toeicscorecard($status)
 {
 $forms = FormModel::select(['id','toeicFileName'])->where(['app_status' => $status])->get();
     return view('client.actualtoeicdocs',['page' => 'TOEIC Score Cards','forms' => $forms]);
+}
+
+
+public function allpassports()
+{
+    $forms = FormModel::select(['id','passportFileName'])->get();
+    return view('client.passports',['page' => 'All Passports','forms' => $forms]);
+}
+
+public function allToeicScoreCards()
+{
+    $forms = FormModel::select(['id','toeicFileName'])->get();
+    return view('client.toeicscorecards',['page' => 'All TOEIC Score Cards','forms' => $forms]); 
+}
+
+
+public function allCvs()
+{
+    $forms = FormModel::select(['id','cvFileName'])->get();
+    return view('client.allcvs',['page' => 'All CVs','forms' => $forms]); 
 }
 
 public function securityQuestion(Request $req)

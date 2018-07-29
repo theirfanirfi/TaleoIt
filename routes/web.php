@@ -31,8 +31,8 @@ Route::get('/register',function(){
     return view('register');
 })->name('register');
 
-Route::post('/registerClient','LoginController@registerClient')->name('registerClient');
-Route::post('/loginClient','LoginController@loginClient')->name('loginClient');
+Route::post('/registerPost','LoginController@registerClient')->name('registerPost');
+Route::post('/loginPost','LoginController@loginClient')->name('loginPost');
 Route::get('/logout','LoginController@logOut')->name('logout');
 
 Route::post('/credentialsAnswered','LoginController@credentialsAnswered')->name('credentialsAnswered');
@@ -44,8 +44,8 @@ Route::post('processReset','LoginController@processReset')->name('processReset')
 @ Client Routes
 @ Protected By Middleware #ClientWare
 */
-Route::group(['prefix'=>'client', 'middleware'=> 'ClientWare'],function(){
-    Route::get('/','ClientController@index')->name('client');
+Route::group(['prefix'=>'admin', 'middleware'=> 'ClientWare'],function(){
+    Route::get('/','ClientController@index')->name('Admin');
     Route::get('/forms','ClientController@submittedForms')->name('forms');
     Route::get('/app/{id}','ClientController@application')->name('app');
     Route::get('/deleteApp/{id}','ClientController@deleteApp')->name('deleteApp');
@@ -131,6 +131,11 @@ Route::get('/docsfinal','ClientController@docsfinal')->name('docsfinal');
 Route::get('/docshired','ClientController@docshired')->name('docshired');
 Route::get('/docsrejected','ClientController@docsrejected')->name('docsrejected');
 
+//all
+Route::get('/allPassports','ClientController@allpassports')->name('allPassports');
+Route::get('/allToeicScoreCards','ClientController@allToeicScoreCards')->name('allToeicScoreCards');
+Route::get('/allCvs','ClientController@allCvs')->name('allCvs');
+
 //get actual cvs
 Route::get('/cvs/{status}','ClientController@cvs')->name('cvs');
 
@@ -154,7 +159,7 @@ Route::get('/dark','ClientController@dark')->name('dark');
 
 // user 
 
-Route::group(['prefix' => 'user', 'middleware' => 'UserWare'],function(){
+Route::group(['prefix' => 'apply', 'middleware' => 'UserWare'],function(){
 
     Route::get('/','UserController@index');
     //submit form

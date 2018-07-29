@@ -31,7 +31,7 @@
     <div class="limiter">
 		<div class="container-login100 page-background">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="{{route('loginClient')}}" method="post">
+				<form class="login100-form validate-form" action="{{route('loginPost')}}" method="post">
 					<!-- <span class="login100-form-logo">
 						<img alt="" src="../assets/img/logo-2.png">
 					</span> -->

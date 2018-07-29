@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="RedstarHospital" />
-    <title>Login</title>
+    <title>Register</title>
     <!-- google font -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
 	<!-- icons -->
@@ -31,7 +31,7 @@
     <div class="limiter">
 		<div class="container-login100 page-background">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="{{route('registerClient')}}" method="post" id="register">
+				<form class="login100-form validate-form" action="{{route('registerPost')}}" method="post" id="register">
 					<!-- <span class="login100-form-logo">
 						<img alt="" src="../assets/img/logo-2.png">
 					</span> -->
@@ -55,12 +55,12 @@
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Register
+							Apply Now
 						</button>
 					</div>
 					<div class="text-center p-t-30">
 						<a class="txt1" href="{{route('login')}}">
-							Login
+							Previous Applicant Login
 						</a>
 					</div>
 				</form>
