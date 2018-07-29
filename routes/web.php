@@ -154,6 +154,12 @@ Route::post('/securityQuestion','ClientController@securityQuestion')->name('secu
 Route::get('/light','ClientController@light')->name('light');
 Route::get('/dark','ClientController@dark')->name('dark');
 
+//Note
+
+Route::post('/addNote','ClientController@addNote')->name('addNote');
+Route::get('/deleteNote/{id}','ClientController@deleteNote')->name('deleteNote');
+
+
 });
 
 

@@ -253,7 +253,8 @@ class ClientController extends Controller
     public function application($id)
     {
         $form = FormModel::find($id);
-        return view('client.application',['form' => $form,'page' => 'Applicant Profile']);
+        $notes = Notes::whereForm_id($form->id)->get();
+        return view('client.application',['form' => $form,'page' => 'Applicant Profile','notes' => $notes]);
     }
 
     public function deleteApp($id)
@@ -614,6 +615,46 @@ public function dark()
     Session()->forget('light'); 
 return redirect()->back();
 
+}
+
+public function addNote(Request $req)
+{
+    $fid = $req->input('form_id');
+    $notee = $req->input('note');
+    if($fid == "" || $notee == "")
+    {
+        return redirect()->back()->with('error','Note Field can not be empty.');
+    }
+    else
+    {
+        $note = new Notes();
+        $note->form_id = $fid;
+        $note->note = $notee;
+        if($note->save())
+        {
+            return redirect()->back()->with('success','Note  Added.');
+
+        }
+        else
+        {
+        return redirect()->back()->with('error','Error occurred in saving the note. Please try again later.');
+
+        }
+    }
+}
+
+public function deleteNote($id)
+{
+    $note = Notes::find($id);
+    if($note->delete())
+    {
+        return redirect()->back()->with('success','Note  Deleted.');
+    }
+    else 
+    {
+        return redirect()->back()->with('error','Error occurred in deleting the note. Please try again later.');
+
+    }
 }
     
 }

@@ -262,6 +262,43 @@
                                                                  </div>
                                                 </div> 
 
+
+
+                                                <div class="row" style="margin-top:12px; padding:12px;">
+                                                        <div class="col-md-3">
+                                                           <h3>Notes:</h3>
+                                                        </div>
+                                                    </div> 
+
+
+                                                    <div class="row" style="margin-top:12px; padding:12px;">
+                                                            <div class="col-md-6">
+                                                               <h5>Add Note</h5>
+                                                            <form method="POST" action="{{route('addNote')}}">
+                                                                   <textarea class="form-control" name="note" style="width:100%;"></textarea>
+                                                                   <br/>
+                                                                   @csrf
+                                                            <input type="hidden" name="form_id" value="{{$form->id}}" />
+                                                                   <input type="submit" class="btn btn-primary" value="Add Note" />
+                                                               </form>
+                                                            </div>
+                                                        </div> 
+        
+                                                    <div class="row" style="margin-top:12px; padding:12px;">
+                                                 @foreach($notes as $n)
+                                                                    <div class="col-sm-6">
+                                                                         <div class="card-box">
+                                                                             <div class="card-head">
+                                                                             <a href="{{route('deleteNote',['id' => $n->n_id])}}" style="float:right;color:red;"><i class="material-icons">close</i></a>
+                                                                             </div>
+                                                                            <div class="card-body " style="min-height:40px;text-align:justify;word-wrap: break-word;">{{$n->note}}</div>
+                                                                         </div>
+                                                                     </div>
+                                                @endforeach
+                                                  
+                                            
+                                                        </div> 
+
             </div>
             </div>
             </div>

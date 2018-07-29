@@ -37,12 +37,12 @@
                                                 <br/>
                                                 <select class="security" name="security" class="form-control" style="padding:12px;">
                                                         <option value="">Select a question from the following options.</option>
-                                                        <option value="1">Who's your daddy?</option>
-                                                        <option value="2">What is your favorite color?</option>
-                                                        <option value="3">What is your mother's favorite aunt's favorite color?</option>
-                                                        <option value="4">Where does the rain in Spain mainly fall?</option>
-                                                        <option value="5">If Mary had three apples, would you steal them?</option>
-                                                        <option value="6">What brand of food did your first pet eat?</option>
+                                         
+                                                        <option value="1">What is your favorite color?</option>
+                                                        <option value="2">What is your mother's favorite aunt's favorite color?</option>
+                                                        <option value="3">Where does the rain in Spain mainly fall?</option>
+                                                        <option value="4">If Mary had three apples, would you steal them?</option>
+                                                        <option value="5">What brand of food did your first pet eat?</option>
                                                      </select>
                                        </div>
                                        @csrf
