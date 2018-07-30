@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\FormModel;
+use App\Http\Models\Settings;
 use App\User;
 use Auth;
 class UserController extends Controller
@@ -12,8 +13,9 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $setting = Settings::all()->first();
         $form = FormModel::whereUser_id($user->id)->where(['isWithDrawn' => 0]);
-        return view('user.formm',['user' => $user, 'form' => $form]);
+        return view('user.formm',['user' => $user, 'form' => $form, 'setting' => $setting]);
     }
 
     public function stepone(Request $req)

@@ -23,9 +23,9 @@ Route::get('/forgotpassword',function(){
 return view('forgotpassword');
 })->name('forgotpassword');
 
-Route::get('/clogin', function () {
+Route::get('/adminlogin', function () {
     return view('clientlogin');
-})->name('clogin');
+})->name('adminlogin');
 
 Route::get('/register',function(){
     return view('register');
@@ -158,6 +158,10 @@ Route::get('/dark','ClientController@dark')->name('dark');
 
 Route::post('/addNote','ClientController@addNote')->name('addNote');
 Route::get('/deleteNote/{id}','ClientController@deleteNote')->name('deleteNote');
+
+
+//start stop application submissions
+Route::get('/startstop','ClientController@startstop')->name('startstop');
 
 });
 

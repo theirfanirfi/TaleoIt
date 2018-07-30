@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Http\Models\Settings;
 use Auth;
 
 class LoginController extends Controller
@@ -32,7 +33,7 @@ class LoginController extends Controller
                 $credentials = $req->only('email','password');
                 if(Auth::attempt($credentials))
                 {
-                 return redirect('/user');
+                 return redirect('/apply');
                 }
                 else
                 {
@@ -55,6 +56,8 @@ class LoginController extends Controller
            $credentials = $req->only('email','password');
            if(Auth::attempt($credentials))
            {
+               $setting = Settings::all()->first();
+               Session()->put('startstop',$setting->application);
                switch($user->first()->role)
                {
                    case 1:

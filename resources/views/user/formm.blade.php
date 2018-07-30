@@ -169,6 +169,12 @@ button:hover {
   </div>
 
   @if($form->count() == 0)
+
+ @if($setting->application == 0)
+ <div id="regForm">
+<h3>Currently the application submission process is stoped. Please check in again.</h3>
+</div>
+ @else
 <form id="regForm" action="{{route('submitForm')}}" method="POST" enctype="multipart/form-data">
 
 
@@ -242,10 +248,10 @@ button:hover {
     <h3>Work Experience: </h3>
         <label for="work_experience">Describe your previous work Experience: </label>
          <br/>
-        <p><input style="width:16px;" type="radio" value="A" @if(Session('work_experience') == "A") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have cabin Attendant experience, but less than 3 years. </p>
-        <p><input style="width:16px;" type="radio" value="B" @if(Session('work_experience') == "B") {{"checked"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have cabin Attendant experience more than 3 years. </p>
-        <p><input style="width:16px;" type="radio" value="C" @if(Session('work_experience') == "C") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>C: </strong> I don't have cabin Attendant experience but I have more than 1 year work experience after graduating.</p>
-        <p><input style="width:16px;" type="radio" value="D" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have cabin Attendant experience and I have less than 1 year work experience after graduating.</p>
+        <p><input style="width:16px;" type="radio" value="A" @if(Session('work_experience') == "A") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have Cabin Attendant experience, but less than 3 years. </p>
+        <p><input style="width:16px;" type="radio" value="B" @if(Session('work_experience') == "B") {{"checked"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have Cabin Attendant experience more than 3 years. </p>
+        <p><input style="width:16px;" type="radio" value="C" @if(Session('work_experience') == "C") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>C: </strong> I don't have Cabin Attendant experience but I have more than 1 year work experience after graduating.</p>
+        <p><input style="width:16px;" type="radio" value="D" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have Cabin Attendant experience and I have less than 1 year work experience after graduating.</p>
     <br/>
     <br/>
         <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
@@ -312,6 +318,7 @@ button:hover {
   <div class="tab">
         <h3>Passport Details</h3>
         <label><strong>Passport: </strong> upload clear copy of your passport.</label> <p style="color:red;">Only Thai passport is acceptable.</p>
+        <p class="" style="font-size:11px;color:red;">File size must be less or equal to 2MBs.</p>
        <p> <input type="file" name="passport_file" id="passportFile" class="fi form-control" onchange="checkformat(this);" /> </p>
        <p class="error" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
        <label>Passport Number: </label> <br/>
@@ -327,7 +334,7 @@ button:hover {
         <h3>TOEIC Score Details:</h3>
        <label>TOEIC Score - Upload: Please upload copy of your recent TOEIC Score Card here</label>
        <br/>
-       <p class="error2" style="display:none;font-size:11px;color:red;">Invalid File Format. Supported files are .jpg, .jpeg and .png</p>
+       <p class="" style="font-size:11px;color:red;">File size must be less or equal to 2MBs.</p>
       
        <p><input type="file" id="score_file" name="toeic_score_card" class="fi form-control" onchange="checkformat(this);" /></p>
        <p class="error" style="display:none;font-size:11px;color:red;">Field is Required.</p>
@@ -351,7 +358,7 @@ button:hover {
 @csrf
 
   <div class="tab">
-        <label>CV: Please upload CV (Resume) here Head-shot Photo must be placed on the top of CV. <span style="color:Red;">CV File format must be PDF</span></label><br/>
+        <label>CV: Please upload CV (Resume) here Head-shot Photo must be placed on the top of CV. <span style="color:Red;">CV File format must be PDF and file size must be less or equal to 2MBs. </span></label><br/>
         <p class="error2" style="color:red;display:none;">Invalid File Format. Only PDF file format is supported.</p>
         <p><input type="file" id="cv_file" name="cv_file" class="form-control" onchange="checkCVformat(this);" /></p>
         <p class="error" style="color:red;display:none;">Field is Required.</p>
@@ -394,6 +401,7 @@ button:hover {
     <span class="step"></span>
   </div>
 </form>
+@endif
 @else 
 
 <!-- summarry -->
@@ -831,23 +839,35 @@ function fixStepIndicator(n) {
 function checkformat(inputFile)
 {
     var file = $(inputFile).val();
+    var size = inputFile.files[0].size;
+    console.log(size);
     var allowed_extensions = new Array("jpg","png","jpeg");
     var file_extension = file.split('.').pop().toLowerCase();
 
-    if(allowed_extensions.includes(file_extension))
+    if(!allowed_extensions.includes(file_extension))
     {
-       $(inputFile).next('.error').hide('slow');
-  return true;
 
-    }
-    else 
-    {
-       $(inputFile).next('.error').show('slow');
+             $(inputFile).next('.error').show('slow');
        $(inputFile).val("");
        alertify.set('notifier','position', 'top-center');
     alertify.error("Invalid File Format. Supported Files are .JPG, .JPECG and .PNG ");
       
         return false;
+
+
+    }
+    else if (size > 3000000 )
+    {
+      $(inputFile).val("");
+       alertify.set('notifier','position', 'top-center');
+    alertify.error("Invalid File Size. Supported File size must be less than 2MBs. ");
+    return false;
+    }
+    else 
+    {
+
+       $(inputFile).next('.error').hide('slow');
+  return true;
     }
    
 }
@@ -857,18 +877,29 @@ function checkCVformat(cvFile)
     var file = $(cvFile).val();
     var allowed_extensions = new Array("pdf");
     var file_extension = file.split('.').pop().toLowerCase();
-
-    if(allowed_extensions.includes(file_extension))
+    var size = cvFile.files[0].size;
+    if(!allowed_extensions.includes(file_extension))
     {
-       $(cvFile).prev('.error2').hide('slow');
-        return true;
+       $(cvFile).val("");
+       alertify.set('notifier','position', 'top-center');
+    alertify.error("Invalid File Format. Only PDF format Files are supported.");
+      
+        return false;
 
+
+    }
+    else if (size > 3000000 )
+    {
+      $(cvFile).val("");
+       alertify.set('notifier','position', 'top-center');
+    alertify.error("Invalid File Size. Supported File size must be less or equal to 2MBs. ");
+    return false;
     }
     else 
     {
-       $(cvFile).prev('.error2').show('slow');
-       $(cvFile).val("");
-        return false;
+
+       $(cvFile).next('.error').hide('slow');
+  return true;
     }
 }
 

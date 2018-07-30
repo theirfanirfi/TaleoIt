@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Http\Models\FormModel;
 use App\Http\Models\Notes;
+use App\Http\Models\Settings;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 class ClientController extends Controller
@@ -655,6 +656,38 @@ public function deleteNote($id)
         return redirect()->back()->with('error','Error occurred in deleting the note. Please try again later.');
 
     }
+}
+
+public function startstop()
+{
+$setting = Settings::all()->first();
+$msg = "";
+if($setting->application == 0)
+{
+    $setting->application = 1;
+    Session()->forget('startstop');
+    Session()->put('startstop',1);
+    $msg = "Application submission state changed from stop to start. Now users will be able to submit Applications.";
+}
+else
+{
+    $setting->application = 0;
+    Session()->forget('startstop');
+    Session()->put('startstop',0);
+    $msg = "Application submission state changed from start to stop. Now users will not be able to submit Applications.";
+
+
+}
+
+if($setting->save())
+{
+    return redirect()->back()->with('success',$msg);
+}
+else 
+{
+    return redirect()->back()->with('error','Error occurred. Please try again.');
+
+}
 }
     
 }

@@ -123,7 +123,28 @@ if(Auth::user())
                                 </li>
                             </ul>
                         </li>
+
+
+
                         <!-- end language menu -->
+
+
+                        <li class="dropdown language-switch">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="" class="position-left" alt=""> Applications <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @if(Session('startstop') == 1)
+                                    <li>
+                                    <a href="{{route('startstop')}}" class="">Stop Application submissions</a>
+                                    </li>
+                                    @else 
+                                    <li>
+                                            <a href="{{route('startstop')}}" class="">Start Application submissions</a>
+                                            </li>
+                                    @endif
+    
+                                </ul>
+                            </li>
 
                         @endif
                         
