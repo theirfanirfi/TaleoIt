@@ -16,6 +16,7 @@
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="{{URL::asset('/css/jq-ui.css')}}"></script>
 <style>
 * {
   box-sizing: border-box;
@@ -168,15 +169,20 @@ button:hover {
 
   </div>
 
-  @if($form->count() == 0)
+  @if($form->count() == 0 || Session('editApplication') == 1)
 
  @if($setting->application == 0)
  <div id="regForm">
 <h3>Currently the application submission process is stoped. Please check in again.</h3>
 </div>
  @else
+
+ @if(Session('editApplication') == 1)
+<form id="regForm" action="{{route('updateForm')}}" method="POST" enctype="multipart/form-data">
+@else 
 <form id="regForm" action="{{route('submitForm')}}" method="POST" enctype="multipart/form-data">
 
+@endif
 
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
@@ -228,10 +234,10 @@ button:hover {
   <div class="tab">
         <label>Have you previously applied for a Cabin Attendant position with ANA? </label>
       <p>  <input style="width:16px;" type="radio" value="A" @if(Session('applied_for_ana') == "A") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <span><strong>A: </strong> No, First time Applicant</span> </p>
-        <p><input style="width:16px;" type="radio" value="B" @if(Session('applied_for_ana') == "B") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-scanning: Group session and English Test.</p>
-        <p><input style="width:16px;" type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-scanning, but not been to Final Interview</p>
+        <p><input style="width:16px;" type="radio" value="B" @if(Session('applied_for_ana') == "B") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>B: </strong> Yes, I have previously sent Application, but not been to pre-screening (Group session and English Test).</p>
+        <p><input style="width:16px;" type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-screening, but not been to Final Interview</p>
         <p><input style="width:16px;" type="radio" value="D" @if(Session('applied_for_ana') == "D") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</p>
-        <p style="font-size:11px;color:red;font-style:italic;">If you answered C or D, Please enter the last screening year you have Attendend. Example: 2016</p>
+        <p style="font-size:11px;color:red;font-style:italic;">If you answered C or D, Please enter the last screening year you have attendend. Example: 2016</p>
         <select id="applied_for_ana_last_screening_year_txt" name="applied_for_ana_last_screening_year_txt" style="width:30%;padding:12px;">
           <option value="">Select Year</option>
           @for($i = 1980; $i <= date('Y'); $i++)
@@ -246,7 +252,7 @@ button:hover {
 
   <div class="tab">
     <h3>Work Experience: </h3>
-        <label for="work_experience">Describe your previous work Experience: </label>
+        <label for="work_experience">Describe your previous work experience: </label>
          <br/>
         <p><input style="width:16px;" type="radio" value="A" @if(Session('work_experience') == "A") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>A: </strong> I have Cabin Attendant experience, but less than 3 years. </p>
         <p><input style="width:16px;" type="radio" value="B" @if(Session('work_experience') == "B") {{"checked"}} @endif  class="work_experience" name="work_experience"> <strong>B: </strong> I have Cabin Attendant experience more than 3 years. </p>
@@ -254,7 +260,7 @@ button:hover {
         <p><input style="width:16px;" type="radio" value="D" @if(Session('work_experience') == "D") {{"checked"}} @endif class="work_experience" name="work_experience"> <strong>D: </strong> I don't have Cabin Attendant experience and I have less than 1 year work experience after graduating.</p>
     <br/>
     <br/>
-        <label>If you are/was working for an Airline, please enter most recent Airline served. Airline name and Position.</label> <br/>
+        <label>If you are/were working for an Airline, please enter the most recent Airline served.</label> <br/>
         <p>Airline Name: </p>
         <p><input type="text" id="airline" name="airline" @if(Session('airline')) value="{{Session('airline')}}" @endif class="form-control" placeholder="Airline Name" /> </p> 
 
@@ -262,6 +268,21 @@ button:hover {
 
        <p>Position:</p>
         <p><input type="text" id="airlinePosition" name="airlinePosition" @if(Session('airlinePosition')) value="{{Session('airlinePosition')}}" @endif class="form-control" placeholder="Airline Position" />  </p>
+
+  </div>
+
+
+
+
+  
+
+  <div class="tab">
+    <h3>Japanese Language skill: </h3>
+        <label>Describe your current Japanese skills</label> <br/>
+        <p><input style="width:16px;"  type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
+        <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>
+        <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>
+        <p><input style="width:16px;" type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>
 
   </div>
 
@@ -274,13 +295,14 @@ button:hover {
         <p><input  style="width:16px;" type="radio" @if(Session('japanese_lang') == "C") {{"checked"}} @endif value="C" class="japanese_lang" name="japanese_lang"> <strong>C: </strong> I have studied or studies Japanese culture. </p>
        <p> <input style="width:16px;"  type="radio" @if(Session('japanese_lang') == "D") {{"checked"}} @endif value="D" class="japanese_lang" name="japanese_lang"> <strong>D: </strong> I have studied in Japan or worked for Japanese management company. </p>
         <p style="font-size:11px;color:red;font-style:italic;">If you answered D, please enter most recent school or employer name you have studied or worked for.</p>
+        <label>School Name: </label>
         <p><input type="text" name="school_name" class="form-control" @if(Session('school_name')) value="{{Session('school_name')}}" @endif id="school_name" placeholder="School Name" /> </p>
         <p class="error" style="display:none;color:Red;font-size:12px;">School Name is Required.</p>  
-        <label>School Year:</label>
+        <label>Enrolment Year:</label>
         <p><input type="date"  name="school_year" class="form-control" @if(Session('school_year')) value="{{Session('school_year')}}" @endif  id="school_year" placeholder="School Year"/> </p>
-        <p  class="error" style="display:none;color:Red;font-size:12px;">School Year is Required.</p>  
+        <p  class="error" style="display:none;color:Red;font-size:12px;">Enrolment Year is Required.</p>  
         
-        <h3>OR</h3>
+        <h3>OR / AND</h3>
         <br/>
         <label>Employer Name: </label>
         <P><input type="text" name="employer_name" class="form-control" @if(Session('employer_name')) value="{{Session('employer_name')}}" @endif id="employer_name" placeholder="Employer Name" /> </p>
@@ -291,18 +313,6 @@ button:hover {
         <p  class="error" style="display:none;color:Red;font-size:12px;">Employement Year is Required.</p>   
           
            
-  </div>
-
-  
-
-  <div class="tab">
-    <h3>Japanese Language skill: </h3>
-        <label>Describe your current Japanese skills</label> <br/>
-        <p><input style="width:16px;"  type="radio" value="A" @if(Session('japanese_culture') == "A") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>A: </strong> None</p>
-        <p><input style="width:16px;" type="radio" value="B" @if(Session('japanese_culture') == "B") {{"checked"}} @endif  class="japanese_culture" name="japanese_culture"> <strong>B: </strong> Basic: N5 Level </v>
-        <p><input style="width:16px;" type="radio" value="C"  @if(Session('japanese_culture') == "C") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>C: </strong> Advance N4, N3 Level </v>
-        <p><input style="width:16px;" type="radio" value="D"  @if(Session('japanese_culture') == "D") {{"checked"}} @endif class="japanese_culture" name="japanese_culture"> <strong>D: </strong> Fluent N2, N1 Level </v>
-
   </div>
 
   <div class="tab">
@@ -374,7 +384,7 @@ button:hover {
       <br/>
   <p>Do you have visible Tattoos? <strong>Yes</strong> <input style="width:16px;" type="radio" class="online_ques" name="tatoo" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="tatoo" value="No" /> </p>
   <p>Can you work without Glasses? (Contact lenses are acceptable) <strong>Yes</strong> <input style="width:16px;"  class="online_ques" type="radio" name="glasses" value="yes" /> <strong>No</strong> <input class="online_ques" style="width:16px;" type="radio" name="glasses" value="No" /> </p>
-  <p>Are you willing to study Japanese if hired? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="online_ques" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="study_japanese_if_hired" value="No" /> </p>
+  <p>Do you agree that you are required to study Japanese (if hired) for future advancement? <strong>Yes</strong> <input style="width:16px;"  type="radio" class="online_ques" name="study_japanese_if_hired" value="yes" /> <strong>No</strong> <input style="width:16px;" class="online_ques" type="radio" name="study_japanese_if_hired" value="No" /> </p>
   <p>Have you submitted and uploaded all documents correctly? Otherwise you application will be disqualified. <strong>Yes</strong> <input  style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="yes" /> <strong>No</strong> <input style="width:16px;" type="radio" class="online_ques" name="confirm_form" value="No" /> </p>
      
       <br/>
@@ -407,7 +417,7 @@ button:hover {
 <!-- summarry -->
 
 <div class="" id="regForm">
-<h3 style="color:red;">Congratulations, your application has been submitted.</h3>
+<h3 style="color:red;">Congratulations, your application has been completed.</h3>
 <h4>Application summary:</h4>
 <?php $form = $form->first(); ?>
     <div class="row" style="margin-top:12px; padding:12px;">
@@ -517,7 +527,7 @@ button:hover {
                                         @if(!empty($form->school_name)) <label>21. School Name: </label> {{$form->school_name}}
                                         <br/>
                                         <label>
-                                            22. School Year: {{$form->school_year}}
+                                            22. Enrolment Year: {{$form->school_year}}
                                         </label>
                                         @elseif(!empty($employer_name))
                                         <label>23. Employer Name: </label> {{$form->employer_name}}
@@ -560,7 +570,7 @@ button:hover {
                                                 </div>  
 
                                                 <div class="col-md-4">
-                                                        <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                                        <a onclick="smalWindow(this); return false;"  href="{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
                                                        <br/>
                                                        <label>29. University Name:</label> {{$form->universityName}}
             
@@ -591,7 +601,7 @@ button:hover {
         
                                                     <div class="row" style="margin-top:12px;margin-bottom:124px; padding:12px;">
                                                             <div class="col-md-3">
-                                                               <label>31. Tatto: </label> {{$form->tatoo}}
+                                                               <label>31. Tattoo: </label> {{$form->tatoo}}
                                                             </div>
         
                                                             <div class="col-md-3">
@@ -607,10 +617,23 @@ button:hover {
                                                                             <label>34. Confirm: </label> {{$form->confirm}}
                                                                          </div>
                                                         </div> 
-        
+
+                                                        @if($form->isSubmitted != 1)
+                                                        <div class="row" style="margin-top:12px;  padding:12px;">
+                                                        <a href="{{route('submitApplication')}}" onclick="confirmApplication(this); return false;" class="btn btn-success" style="text-decoration:none;float:right;">Submit Application</a>
+                                                     
+                                                    @endif
+
+                                                        @if($form->isSubmitted == 0)
+
+                                                        <a href="{{route('editApplication')}}" class="btn btn-primary" style="text-decoration:none;float:right;margin-right:14px;">Edit Application</a>
+                                                     
+                                                        @endif
+
+                                                
                                                       </div>
 
-
+</div>
 
 
 
@@ -623,6 +646,8 @@ button:hover {
 
 
 @endif
+
+                                                    <script src="{{URL::asset('/js/jquery-ui.min.js')}}"></script>
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var f = 0;
@@ -639,7 +664,7 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "Read, Finish Application";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -678,6 +703,8 @@ else
   if (currentTab >= x.length) {
     // ... the form gets submitted:
     document.getElementById("regForm").submit();
+
+  
     return false;
   }
   // Otherwise, display the correct tab:
@@ -841,7 +868,7 @@ function checkformat(inputFile)
     var file = $(inputFile).val();
     var size = inputFile.files[0].size;
     console.log(size);
-    var allowed_extensions = new Array("jpg","png","jpeg");
+    var allowed_extensions = new Array("jpg","pdf","jpeg");
     var file_extension = file.split('.').pop().toLowerCase();
 
     if(!allowed_extensions.includes(file_extension))
@@ -850,7 +877,7 @@ function checkformat(inputFile)
              $(inputFile).next('.error').show('slow');
        $(inputFile).val("");
        alertify.set('notifier','position', 'top-center');
-    alertify.error("Invalid File Format. Supported Files are .JPG, .JPECG and .PNG ");
+    alertify.error("Invalid File Format. Supported Files are .JPG, .JPEG and .PDF ");
       
         return false;
 
@@ -918,6 +945,14 @@ function cnfrm(link)
 
            
         }
+
+
+function confirmApplication(link)
+{
+  alertify.confirm('Submit Application', 'Are you sure you have reviewed all data entered? You will not be allowed to modify or change your answers once clicking on submit. Click OK if you are ready to submit your final application or click CANCEL to edit your application', function(){ location.href = link.href;
+     }
+                , function(){ alertify.error('Action Cancelled.')});
+}
 </script>
 
 </body>

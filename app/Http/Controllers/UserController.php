@@ -329,4 +329,215 @@ class UserController extends Controller
             }
         }
     }
+
+
+    public function submitApplication()
+    {
+        $user = Auth::user();
+        $form = FormModel::whereUser_id($user->id)->first();
+        $form->isSubmitted = 1;
+        if($form->save())
+        {
+        Session()->forget('editApplication');
+            return redirect()->back()->with('success','Congratulations, Your application has been submitted.');
+
+        }
+        else
+        {
+            return redirect()->back()->with('error','Error Occurred in submitting the application. Please Try again.');
+
+        }
+    }
+
+    public function editApplication()
+    {
+        Session()->put('editApplication',1);
+        $user = Auth::user();
+        $form = FormModel::whereUser_id($user->id)->first();
+        Session()->put('firstname',$form->firstname);
+        Session()->put('lastname',$form->lastname);
+        Session()->put('streetAddress',$form->streetAddress);
+        Session()->put('city',$form->city);
+        Session()->put('state',$form->stateRegion);
+        Session()->put('zip',$form->zip);
+        Session()->put('country',$form->country);
+        Session()->put('phone',$form->contactPhone);
+        Session()->put('age',$form->age);
+        Session()->put('gender',$form->gender);
+        Session()->put('email',$form->email);
+        Session()->put('height',$form->height);
+        Session()->put('weight',$form->weight);
+
+        Session()->put('applied_for_ana',$form->applied_for_ana);
+        Session()->put('applied_for_ana_year',$form->applied_for_ana_year);
+        Session()->put('airline',$form->airline);
+        Session()->put('airlinePosition',$form->airlinePosition);
+        Session()->put('work_experience',$form->work_experience);
+        Session()->put('japanese_culture',$form->japanese_culture);
+        Session()->put('internation_experience',$form->internation_experience);
+        Session()->put('japanese_lang',$form->japanese_lang);
+        Session()->put('school_name',$form->school_name);
+        Session()->put('school_year',$form->school_year);
+        Session()->put('employer_name',$form->employer_name);
+        Session()->put('employer_year',$form->employer_year);
+
+        Session()->put('passportNumber',$form->passportNumber);
+        Session()->put('passportExpiry',$form->passportExpiry);
+        Session()->put('toeic_score',$form->toeic_score);
+        Session()->put('uni_name',$form->uni_name);
+
+        return redirect('/apply');
+    }
+
+
+
+    /// update form
+
+
+    public function updateForm(Request $req)
+    {
+
+        $success = 0;
+        $user = Auth::user();
+        $form = FormModel::whereUser_id($user->id)->first();
+        $form->firstname = $req->input('firstname');
+        $form->lastname = $req->input('lastname');
+        $form->streetAddress = $req->input('streetAddress');
+        $form->city = $req->input('city');
+        $form->stateRegion = $req->input('stateRegion');
+        $form->zip = $req->input('zip');
+        $form->country = $req->input('country');
+        $form->contactPhone = $req->input('contactPhone');
+        $form->age = $req->input('age');
+        $form->gender = $req->input('gender');
+        $form->email = $req->input('email');
+        $form->height = $req->input('height');
+        $form->weight = $req->input('weight');
+        
+        $form->user_id = $user->id;
+
+
+        $form->applied_for_ana = $req->input('applied_for_ana');
+
+        if($req->input('applied_for_ana') == "D" || $req->input('applied_for_ana') == "C")
+        {
+            $applied_for_ana_year =$req->input('applied_for_ana_year');
+        $form->applied_for_ana_year =  $applied_for_ana_year;
+
+        }
+
+        $form->airline = $req->input('airline');
+        $form->airlinePosition = $req->input('airlinePosition');
+        $form->work_experience = $req->input('work_experience');
+        $form->japanese_culture =  $req->input('japanese_culture');
+        $form->internation_experience =  $req->input('internation_experience');
+        $form->japanese_lang =  $req->input('japanese_lang');
+        if($req->input('japanese_lang') == "D")
+        {
+
+                $school_name = $req->input('school_name');
+                $school_year = $req->input('school_year');
+                $form->school_name =  $school_name;
+                $form->school_year = $school_year;
+          
+                $employer_name = $req->input('employer_name');
+                $employer_year = $req->input('employer_name');
+
+                
+        $form->employer_name = $employer_name;
+        $form->employer_year = $employer_year;
+
+        }
+
+
+
+        $form->passportNumber = $req->input('passport_number');
+        $form->passportExpiry = $req->input('passport_expiry');
+        $form->toeicScore = $req->input('toeic_score');
+        $form->universityName = $req->input('uni_name');
+
+        //request
+        $additionalText = $req->input('cv_additional_text');
+        $form->coverLetter = $additionalText;
+        $form->tatoo = $req->input('tatoo');
+        $form->glasses = $req->input('glasses');
+        $form->japanase = $req->input('study_japanese_if_hired');
+        $form->confirm = $req->input('confirm_form');
+
+        $destination = "./uploads";
+        //files
+        if($form->save()){
+        $passportFile = $req->file('passport_file');
+        $pName = $passportFile->getClientOriginalName();
+        $extP = $passportFile->getClientOriginalExtension();
+            $success++;
+        // $thaicard_file = $req->file('thai_id_card');
+        // $tCard = $thaicard_file->getClientOriginalName();
+        // $extC = $thaicard_file->getClientOriginalExtension();
+
+
+
+        $score_file = $req->file('toeic_score_card');
+        $sF = $score_file->getClientOriginalName();
+        $extS = $score_file->getClientOriginalExtension();
+
+
+        
+        $cv_file = $req->file('cv_file');
+        $cF = $cv_file->getClientOriginalName();
+        $extCV = $cv_file->getClientOriginalExtension();
+
+
+        if($passportFile->move($destination,$form->id."pp".".".$extP))
+        {
+            $form->passportFileName = $form->id."pp".".".$extP;
+            $form->save();
+            $success++;
+
+        }
+
+        // if($thaicard_file->move($destination,"000".$form->id."id".".".$extC))
+        // {
+        //     $form->idCardFileName  = "000".$form->id."id".".".$extC;
+        //     $form->save();
+        // }
+
+
+        if($score_file->move($destination,$form->id."to".".".$extS))
+        {
+            $form->toeicFileName  = $form->id."to".".".$extS;
+            $form->save();
+            $success++;
+
+        }
+
+        if($cv_file->move($destination,$form->id."cv".".".$extCV))
+        {
+            $form->cvFileName  = $form->id."cv".".".$extCV;
+            $form->save();
+            $success++;
+
+        }
+
+        }
+        else 
+        {
+        return redirect()->back()->with('error','Error Occurred in Updating the Application. Please try again.');
+
+        }
+
+        if($success > 0)
+        {
+            Session()->forget('editApplication');
+        return redirect()->back()->with('success','Application Updated.');
+            
+        }
+        else 
+        {
+            return redirect()->back()->with('error','Error Occurred in Updating the Application. Please try again.');
+
+        }
+        
+    }   
+    
 }

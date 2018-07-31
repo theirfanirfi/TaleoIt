@@ -174,6 +174,7 @@ Route::group(['prefix' => 'apply', 'middleware' => 'UserWare'],function(){
     //submit form
 
     Route::post('/submitForm','UserController@submitForm')->name('submitForm');
+    Route::post('/updateForm','UserController@updateForm')->name('updateForm');
 
     //sotring the form various steps in session
 
@@ -190,6 +191,12 @@ Route::group(['prefix' => 'apply', 'middleware' => 'UserWare'],function(){
     Route::get('/sq','UserController@sq')->name('sq');
     Route::post('/squestion','UserController@squestion')->name('squestion');
 
+    //submit application: mark isSubmitted as one.
+
+
+
+    Route::get('/submitApplication','UserController@submitApplication')->name('submitApplication');
+    Route::get('/editApplication','UserController@editApplication')->name('editApplication');
 
     
 
