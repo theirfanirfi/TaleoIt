@@ -94,7 +94,7 @@ if(Auth::user())
                         <li><a href="javascript:;" class="fullscreen-btn"><i class="fa fa-arrows-alt"></i></a></li>
                         @if(Session('Access') == 1)
                     	<!-- start language menu -->
-                 <li class="dropdown language-switch">
+                 <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="" class="position-left" alt=""> Export <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -129,7 +129,7 @@ if(Auth::user())
                         <!-- end language menu -->
 
 
-                        <li class="dropdown language-switch">
+                        <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="" class="position-left" alt=""> Applications <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu">
