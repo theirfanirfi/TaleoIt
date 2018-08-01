@@ -23,8 +23,9 @@
                                     <th>State Region</th>
                                     <th>Country</th>
                                     <th>Status</th>
-                                    <th>Uni Name</th>
+                              
                                     <th>Change Status</th>
+                                    <th>Date</th>
                                     <th>Delete</th>
                             </tr>
                         </thead>
@@ -65,7 +66,7 @@
                                       echo "label-primary";
                                       break;
                                     } ?>">{{$f->application_status}}</i></td>
-                                <td>{{$f->universityName}}</td>
+             
                     
                                     <td>
                                     <select class="form-control changeStatus" form_id="{{$f->id}}">
@@ -77,7 +78,7 @@
                                             <option value="5" @if($f->app_status == 5) {{"selected"}} @endif >Screened</option>
                                         </select>
                                     </td>
-                    
+                                    <td><?php echo substr($f->created_at,0,11) ?></td>                    
                                         <td>
                                         <a class="btn-sm btn-danger" href="{{route('deleteApp',['id'=>$f->id])}}">
                                                         <i class="glyphicon glyphicon-trash icon-white"></i>

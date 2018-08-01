@@ -365,7 +365,20 @@ class ClientController extends Controller
     $forms = array();
 
     foreach($form as $f){
-      $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+        $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+        'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+        'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+        'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+        'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+        'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+        'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+       'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+       
+       'International Work Experience' => $f->internation_experience, 
+       'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+       'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+       'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+        'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm, 'Submission Date' => $f->created_at ];
     }
 
     Excel::create("Submitted Applications", function($excel) use ($forms) {
@@ -385,11 +398,24 @@ class ClientController extends Controller
 
 public function exportFinalXL()
 {
-  $form = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->get();
+  $form = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
   $forms = array();
   foreach($form as $f){
-    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
-  }
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+     'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+     'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+     'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+     'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+     'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+     'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+    'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+    
+    'International Work Experience' => $f->internation_experience, 
+    'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+    'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+    'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+     'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm, 'Submission Date' => $f->created_at ];
+}
 
   Excel::create("Final Interview Candidates", function($excel) use ($forms) {
 
@@ -408,11 +434,25 @@ public function exportFinalXL()
 
 public function exportRejectedXL()
 {
-  $form = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->get();
+  $form = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
   $forms = array();
   foreach($form as $f){
-    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
-  }
+
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+     'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+     'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+     'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+     'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+     'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+     'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+    'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+    
+    'International Work Experience' => $f->internation_experience, 
+    'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+    'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+    'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+     'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm, 'Submission Date' => $f->created_at ];
+}
 
   Excel::create("Final Interview Candidates", function($excel) use ($forms) {
 
@@ -430,10 +470,23 @@ public function exportRejectedXL()
 
 public function exportPreXL()
 {
-  $form = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->get();
+  $form = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
   $forms = array();
   foreach($form as $f){
-    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+     'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+     'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+     'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+     'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+     'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+     'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+    'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+    
+    'International Work Experience' => $f->internation_experience, 
+    'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+    'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+    'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+     'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm , 'Submission Date' => $f->created_at];
   }
 
   Excel::create("Pre Scanning Candidates", function($excel) use ($forms) {
@@ -451,11 +504,24 @@ public function exportPreXL()
 
 public function exportScanned()
 {
-  $form = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->get();
+  $form = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
   $forms = array();
   foreach($form as $f){
-    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
-  }
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+     'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+     'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+     'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+     'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+     'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+     'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+    'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+    
+    'International Work Experience' => $f->internation_experience, 
+    'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+    'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+    'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+     'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm , 'Submission Date' => $f->created_at]; 
+}
 
   Excel::create("Scanned Candidates", function($excel) use ($forms) {
 
@@ -472,11 +538,24 @@ public function exportScanned()
 
 public function exportHired()
 {
-  $form = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->get();
+  $form = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
   $forms = array();
   foreach($form as $f){
-    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname,  'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 'University' => $f->universityName,'Toeic Score' => $f->toeicScore,'Work Experience' => $f->work_experience,'Japanese Culture' => $f->japanese_culture,'Japanese Language' => $f->japanese_lang, 'Internation Work Experience' => $f->internation_experience,'Airline Position and Experience' => $f->airline,'Applied For ANA' => $f->applied_for_ana];
-  }
+    $forms[] = ['Id' => $f->id,'First Name' => $f->firstname, 'Last Name'=> $f->lastname, 
+     'Email' => $f->email, 'Contact Phone' => $f->contactPhone, 'Gender' => $f->gender, 
+     'Age' => $f->age, 'Height' => $f->height, 'Weight' => $f->weight, 
+     'Applied For ANA' => $f->applied_for_ana, 'Last Screening Year' => $f->applied_for_ana_year,
+     'Work Experience' => $f->work_experience,'Airline Name' => $f->airline, 
+     'Airline Position' => $f->airlinePosition,'Japanese Language' => $f->japanese_lang, 
+     'Japanese Culture' => $f->japanese_culture, 'School Name' => $f->school_name, 'Enrollment Year' => $f->school_year, 
+    'Employer Name' => $f->employer_name, 'Employement_year' => $f->employer_year, 
+    
+    'International Work Experience' => $f->internation_experience, 
+    'Passport Number' => $f->passportNumber, 'Passport Expiry' => $f->passportExpiry, 
+    'Toeic Score' => $f->toeicScore,'University' => $f->universityName, 
+    'Text Box' => $f->coverLetter, 'Tattoos' => $f->tatoo, 'Glasses' => $f->glasses,
+     'Japanese (If hired)' => $f->japanase, 'Confirm' => $f->confirm, 'Submission Date' => $f->created_at ]; 
+}
 
   Excel::create("Hired Candidates", function($excel) use ($forms) {
 
