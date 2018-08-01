@@ -175,7 +175,7 @@ class UserController extends Controller
             else if(!empty($req->input('employer_name')))
             {
                 $employer_name = $req->input('employer_name');
-                $employer_year = $req->input('employer_name');
+                $employer_year = $req->input('employer_year');
 
                 
         $form->employer_name = $employer_name;
@@ -383,8 +383,9 @@ class UserController extends Controller
 
         Session()->put('passportNumber',$form->passportNumber);
         Session()->put('passportExpiry',$form->passportExpiry);
-        Session()->put('toeic_score',$form->toeic_score);
-        Session()->put('uni_name',$form->uni_name);
+        Session()->put('toeic_score',$form->toeicScore);
+        Session()->put('uni_name',$form->universityName);
+        Session()->put('cover',$form->coverLetter);
 
         return redirect('/apply');
     }
@@ -441,7 +442,7 @@ class UserController extends Controller
                 $form->school_year = $school_year;
           
                 $employer_name = $req->input('employer_name');
-                $employer_year = $req->input('employer_name');
+                $employer_year = $req->input('employer_year');
 
                 
         $form->employer_name = $employer_name;

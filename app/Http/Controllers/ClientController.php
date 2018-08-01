@@ -16,18 +16,18 @@ class ClientController extends Controller
 
     public function index()
     {
-        $submitted = FormModel::where(['isWithDrawn' => 0])->count();
-        $final = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->count();
-        $prescreening = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->count();
-        $rejected = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->count();
-        $hired = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->count();
-        $screened = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->count();
+        $submitted = FormModel::where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
+        $final = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
+        $prescreening = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
+        $rejected = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
+        $hired = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
+        $screened = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->count();
         return view('client.index',['submitted' => $submitted, 'final' => $final, 'pre' => $prescreening, 'rejected' => $rejected, 'hired' => $hired, 'screened' => $screened, 'page' =>"Dashboard"]);
     }
 
     public function submittedForms()
     {
-        $forms = FormModel::where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         FormModel::whereAlert_status(0)->update(['alert_status' => 1]);
         return view('client.submittedforms',['forms' => $forms, 'page' => "All Applicants"]);
     }
@@ -99,7 +99,7 @@ class ClientController extends Controller
     public function rejectedList()
     {
         
-        $forms = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::whereApp_status(3)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         return view('client.rejected',['forms' => $forms,'page' => 'Rejected Applicants']);
     }
 
@@ -323,32 +323,32 @@ class ClientController extends Controller
 
     public function finalInterview()
     {
-        $forms = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::whereApp_status(1)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         return view('client.finalinterview',['forms' => $forms, 'page' => 'Final Interview Candidates']);
     }
 
     public function prescreening()
     {
-        $forms = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::whereApp_status(2)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         return view('client.prescreening',['forms' => $forms, 'page' => 'Pre-Screening Applicants']);
     }
 
     public function hired()
     {
-        $forms = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::whereApp_status(4)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         return view('client.hired',['forms' => $forms,'page' => 'Hired Candidates']);
     }
 
     public function screened()
     {
-        $forms = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0])->get();
+        $forms = FormModel::whereApp_status(5)->where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
         return view('client.screened',['forms' => $forms, 'page' => 'Screened Applicants']);
     }
 
 
     public function wdApps()
     {
-        $forms = FormModel::where(['isWithDrawn' => 1])->get();
+        $forms = FormModel::where(['isWithDrawn' => 1, 'isSubmitted' => 1])->get();
         return view('client.withdrawnApps',['forms' => $forms, 'page' => 'Withdrawn Candidates']);
     }
 
@@ -361,7 +361,7 @@ class ClientController extends Controller
 
     public function exportSubmittedXL()
   {
-    $form = FormModel::where(['isWithDrawn' => 0])->get();
+    $form = FormModel::where(['isWithDrawn' => 0, 'isSubmitted' => 1])->get();
     $forms = array();
 
     foreach($form as $f){
@@ -539,39 +539,39 @@ public function docsrejected()
 
 public function cvs($status)
 {
-$forms = FormModel::select(['id','cvFileName'])->where(['app_status' => $status])->get();
+$forms = FormModel::select(['id','cvFileName'])->where(['app_status' => $status, 'isSubmitted' => 1])->get();
     return view('client.actualdocs',['page' => 'CVs','forms' => $forms]);
 }
 
 public function passports($status)
 {
-$forms = FormModel::select(['id','passportFileName'])->where(['app_status' => $status])->get();
+$forms = FormModel::select(['id','passportFileName'])->where(['app_status' => $status, 'isSubmitted' => 1])->get();
     return view('client.actualpassportdocs',['page' => 'Passports','forms' => $forms]);
 }
 
 public function toeicscorecard($status)
 {
-$forms = FormModel::select(['id','toeicFileName'])->where(['app_status' => $status])->get();
+$forms = FormModel::select(['id','toeicFileName'])->where(['app_status' => $status, 'isSubmitted' => 1])->get();
     return view('client.actualtoeicdocs',['page' => 'TOEIC Score Cards','forms' => $forms]);
 }
 
 
 public function allpassports()
 {
-    $forms = FormModel::select(['id','passportFileName'])->get();
+    $forms = FormModel::select(['id','passportFileName', 'isSubmitted' => 1])->get();
     return view('client.passports',['page' => 'All Passports','forms' => $forms]);
 }
 
 public function allToeicScoreCards()
 {
-    $forms = FormModel::select(['id','toeicFileName'])->get();
+    $forms = FormModel::select(['id','toeicFileName', 'isSubmitted' => 1])->get();
     return view('client.toeicscorecards',['page' => 'All TOEIC Score Cards','forms' => $forms]); 
 }
 
 
 public function allCvs()
 {
-    $forms = FormModel::select(['id','cvFileName'])->get();
+    $forms = FormModel::select(['id','cvFileName', 'isSubmitted' => 1])->get();
     return view('client.allcvs',['page' => 'All CVs','forms' => $forms]); 
 }
 

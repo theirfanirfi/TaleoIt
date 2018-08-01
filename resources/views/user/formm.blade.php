@@ -159,7 +159,8 @@ button:hover {
         <li><a href="{{route('logout')}}">Logout</a></li>
         </ul>
       </div>
-      @if($form->count() > 0 && $form->first()->isWithDrawn == 0)
+      
+      @if($form->count() > 0 && $form->first()->isWithDrawn == 0 && $form->first()->isSubmitted == 1)
       <a style="float:left; text-decoration: none;" class="btn-lg btn-danger" onclick="cnfrm(this); return false;" href="{{route('withDrawApp')}}">WITHDRAW APPLICATION</a>
      @endif
 </div>
@@ -374,7 +375,7 @@ button:hover {
         <p class="error" style="color:red;display:none;">Field is Required.</p>
     
         <p>You can use this text area to support or complement your application. Maximum capacity of 500pts. </p>
-        <textarea id="optionalText" class="form-control fi" name="cv_additional_text" style="height:300px;width:100%;" maxlength="500"></textarea>
+        <textarea id="optionalText" class="form-control fi" name="cv_additional_text" style="height:300px;width:100%;" maxlength="500">@if(Session('cover')) {{Session('cover')}} @endif</textarea>
     
         <br/>
   </div>
@@ -417,7 +418,12 @@ button:hover {
 <!-- summarry -->
 
 <div class="" id="regForm">
+  @if($form->first()->isSubmitted == 0)
 <h3 style="color:red;">Congratulations, your application has been completed.</h3>
+@else 
+<h3 style="color:red;">Congratulations, your application has been submitted.</h3>
+
+@endif
 <h4>Application summary:</h4>
 <?php $form = $form->first(); ?>
     <div class="row" style="margin-top:12px; padding:12px;">
@@ -495,8 +501,14 @@ button:hover {
                                             
                     <div class="row" style="margin-top:12px; padding:12px;">
                             <div class="col-md-3">
-                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}} @if(!empty($form->applied_for_ana_year)) <label> 15. Screening year: </label> {{$form->applied_for_ana_year}} @endif
+                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}}  
                                
+
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <label> 15. Screening year: </label> {{$form->applied_for_ana_year}}
                             </div>
 
                             <div class="col-md-3">
@@ -504,15 +516,13 @@ button:hover {
 
                                 </div>   
 
-                                <div class="col-md-6">
-                                    @if(!empty($form->airline))
+                                <div class="col-md-3">
+                                  
                                         <label> 17. Airline Name: </label> {{$form->airline}}
-                                    @endif
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    @if(!empty($form->airlinePosition))
+                                </div>
+                                <div class="col-md-5">
                                     <label> 18. Airline Position: </label> {{$form->airlinePosition}}
-                                @endif
                                     </div>   
                         </div>  
 
@@ -524,18 +534,32 @@ button:hover {
 
                                 <div class="col-md-3">
                                         <label> 20. Japanese Culture: </label> {{$form->japanese_culture}}
-                                        @if(!empty($form->school_name)) <label>21. School Name: </label> {{$form->school_name}}
+                                      
                                         <br/>
+                                </div>
+                                <div class="col-md-3">
                                         <label>
-                                            22. Enrolment Year: {{$form->school_year}}
+                                            21. School Name: 
                                         </label>
-                                        @elseif(!empty($employer_name))
+                                        {{$form->school_name}}
+
+                                        </div>
+                                <div class="col-md-3">
+                                    <label>
+                                            22. Enrolment Year: 
+                                        </label>
+                                        {{$form->school_year}}
+                                      </div>
+                                      <div class="col-md-3">
                                         <label>23. Employer Name: </label> {{$form->employer_name}}
                                         <br/>
+                                      </div>
+
+                                      <div class="col-md-4">
                                         <label>
-                                            24. Employement Year: {{$form->employer_year}}
+                                            24. Employement Year: 
                                         </label>
-                                        @endif
+                                        {{$form->employer_year}}
                                     </div>
 
                                     <div class="col-md-3">
@@ -570,7 +594,7 @@ button:hover {
                                                 </div>  
 
                                                 <div class="col-md-4">
-                                                        <a onclick="smalWindow(this); return false;"  href="{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                                        <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
                                                        <br/>
                                                        <label>29. University Name:</label> {{$form->universityName}}
             
@@ -580,7 +604,7 @@ button:hover {
                                         
                                         <div class="row" style="margin-top:12px; padding:12px;">
                                                 <div class="col-md-3">
-                                                                <label>30. Cover Letter:</label>   
+                                                                <label>30. Text Box:</label>   
                                                 </div>
                                             </div> 
         

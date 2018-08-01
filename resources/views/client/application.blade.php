@@ -97,22 +97,22 @@
                             <label> 7. Country: </label> {{$form->country}}
                         </div>
         
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                                 <label> 8. Contact Phone: </label> {{$form->contactPhone}}
                             </div>
         
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                     <label> 9. Age: </label> {{$form->age}}
                                 </div>    
                     </div> 
                     
                     
                     <div class="row" style="margin-top:12px; padding:12px;">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label> 10. Gender: </label> {{$form->gender}}
                             </div>
             
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                     <label> 11. Email: </label> {{$form->email}}
                                 </div>
             
@@ -134,7 +134,11 @@
                     
                     <div class="row" style="margin-top:12px; padding:12px;">
                             <div class="col-md-3">
-                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}} @if(!empty($form->applied_for_ana_year)) <label> 15. Screening year: </label> {{$form->applied_for_ana_year}} @endif
+                                <label> 14. Previous Application: </label> {{$form->applied_for_ana}}
+                             </div>
+                            <div class="col-md-3">
+                                
+                                <label> 15. Screening year: </label> {{$form->applied_for_ana_year}} 
                                
                             </div>
 
@@ -143,44 +147,68 @@
 
                                 </div>   
 
-                                <div class="col-md-5">
-                                        @if(!empty($form->airline))
+                                <div class="col-md-3">
+                                  
                                         <label> 17. Airline Name: </label> {{$form->airline}}
-                                    @endif
+                                </div>
+                                <br/>
+                    </div>
+                    <div class="row" style="margin-top:12px; padding:12px;">
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="col-md-5">
 
-                                    @if(!empty($form->airlinePosition))
+
                                     <label> 18. Airline Position: </label> {{$form->airlinePosition}}
-                                @endif
+          
                                     </div>   
                         </div>  
 
                 
                         <div class="row" style="margin-top:12px; padding:12px;">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label> 19. Japanese Language Skill: </label> {{$form->japanese_lang}}
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                         <label> 20. Japanese Culture: </label> {{$form->japanese_culture}}
-                                        @if(!empty($form->school_name)) <label>21. School Name: </label> {{$form->school_name}}
+                                </div>
+
+                            <div class="col-md-4">
+
+                                     <label>21. School Name: </label> {{$form->school_name}}
                                         <br/>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-top:12px; padding:12px;">
+
+                            <div class="col-md-4">
+
                                         <label>
-                                            22. School Year: {{$form->school_year}}
+                                            22. Enrollment Year: {{$form->school_year}}
                                         </label>
-                                        @elseif(!empty($employer_name))
+                            </div>
+
+                            <div class="col-md-4">
+
                                         <label>23. Employer Name: </label> {{$form->employer_name}}
                                         <br/>
+                            </div>
+
+
+                            <div class="col-md-4">
                                         <label>
                                             24. Employement Year: {{$form->employer_year}}
                                         </label>
-                                        @endif
                                     </div>
 
-                                    <div class="col-md-3">
+                        </div>
+                        <div class="row" style="margin-top:12px; padding:12px;">
+
+
+                                    <div class="col-md-4">
                                             <label> 25. International Experience: </label> {{$form->internation_experience}}
                                         </div>
                         </div>
@@ -224,7 +252,7 @@
                                 
                                 <div class="row" style="margin-top:12px; padding:12px;">
                                         <div class="col-md-3">
-                                                        <h5>30. Cover Letter:</h5>   
+                                                        <h5>30. Text Box:</h5>   
                                         </div>
                                     </div> 
 
@@ -245,7 +273,7 @@
 
                                             <div class="row" style="margin-top:12px; padding:12px;">
                                                     <div class="col-md-3">
-                                                       <label>31. Tatto: </label> {{$form->tatoo}}
+                                                       <label>31. Tattoo: </label> {{$form->tatoo}}
                                                     </div>
 
                                                     <div class="col-md-3">
