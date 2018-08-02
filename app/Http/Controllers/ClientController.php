@@ -637,20 +637,20 @@ $forms = FormModel::select(['id','toeicFileName'])->where(['app_status' => $stat
 
 public function allpassports()
 {
-    $forms = FormModel::select(['id','passportFileName', 'isSubmitted' => 1])->get();
+    $forms = FormModel::select(['id','passportFileName'])->where([ 'isSubmitted' => 1])->get();
     return view('client.passports',['page' => 'All Passports','forms' => $forms]);
 }
 
 public function allToeicScoreCards()
 {
-    $forms = FormModel::select(['id','toeicFileName', 'isSubmitted' => 1])->get();
+    $forms = FormModel::select(['id','toeicFileName'])->where([ 'isSubmitted' => 1])->get();
     return view('client.toeicscorecards',['page' => 'All TOEIC Score Cards','forms' => $forms]); 
 }
 
 
 public function allCvs()
 {
-    $forms = FormModel::select(['id','cvFileName', 'isSubmitted' => 1])->get();
+    $forms = FormModel::select(['id','cvFileName'])->where([ 'isSubmitted' => 1])->get();
     return view('client.allcvs',['page' => 'All CVs','forms' => $forms]); 
 }
 

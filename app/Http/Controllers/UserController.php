@@ -152,7 +152,7 @@ class UserController extends Controller
 
         if($req->input('applied_for_ana') == "D" || $req->input('applied_for_ana') == "C")
         {
-            $applied_for_ana_year =$req->input('applied_for_ana_year');
+        $applied_for_ana_year = $req->input('applied_for_ana_year');
         $form->applied_for_ana_year =  $applied_for_ana_year;
 
         }
@@ -163,25 +163,18 @@ class UserController extends Controller
         $form->japanese_culture =  $req->input('japanese_culture');
         $form->internation_experience =  $req->input('internation_experience');
         $form->japanese_lang =  $req->input('japanese_lang');
-        if($req->input('japanese_lang') == "D")
-        {
-            if(!empty($req->input('school_name')))
-            {
+     
                 $school_name = $req->input('school_name');
                 $school_year = $req->input('school_year');
                 $form->school_name =  $school_name;
                 $form->school_year = $school_year;
-            }
-            else if(!empty($req->input('employer_name')))
-            {
+          
                 $employer_name = $req->input('employer_name');
                 $employer_year = $req->input('employer_year');
 
                 
         $form->employer_name = $employer_name;
         $form->employer_year = $employer_year;
-            }
-        }
 
 
 

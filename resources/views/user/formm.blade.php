@@ -239,7 +239,7 @@ button:hover {
         <p><input style="width:16px;" type="radio" value="C" @if(Session('applied_for_ana') == "C") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>C: </strong> Yes, I have previously Attendend pre-screening, but not been to Final Interview</p>
         <p><input style="width:16px;" type="radio" value="D" @if(Session('applied_for_ana') == "D") {{"checked"}} @endif class="applied_for_ana" name="applied_for_ana"> <strong>D: </strong> Yes, I have been to Final Interview</p>
         <p style="font-size:11px;color:red;font-style:italic;">If you answered C or D, Please enter the last screening year you have attendend. Example: 2016</p>
-        <select id="applied_for_ana_last_screening_year_txt" name="applied_for_ana_last_screening_year_txt" style="width:30%;padding:12px;">
+        <select id="applied_for_ana_last_screening_year_txt" name="applied_for_ana_year" style="width:30%;padding:12px;">
           <option value="">Select Year</option>
           @for($i = 1980; $i <= date('Y'); $i++)
         <option value="{{$i}}">{{$i}}</option>
