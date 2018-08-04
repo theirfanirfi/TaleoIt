@@ -27,7 +27,7 @@
                                 @foreach($forms as $f)
                                 <tr>
                                 <td>{{$f->id}}</td>
-                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$f->cvFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->cvFileName}}</a></td>
+                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;"  href="{{URL::to('/file')}}/{{$form->cvFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->cvFileName}}</a></td>
                                 </tr>
                     @endforeach
 

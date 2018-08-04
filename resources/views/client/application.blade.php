@@ -221,28 +221,25 @@
 
                             <div class="row" style="margin-top:12px; padding:12px;">
                                     <div class="col-md-3">
-                                    <a  onclick="smalWindow(this); return false;" href="{{URL::asset('uploads')}}/{{$form->passportFileName}}"><img src="{{URL::asset('uploads')}}/{{$form->passportFileName}}" style="width:200px;height:220px;" /></a> 
+                                    <a  onclick="smalWindow(this); return false;" href="{{URL::to('/file')}}/{{$form->passportFileName}}"><img src="{{URL::asset('uploads')}}/{{$form->passportFileName}}" style="width:200px;height:220px;" /></a> 
                                         <br/>    
                                         <br/>    
                                     <label>26. Passport Number: </label> {{$form->passportNumber}} <br/>
                                         <label>27. Passport Expiry: </label> {{$form->passportExpiry}}
                                 </div>
 
-                              <!--  <div class="col-md-3">
-                                <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->idCardFileName}}"><img src="{{URL::asset('img/idcard.jpg')}}" style="width:100%;height:220px;" /></a> 
-                               
-                                    </div> -->
+
 
                                     <div class="col-md-3" style="text-align: center;">
                                         <h2>TOEIC Score Card</h2>
-                                    <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}" style="font-size:64px;"><i class="material-icons" style="font-size:44px;">attachment</i></a>
+                                    <a onclick="smalWindow(this); return false;"  href="{{URL::to('/file')}}/{{$form->toeicFileName}}" style="font-size:64px;"><i class="material-icons" style="font-size:44px;">attachment</i></a>
                                    <br/>
                                     <label>28. TOEIC Score: </label> {{$form->toeicScore}}    
                                     </div>
 
 
                                     <div class="col-md-3">
-                                    <a onclick="smalWindow(this); return false;"  href="http://docs.google.com/viewer?embedded=true&url={{URL::asset('uploads')}}/{{$form->cvFileName}}"><img src="{{URL::asset('img/cv.png')}}" style="width:95%;height:220px;" /></a> 
+                                    <a onclick="smalWindow(this); return false;"  href="{{URL::to('/file')}}/{{$form->cvFileName}}"><img src="{{URL::asset('img/cv.png')}}" style="width:95%;height:220px;" /></a> 
                                    <br/>
                                    <p style="margin:12px;"><label>29. University Name:</label> {{$form->universityName}}</p>
 

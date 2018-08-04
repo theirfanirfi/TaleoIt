@@ -99,6 +99,7 @@ class LoginController extends Controller
     {
         Auth::logout();
         Session()->flush();
+        $exitCode = \Artisan::call('cache:clear');
         return redirect('/login');
     }
 

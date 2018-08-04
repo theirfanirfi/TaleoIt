@@ -27,7 +27,7 @@
                                 @foreach($forms as $f)
                                 <tr>
                                 <td>{{$f->id}}</td>
-                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;" href="{{URL::asset('/uploads')}}/{{$f->toeicFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->toeicFileName}}</a></td>
+                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;" href="{{URL::to('/file')}}/{{$form->toeicFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->toeicFileName}}</a></td>
                                 </tr>
                     @endforeach
 

@@ -27,7 +27,7 @@
                                 @foreach($forms as $f)
                                 <tr>
                                 <td>{{$f->id}}</td>
-                                <td class="center"><a style="color:white;" href="{{URL::asset('/uploads')}}/{{$f->passportFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->passportFileName}}</a></td>
+                                <td class="center"><a style="color:white;" href="{{URL::to('/file')}}/{{$form->passportFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->passportFileName}}</a></td>
                                 </tr>
                     @endforeach
 

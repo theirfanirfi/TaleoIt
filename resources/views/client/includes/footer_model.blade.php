@@ -1,9 +1,7 @@
         
         <!-- start footer -->
         <div class="page-footer">
-                <div class="page-footer-inner"> <?php echo date('Y'); ?> &copy; CREW ASIA By
-                    <a href="talentsql.com" target="_top" class="makerCss">TalentSQL</a>
-                </div>
+
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
             </div>

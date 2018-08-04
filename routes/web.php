@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return '<h1>Cache facade value cleared</h1>';
+});
+
 Route::get('file/{filename}', 'ImageController@getFile')->where('filename', '^[^/]+$');
 Route::get('/',function(){
 return redirect('/login');
