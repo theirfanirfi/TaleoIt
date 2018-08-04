@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('file/{filename}', 'ImageController@getFile')->where('filename', '^[^/]+$');
 Route::get('/',function(){
 return redirect('/login');
 });
@@ -244,5 +244,9 @@ Route::get('create-dir', function() {
     exit();
 
     Storage::cloud()->put($dir2['path']."/".$filename, $fileData);
+
+});
+
+Route::group(['prefix' => 'uploads','middleware' => 'UserWare'],function(){
 
 });

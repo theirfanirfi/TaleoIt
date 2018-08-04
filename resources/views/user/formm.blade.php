@@ -577,7 +577,7 @@ button:hover {
                             
                             <div class="row" style="margin-top:12px; padding:12px;">
                                     <div class="col-md-4">
-                                    <a  onclick="smalWindow(this); return false;" href="{{URL::asset('uploads')}}/{{$form->passportFileName}}"><i class="glyphicon glyphicon-file"></i> Passport File</a> 
+                                    <a  onclick="smalWindow(this); return false;" href="{{URL::to('/file')}}/{{$form->passportFileName}}"><i class="glyphicon glyphicon-file"></i> Passport File</a> 
                                         <br/>    
                                         <br/>    
                                     <label>26. Passport Number: </label> {{$form->passportNumber}} <br/>
@@ -587,14 +587,14 @@ button:hover {
 
                                             
                                     <div class="col-md-4">
-                                            <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->toeicFileName}}"><i class="glyphicon glyphicon-file"></i> TOEIC Score Card</a> 
+                                            <a onclick="smalWindow(this); return false;"  href="{{URL::to('/file')}}/{{$form->toeicFileName}}"><i class="glyphicon glyphicon-file"></i> TOEIC Score Card</a> 
                                            <br/>
                                            <label>28. TOEIC Score:</label> {{$form->toeicScore}}
 
                                                 </div>  
 
                                                 <div class="col-md-4">
-                                                        <a onclick="smalWindow(this); return false;"  href="{{URL::asset('uploads')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
+                                                        <a onclick="smalWindow(this); return false;"  href="{{URL::to('/file')}}/{{$form->cvFileName}}"><i class="glyphicon glyphicon-file"></i> C.V File</a> 
                                                        <br/>
                                                        <label>29. University Name:</label> {{$form->universityName}}
             

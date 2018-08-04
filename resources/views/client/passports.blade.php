@@ -22,13 +22,25 @@
                         </thead>
                         <tbody>
                    
+                       <?php use App\Http\Controllers\ImageController;
                        
+                       
+                       ?>
 
                                 @foreach($forms as $f)
                                 <tr>
+                                    <?php  
+                                    // $im = new ImageController();
+                                    // $image = $im->image($f->passportFileName);
+                                    ?>
                                 <td>{{$f->id}}</td>
-                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;" href="{{URL::asset('/uploads')}}/{{$f->passportFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->passportFileName}}</a></td>
-                                </tr>
+                                <?php
+                                
+                                ?>
+                               
+                                <td class="center"><a style="color:white;" onclick="smalWindow(this); return false;" href="{{URL::to('/file')}}/{{$f->passportFileName}}"><i class="material-icons">attachment</i> &nbsp; {{$f->passportFileName}}</a></td>
+                                    
+                            </tr>
                     @endforeach
 
 
